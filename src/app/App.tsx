@@ -75,61 +75,79 @@ export default function App() {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 border-b border-black">
-        {/* Section Decoration */}
-        <div className="absolute top-32 left-5 flex items-center gap-4">
-          <span className="text-[#313131] text-center" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>01</span>
-        </div>
-        <div className="absolute top-32 left-14">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>
-            {`<nav>`}
-          </code>
-        </div>
-        
         <div className="max-w-[1920px] mx-auto px-20">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-2 h-2">
-              <svg className="block w-full h-full" fill="none" viewBox="0 0 9 9.05359">
-                <path d="M9 0V9.05359H0L9 0Z" fill="#4346BE" />
-              </svg>
-            </div>
-            <span className="font-normal" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '16px' }}>
-              Menu
-            </span>
-          </div>
+          {/* Nav + FV Title Row */}
+          <div className="flex">
+            {/* Left: Nav Section */}
+            <div className="w-[200px] pr-8 relative">
+              {/* Section Number */}
+              <div className="flex items-center gap-4 mb-2">
+                <span className="text-[#313131] text-center" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>01</span>
+                <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>
+                  {`<nav>`}
+                </code>
+              </div>
 
-          {/* Menu Items */}
-          <div className="space-y-4 ml-8 mb-16">
-            {[
-              { label: 'News', active: true },
-              { label: 'Company', active: false },
-              { label: 'News', active: false },
-              { label: 'Interview', active: false },
-              { label: 'Contents', active: false }
-            ].map((item, index) => (
-              <div key={index} className="flex items-center gap-4">
-                <div className="w-3 h-3">
-                  <svg className="block w-full h-full" fill="none" viewBox="0 0 11 11">
-                    <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
+              {/* Menu Header */}
+              <div className="flex items-center gap-4 mb-8 mt-8">
+                <div className="w-2 h-2">
+                  <svg className="block w-full h-full" fill="none" viewBox="0 0 9 9.05359">
+                    <path d="M9 0V9.05359H0L9 0Z" fill="#4346BE" />
                   </svg>
                 </div>
                 <span className="font-normal" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '16px' }}>
-                  {item.label}
+                  Menu
                 </span>
               </div>
-            ))}
+
+              {/* Menu Items */}
+              <div className="space-y-4 ml-6">
+                {[
+                  { label: 'News', active: true },
+                  { label: 'Company', active: false },
+                  { label: 'News', active: false },
+                  { label: 'Interview', active: false },
+                  { label: 'Contents', active: false }
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center gap-4">
+                    <div className="w-3 h-3">
+                      <svg className="block w-full h-full" fill="none" viewBox="0 0 11 11">
+                        <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="font-normal" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '16px' }}>
+                      {item.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Vertical Divider */}
+            <div className="w-px bg-[#707070] mx-8"></div>
+
+            {/* Right: FV Title Section */}
+            <div className="flex-1 pl-8">
+              {/* Section Decoration */}
+              <div className="mb-8">
+                <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>
+                  {`<h1 class="message">`}
+                </code>
+              </div>
+
+              <h1 className="font-bold tracking-[2.34px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '78px', lineHeight: '107px' }}>
+                <span className="text-[#0074b9]">紙×デジタル</span>
+                <br />
+                情報発信を最適化
+              </h1>
+            </div>
           </div>
 
-          <h1 className="font-bold tracking-[2.34px] mb-12" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '78px', lineHeight: '107px' }}>
-            <span className="text-[#0074b9]">紙×デジタル</span>
-            <br />
-            情報発信を最適化
-          </h1>
-
           {/* Hero Image with Mask - 1900px × 1050px */}
-          <div className="relative w-[1900px] h-[1050px] mx-auto rounded-2xl overflow-hidden">
-            <div 
+          <div className="relative w-full h-[1050px] mx-auto rounded-2xl overflow-hidden mt-12">
+            <div
               className="absolute inset-0"
-              style={{ 
+              style={{
                 maskImage: `url('${img2}')`,
                 maskSize: 'cover',
                 maskPosition: 'center',
