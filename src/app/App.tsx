@@ -1,10 +1,10 @@
 import svgPaths from "../imports/svg-corg4qlf3y";
-import img3 from "figma:asset/1989e711943a09dca66285d0e18edafbafe3fb9c.png";
-import imgSitetopEngineerEyeSp1 from "figma:asset/2723acada69546ad44390f5e3d6b8730eb9c9744.png";
-import img5 from "figma:asset/e6f7b37fca2d865e3f35dae1ac050a9f0649c3e5.png";
-import imgFireShotCapture193CareersMujiCom1 from "figma:asset/20381856004e60259556c5cc5cb1eaa849237729.png";
-import img91 from "figma:asset/f9da79649950583e5a4c4c0c18a62dca2f7a3db4.png";
-import imgInstagramGlyphBlack from "figma:asset/f171275cdf27d311fd0a3b1f6ef7b82227a50ce2.png";
+import img3 from "../assets/1989e711943a09dca66285d0e18edafbafe3fb9c.png";
+import imgSitetopEngineerEyeSp1 from "../assets/2723acada69546ad44390f5e3d6b8730eb9c9744.png";
+import img5 from "../assets/e6f7b37fca2d865e3f35dae1ac050a9f0649c3e5.png";
+import imgFireShotCapture193CareersMujiCom1 from "../assets/20381856004e60259556c5cc5cb1eaa849237729.png";
+import img91 from "../assets/f9da79649950583e5a4c4c0c18a62dca2f7a3db4.png";
+import imgInstagramGlyphBlack from "../assets/f171275cdf27d311fd0a3b1f6ef7b82227a50ce2.png";
 import { img2, imgSitetopEngineerEyeSp, imgSitetopEngineerEyeSp2, imgSitetopEngineerEyeSp3, imgFireShotCapture193CareersMujiCom } from "../imports/svg-v6ipn";
 
 export default function App() {
