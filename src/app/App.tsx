@@ -89,7 +89,7 @@ export default function App() {
           </div>
 
           {/* FV Title Area (248px ~) */}
-          <div className="flex-1 py-8 pl-[14px] pr-20">
+          <div className="flex-1 py-8 pl-[52px] pr-20">
             <div className="mb-8">
               <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<h1 class="message">`}</code>
             </div>
@@ -115,7 +115,7 @@ export default function App() {
         <div className="absolute top-6 left-[54px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="news">`}</code>
         </div>
-        <div className="pl-[262px] pr-20">
+        <div className="pl-[300px] pr-20">
           <div className="grid grid-cols-2 gap-32">
             <div>
               <div className="flex items-center gap-4 mb-8">
@@ -162,7 +162,7 @@ export default function App() {
         <div className="absolute top-6 left-[54px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="company">`}</code>
         </div>
-        <div className="pl-[262px] pr-20">
+        <div className="pl-[300px] pr-20">
           <div className="grid grid-cols-2 gap-24 mb-16">
             <div>
               <h2 className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '48px', lineHeight: '80px' }}>
@@ -202,7 +202,7 @@ export default function App() {
         <div className="absolute top-6 left-[54px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="interview">`}</code>
         </div>
-        <div className="pl-[262px] pr-20">
+        <div className="pl-[300px] pr-20">
           <div className="grid grid-cols-[400px_1fr] gap-16">
             <h2 className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '72px', lineHeight: '1.2' }}>仲間を知る</h2>
             <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
@@ -217,7 +217,7 @@ export default function App() {
         <div className="absolute top-6 left-[54px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section roll="interview-contents">`}</code>
         </div>
-        <div className="pl-[262px] pr-20">
+        <div className="pl-[300px] pr-20">
           <h3 className="font-bold mb-12" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>インタビュー & クロストーク</h3>
           <div className="grid grid-cols-5 gap-6">
             {[1, 2, 3, 4, 5].map((item) => (
@@ -247,7 +247,7 @@ export default function App() {
             <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="environment">`}</code>
           </span>
         </div>
-        <div className="pl-[262px] pr-20">
+        <div className="pl-[300px] pr-20">
           <div className="grid grid-cols-2 gap-24">
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-[#505050] rounded-2xl h-[200px]"></div>
@@ -281,7 +281,7 @@ export default function App() {
         <div className="absolute top-6 left-[54px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="contents">`}</code>
         </div>
-        <div className="pl-[262px] pr-20">
+        <div className="pl-[300px] pr-20">
           <div className="grid grid-cols-[280px_1fr] gap-16">
             <div>
               <div className="mb-10">
@@ -354,7 +354,7 @@ export default function App() {
         <div className="absolute top-6 left-[54px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="recruit">`}</code>
         </div>
-        <div className="pl-[262px] pr-20">
+        <div className="pl-[300px] pr-20">
           <div className="grid grid-cols-5 gap-4 mb-16">
             {[companyImage1, companyImage2, companyImage3, companyImage1, companyImage2].map((img, index) => (
               <div key={index} className="rounded-2xl overflow-hidden">
@@ -389,7 +389,7 @@ export default function App() {
         <div className="absolute top-6 left-[54px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="(X)plode">`}</code>
         </div>
-        <div className="pl-[262px] pr-20">
+        <div className="pl-[300px] pr-20">
           <div className="grid grid-cols-2 gap-24">
             <div>
               <h2 className="font-bold mb-4" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '72px', lineHeight: '1.1' }}>Let ideas (X)plode.</h2>
@@ -435,7 +435,7 @@ export default function App() {
 
       {/* ===== Footer Bottom ===== */}
       <footer className="py-12 bg-white">
-        <div className="pl-[262px] pr-20">
+        <div className="pl-[300px] pr-20">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-8">
               <div className="w-[200px] h-8">
