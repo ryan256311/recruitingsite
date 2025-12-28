@@ -8,9 +8,9 @@ import imgInstagramGlyphBlack from "../assets/f171275cdf27d311fd0a3b1f6ef7b82227
 export default function App() {
   return (
     <div className="bg-white min-h-screen w-full overflow-x-hidden relative">
-      {/* Global vertical lines */}
-      <div className="fixed top-0 left-[40px] w-px h-full bg-[#e0e0e0] z-10 pointer-events-none"></div>
-      <div className="fixed top-0 left-[248px] w-px h-full bg-[#e0e0e0] z-10 pointer-events-none"></div>
+      {/* Global vertical lines - lowest layer */}
+      <div className="fixed top-0 left-[40px] w-px h-full bg-[#e0e0e0] z-0 pointer-events-none"></div>
+      <div className="fixed top-0 left-[248px] w-px h-full bg-[#e0e0e0] z-0 pointer-events-none"></div>
 
       {/* ===== Header ===== */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black">
