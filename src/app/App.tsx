@@ -7,7 +7,9 @@ import imgInstagramGlyphBlack from "../assets/f171275cdf27d311fd0a3b1f6ef7b82227
 
 export default function App() {
   return (
-    <div className="bg-white min-h-screen w-full overflow-x-hidden">
+    <div className="bg-white min-h-screen w-full overflow-x-hidden relative">
+      {/* Global vertical line - 40px from left edge */}
+      <div className="fixed top-0 left-[40px] w-px h-full bg-[#e0e0e0] z-10 pointer-events-none"></div>
       {/* ===== Header ===== */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black">
         <div className="max-w-[1920px] mx-auto px-20 py-6 flex items-center justify-between">
@@ -67,14 +69,18 @@ export default function App() {
       </header>
 
       {/* ===== Nav/FV Title Section (01) ===== */}
-      <section className="pt-32 border-b border-black">
-        <div className="max-w-[1920px] mx-auto">
+      <section className="pt-32 border-b border-black relative">
+        {/* Section Number - Left of vertical line */}
+        <div className="absolute top-36 left-3">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>01</span>
+        </div>
+
+        <div className="max-w-[1920px] mx-auto pl-[56px] pr-20">
           <div className="flex">
             {/* Left: Nav Section */}
-            <div className="w-[240px] px-8 py-8 border-r border-[#707070]">
+            <div className="w-[200px] py-8 border-r border-[#707070]">
               {/* Section Label */}
-              <div className="flex items-center gap-4 mb-8">
-                <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>01</span>
+              <div className="mb-8">
                 <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>
                   {`<nav>`}
                 </code>
@@ -127,15 +133,18 @@ export default function App() {
 
       {/* ===== News Section (02) ===== */}
       <section className="relative py-24 border-b border-black">
-        {/* Section Label */}
-        <div className="absolute top-6 left-8 flex items-center gap-4">
+        {/* Section Number - Left of vertical line */}
+        <div className="absolute top-6 left-3">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>02</span>
+        </div>
+        {/* Section Tag - Right of vertical line */}
+        <div className="absolute top-6 left-[56px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>
             {`<section class="news">`}
           </code>
         </div>
 
-        <div className="max-w-[1920px] mx-auto px-20">
+        <div className="max-w-[1920px] mx-auto pl-[56px] pr-20">
           <div className="grid grid-cols-2 gap-32">
             {/* お知らせ */}
             <div>
@@ -189,15 +198,18 @@ export default function App() {
 
       {/* ===== Company Section (03) ===== */}
       <section className="relative py-24 border-b border-black">
-        {/* Section Label */}
-        <div className="absolute top-6 left-8 flex items-center gap-4">
+        {/* Section Number - Left of vertical line */}
+        <div className="absolute top-6 left-3">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>03</span>
+        </div>
+        {/* Section Tag - Right of vertical line */}
+        <div className="absolute top-6 left-[56px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>
             {`<section class="company">`}
           </code>
         </div>
 
-        <div className="max-w-[1920px] mx-auto px-20">
+        <div className="max-w-[1920px] mx-auto pl-[56px] pr-20">
           <div className="grid grid-cols-2 gap-24 mb-16">
             {/* Left: Title */}
             <div>
@@ -255,15 +267,18 @@ export default function App() {
 
       {/* ===== Interview Head Section (04) ===== */}
       <section className="relative py-24 border-b border-black">
-        {/* Section Label */}
-        <div className="absolute top-6 left-8 flex items-center gap-4">
+        {/* Section Number - Left of vertical line */}
+        <div className="absolute top-6 left-3">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>04</span>
+        </div>
+        {/* Section Tag - Right of vertical line */}
+        <div className="absolute top-6 left-[56px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>
             {`<section class="interview">`}
           </code>
         </div>
 
-        <div className="max-w-[1920px] mx-auto px-20">
+        <div className="max-w-[1920px] mx-auto pl-[56px] pr-20">
           <div className="grid grid-cols-[400px_1fr] gap-16">
             <h2 className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '72px', lineHeight: '1.2' }}>
               仲間を知る
@@ -277,14 +292,14 @@ export default function App() {
 
       {/* ===== Interview Content Section ===== */}
       <section className="relative py-16 border-b border-black">
-        {/* Section Label */}
-        <div className="absolute top-6 left-8">
+        {/* Section Tag - Right of vertical line */}
+        <div className="absolute top-6 left-[56px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>
             {`<section roll="interview-contents">`}
           </code>
         </div>
 
-        <div className="max-w-[1920px] mx-auto px-20">
+        <div className="max-w-[1920px] mx-auto pl-[56px] pr-20">
           <h3 className="font-bold mb-12" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>
             インタビュー & クロストーク
           </h3>
@@ -314,9 +329,12 @@ export default function App() {
 
       {/* ===== Environment Section (05) ===== */}
       <section className="relative py-24 bg-gradient-to-r from-[#0074b9] to-[#0064c8]">
-        {/* Section Label */}
-        <div className="absolute top-6 left-8 flex items-center gap-4">
+        {/* Section Number - Left of vertical line */}
+        <div className="absolute top-6 left-3">
           <span className="text-white" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>05</span>
+        </div>
+        {/* Section Tag - Right of vertical line */}
+        <div className="absolute top-6 left-[56px]">
           <span className="bg-white px-2 py-0.5">
             <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>
               {`<section class="environment">`}
@@ -324,7 +342,7 @@ export default function App() {
           </span>
         </div>
 
-        <div className="max-w-[1920px] mx-auto px-20">
+        <div className="max-w-[1920px] mx-auto pl-[56px] pr-20">
           <div className="grid grid-cols-2 gap-24">
             {/* Left: Image Grid */}
             <div className="grid grid-cols-2 gap-4">
@@ -360,15 +378,18 @@ export default function App() {
 
       {/* ===== Contents Section (06) ===== */}
       <section className="relative py-24 border-b border-black">
-        {/* Section Label */}
-        <div className="absolute top-6 left-8 flex items-center gap-4">
+        {/* Section Number - Left of vertical line */}
+        <div className="absolute top-6 left-3">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>06</span>
+        </div>
+        {/* Section Tag - Right of vertical line */}
+        <div className="absolute top-6 left-[56px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>
             {`<section class="contents">`}
           </code>
         </div>
 
-        <div className="max-w-[1920px] mx-auto px-20">
+        <div className="max-w-[1920px] mx-auto pl-[56px] pr-20">
           <div className="grid grid-cols-[280px_1fr] gap-16">
             {/* Left: Sidebar */}
             <div>
@@ -459,15 +480,18 @@ export default function App() {
 
       {/* ===== Recruit Section (07) ===== */}
       <section className="relative py-24 border-b border-black">
-        {/* Section Label */}
-        <div className="absolute top-6 left-8 flex items-center gap-4">
+        {/* Section Number - Left of vertical line */}
+        <div className="absolute top-6 left-3">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>07</span>
+        </div>
+        {/* Section Tag - Right of vertical line */}
+        <div className="absolute top-6 left-[56px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>
             {`<section class="recruit">`}
           </code>
         </div>
 
-        <div className="max-w-[1920px] mx-auto px-20">
+        <div className="max-w-[1920px] mx-auto pl-[56px] pr-20">
           {/* Top Images */}
           <div className="grid grid-cols-5 gap-4 mb-16">
             {[companyImage1, companyImage2, companyImage3, companyImage1, companyImage2].map((img, index) => (
@@ -503,15 +527,18 @@ export default function App() {
 
       {/* ===== Footer Section (08 - (X)plode) ===== */}
       <section className="relative py-24 border-b border-black">
-        {/* Section Label */}
-        <div className="absolute top-6 left-8 flex items-center gap-4">
+        {/* Section Number - Left of vertical line */}
+        <div className="absolute top-6 left-3">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>08</span>
+        </div>
+        {/* Section Tag - Right of vertical line */}
+        <div className="absolute top-6 left-[56px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>
             {`<section class="(X)plode">`}
           </code>
         </div>
 
-        <div className="max-w-[1920px] mx-auto px-20">
+        <div className="max-w-[1920px] mx-auto pl-[56px] pr-20">
           <div className="grid grid-cols-2 gap-24">
             {/* Left: CTA */}
             <div>
@@ -575,7 +602,7 @@ export default function App() {
 
       {/* ===== Footer Bottom ===== */}
       <footer className="py-12 bg-white">
-        <div className="max-w-[1920px] mx-auto px-20">
+        <div className="max-w-[1920px] mx-auto pl-[56px] pr-20">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-8">
               <div className="w-[200px] h-8">
