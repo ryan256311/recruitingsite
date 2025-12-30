@@ -13,7 +13,7 @@ export default function App() {
       <div className="fixed top-0 left-[248px] w-px h-full bg-[#e0e0e0] z-0 pointer-events-none"></div>
 
       {/* ===== Header ===== */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/15">
         <div className="max-w-[1920px] mx-auto px-20 py-6 flex items-center justify-between">
           <div className="flex items-center gap-8">
             <div className="w-[270px] h-10">
@@ -58,7 +58,7 @@ export default function App() {
       </header>
 
       {/* ===== Nav/FV Title Section (01) ===== */}
-      <section className="pt-32 border-b border-black relative">
+      <section className="pt-32 border-b border-black/15 relative">
         {/* Section Number - 14px below header */}
         <div className="absolute top-[102px] left-[14px]">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>01</span>
@@ -110,7 +110,7 @@ export default function App() {
       </section>
 
       {/* ===== News Section (02) ===== */}
-      <section className="relative py-24 border-b border-black">
+      <section className="relative py-24 border-b border-black/15">
         <div className="absolute top-6 left-[14px]">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>02</span>
         </div>
@@ -157,7 +157,7 @@ export default function App() {
       </section>
 
       {/* ===== Company Section (03) ===== */}
-      <section className="relative py-24 border-b border-black">
+      <section className="relative py-24 border-b border-black/15">
         <div className="absolute top-6 left-[14px]">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>03</span>
         </div>
@@ -197,7 +197,7 @@ export default function App() {
       </section>
 
       {/* ===== Interview Head Section (04) ===== */}
-      <section className="relative py-24 border-b border-black">
+      <section className="relative py-24 border-b border-black/15">
         <div className="absolute top-6 left-[14px]">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>04</span>
         </div>
@@ -215,7 +215,7 @@ export default function App() {
       </section>
 
       {/* ===== Interview Content Section ===== */}
-      <section className="relative py-16 border-b border-black">
+      <section className="relative py-16 border-b border-black/15">
         <div className="absolute top-6 left-[54px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section roll="interview-contents">`}</code>
         </div>
@@ -276,7 +276,7 @@ export default function App() {
       </section>
 
       {/* ===== Contents Section (06) ===== */}
-      <section className="relative py-24 border-b border-black">
+      <section className="relative py-24 border-b border-black/15">
         <div className="absolute top-6 left-[14px]">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>06</span>
         </div>
@@ -349,7 +349,7 @@ export default function App() {
       </section>
 
       {/* ===== Recruit Section (07) ===== */}
-      <section className="relative py-24 border-b border-black">
+      <section className="relative py-24 border-b border-black/15">
         <div className="absolute top-6 left-[14px]">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>07</span>
         </div>
@@ -384,7 +384,7 @@ export default function App() {
       </section>
 
       {/* ===== Footer Section (08) ===== */}
-      <section className="relative py-24 border-b border-black">
+      <section className="relative py-24 border-b border-black/15">
         <div className="absolute top-6 left-[14px]">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>08</span>
         </div>
