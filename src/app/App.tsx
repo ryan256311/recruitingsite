@@ -59,16 +59,16 @@ export default function App() {
 
       {/* ===== Nav/FV Title Section (01) ===== */}
       <section className="pt-32 border-b border-black relative">
-        {/* Section Number - same position as other sections */}
-        <div className="absolute top-6 left-[14px]">
+        {/* Section Number - 14px below header */}
+        <div className="absolute top-[102px] left-[14px]">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>01</span>
         </div>
-        {/* Nav Tag - same position as other section tags */}
-        <div className="absolute top-6 left-[54px]">
+        {/* Nav Tag - 14px below header, 14px from first vertical line */}
+        <div className="absolute top-[102px] left-[54px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<nav>`}</code>
         </div>
-        {/* h1 Tag - at top of FV area */}
-        <div className="absolute top-6 left-[262px]">
+        {/* h1 Tag - 14px below header, 14px from second vertical line */}
+        <div className="absolute top-[102px] left-[262px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<h1 class="message">`}</code>
         </div>
 
