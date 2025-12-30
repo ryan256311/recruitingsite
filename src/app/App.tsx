@@ -8,9 +8,8 @@ import imgInstagramGlyphBlack from "../assets/f171275cdf27d311fd0a3b1f6ef7b82227
 export default function App() {
   return (
     <div className="bg-white min-h-screen w-full overflow-x-hidden relative">
-      {/* Global vertical lines - lowest layer */}
+      {/* Global vertical line - lowest layer */}
       <div className="fixed top-0 left-[40px] w-px h-full bg-[#e0e0e0] z-0 pointer-events-none"></div>
-      <div className="fixed top-0 left-[248px] w-px h-full bg-[#e0e0e0] z-0 pointer-events-none"></div>
 
       {/* ===== Header ===== */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/15">
@@ -59,6 +58,9 @@ export default function App() {
 
       {/* ===== Nav/FV Title Section (01) ===== */}
       <section className="pt-32 border-b border-black/15 relative">
+        {/* Second vertical line - FV section only */}
+        <div className="absolute top-0 left-[248px] w-px h-full bg-[#e0e0e0] z-0 pointer-events-none"></div>
+
         {/* Section Number - 14px below header */}
         <div className="absolute top-[102px] left-[14px]">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>01</span>
