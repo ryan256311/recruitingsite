@@ -59,17 +59,22 @@ export default function App() {
 
       {/* ===== Nav/FV Title Section (01) ===== */}
       <section className="pt-32 border-b border-black relative">
-        {/* Section Number */}
-        <div className="absolute top-36 left-[14px]">
+        {/* Section Number - same position as other sections */}
+        <div className="absolute top-6 left-[14px]">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>01</span>
         </div>
+        {/* Nav Tag - same position as other section tags */}
+        <div className="absolute top-6 left-[54px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<nav>`}</code>
+        </div>
+        {/* h1 Tag - at top of FV area */}
+        <div className="absolute top-6 left-[262px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<h1 class="message">`}</code>
+        </div>
 
-        <div className="flex">
+        <div className="flex pt-8">
           {/* Nav Area (40px ~ 248px) */}
           <div className="w-[248px] shrink-0 py-8 pl-[54px] pr-[14px]">
-            <div className="mb-6">
-              <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<nav>`}</code>
-            </div>
             <div className="flex items-center gap-3 mb-6">
               <svg className="w-2 h-2" fill="none" viewBox="0 0 9 9.05359">
                 <path d="M9 0V9.05359H0L9 0Z" fill="#4346BE" />
@@ -88,11 +93,8 @@ export default function App() {
             </div>
           </div>
 
-          {/* FV Title Area (248px ~) */}
-          <div className="flex-1 py-8 pl-[52px] pr-20">
-            <div className="mb-8">
-              <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<h1 class="message">`}</code>
-            </div>
+          {/* FV Title Area (248px ~) - 21.4% padding from second vertical line */}
+          <div className="flex-1 py-8 pl-[21.4%] pr-20">
             <h1 className="font-bold tracking-[2.34px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '78px', lineHeight: '120px' }}>
               <span className="text-[#0074b9]">紙×デジタル</span>
               <br />
