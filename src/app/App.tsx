@@ -104,7 +104,7 @@ export default function App() {
         </div>
 
         {/* FV Image */}
-        <div className="w-full">
+        <div className="w-[98.95%]">
           <img src={heroImage} alt="オフィスで働く社員たち" className="w-full h-auto object-cover" />
         </div>
       </section>
