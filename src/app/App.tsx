@@ -119,9 +119,9 @@ export default function App() {
         <div className="absolute top-6 left-[54px]">
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="news">`}</code>
         </div>
-        <div className="pl-[54px]">
-          <div className="max-w-[1200px] flex justify-between gap-[40px]">
-            <div className="w-[655px]">
+        <div className="pl-[300px] pr-20">
+          <div className="grid grid-cols-2 gap-32">
+            <div>
               <div className="flex items-center gap-4 mb-8">
                 <h2 className="font-bold tracking-[1.08px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>お知らせ</h2>
                 <div className="w-12 h-px bg-[#313131]"></div>
@@ -141,7 +141,7 @@ export default function App() {
                 ))}
               </div>
             </div>
-            <div className="w-[412px]">
+            <div>
               <div className="flex items-center gap-4 mb-8">
                 <h2 className="font-bold tracking-[1.08px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>採用情報</h2>
                 <div className="w-12 h-px bg-[#313131]"></div>
@@ -188,6 +188,7 @@ export default function App() {
               </a>
             </div>
           </div>
+          <div className="border-t border-black/15 my-16"></div>
           <div className="grid grid-cols-4 gap-6">
             {[companyImage1, companyImage2, companyImage3, companyImage1].map((img, index) => (
               <div key={index} className="rounded-2xl overflow-hidden">
