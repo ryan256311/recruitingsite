@@ -1,3 +1,57 @@
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
+
+/* Infinite scroll animation for image slider */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-2884px); /* 1セット分: 2740px(画像) + 120px(gap×5) + 24px(セット間gap) */
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+/* Vertical scroll animations */
+@keyframes scroll-down {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes scroll-up {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-scroll-down {
+  animation: scroll-down 20s linear infinite;
+}
+
+.animate-scroll-up {
+  animation: scroll-up 20s linear infinite;
+}
+
+/* FV Slideshow fade transition */
+.slideshow-image {
+  transition: opacity 1s ease-in-out;
+}
+
+.slideshow-visible {
+  opacity: 1;
+}
+
+.slideshow-hidden {
+  opacity: 0;
+}
