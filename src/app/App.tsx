@@ -1,4 +1,7 @@
-import { useState, useEffect } from "react";
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import svgPaths from "../imports/svg-corg4qlf3y";
 import heroImage from "../assets/1989e711943a09dca66285d0e18edafbafe3fb9c.png";
 import companyImage1 from "../assets/2723acada69546ad44390f5e3d6b8730eb9c9744.png";
@@ -57,7 +60,7 @@ export default function App() {
 
           {/* Logo + Text (center on mobile, left on desktop) */}
           <div className={`flex items-center transition-all duration-[450ms] max-[1039px]:absolute max-[1039px]:left-1/2 max-[1039px]:-translate-x-1/2 max-[1039px]:flex-col max-[1039px]:gap-1 ${isScrolled ? 'gap-[2.4vw]' : 'gap-[3.26vw]'}`}>
-            <div className={`transition-all duration-[450ms] max-[539px]:w-[140px] min-[540px]:max-[1039px]:w-[180px] ${isScrolled ? 'w-[240px]' : 'w-[270px]'}`} style={{ aspectRatio: '270/39.735' }}>
+            <div className={`transition-all duration-[450ms] max-[539px]:w-[170px] min-[540px]:max-[1039px]:w-[180px] ${isScrolled ? 'w-[240px]' : 'w-[270px]'}`} style={{ aspectRatio: '270/39.735' }}>
               <svg className="block w-full h-full" fill="none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 270 39.735">
                 <path d={svgPaths.p2c5ae000} fill="#313131" />
                 <path d={svgPaths.p23d25000} fill="#313131" />
@@ -92,9 +95,9 @@ export default function App() {
           <nav className="flex items-center gap-[2.4vw]">
             {/* Desktop navigation - hidden below 1039px */}
             <div className="hidden min-[1040px]:flex items-center gap-[1.36vw]">
-              <a href="#" className="font-bold tracking-[0.42px] whitespace-nowrap" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>新卒採用</a>
-              <a href="#" className="font-bold tracking-[0.42px] whitespace-nowrap" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>キャリア採用</a>
-              <a href="#" className="font-bold tracking-[0.42px] whitespace-nowrap" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>よくある質問</a>
+              <Link href="/graduate" className="font-bold tracking-[0.42px] whitespace-nowrap" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>新卒採用</Link>
+              <Link href="/career" className="font-bold tracking-[0.42px] whitespace-nowrap" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>キャリア採用</Link>
+              <a href="#faq" className="font-bold tracking-[0.42px] whitespace-nowrap" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>よくある質問</a>
             </div>
             <a href="#" className="bg-[#0064c8] text-white py-3 rounded-full font-bold flex items-center justify-center gap-2 whitespace-nowrap w-[210px] max-[1039px]:w-auto max-[1039px]:px-[14px] max-[1039px]:h-[38px] max-[1039px]:py-0 max-[1039px]:rounded-[8px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '12px' }}>
               <span className="hidden min-[1040px]:inline">会社見学会にエントリー</span>
@@ -113,13 +116,13 @@ export default function App() {
           <div className="px-[40px] py-6 border-t border-black/10">
             <div className="flex flex-col gap-4">
               {[
-                { label: '新卒採用', delay: '0ms' },
-                { label: 'キャリア採用', delay: '50ms' },
-                { label: 'よくある質問', delay: '100ms' },
+                { label: '新卒採用', href: '/graduate', delay: '0ms' },
+                { label: 'キャリア採用', href: '/career', delay: '50ms' },
+                { label: 'よくある質問', href: '#faq', delay: '100ms' },
               ].map((item, index) => (
-                <a
+                <Link
                   key={index}
-                  href="#"
+                  href={item.href}
                   className={`font-bold tracking-[0.42px] py-2 transition-all duration-300 ${isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
                   style={{
                     fontFamily: 'Noto Sans JP, sans-serif',
@@ -128,7 +131,7 @@ export default function App() {
                   }}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -212,7 +215,7 @@ export default function App() {
           {slideshowImages.map((image, index) => (
             <img
               key={index}
-              src={image}
+              src={image.src}
               alt={`オフィスで働く社員たち ${index + 1}`}
               className={`w-full h-full object-cover rounded-tl-[15px] rounded-bl-[15px] slideshow-image ${index === currentSlide ? 'slideshow-visible' : 'slideshow-hidden'} ${index === 0 ? '' : 'absolute top-0 left-0'}`}
             />
@@ -312,7 +315,7 @@ export default function App() {
                   { img: companyImage3, width: 510 },
                 ].map((item, index) => (
                   <div key={index} className="shrink-0 rounded-2xl overflow-hidden" style={{ width: `${item.width}px` }}>
-                    <img src={item.img} alt={`社員の様子${index + 1}`} className="w-full aspect-square object-cover" />
+                    <img src={item.img.src} alt={`社員の様子${index + 1}`} className="w-full aspect-square object-cover" />
                   </div>
                 ))}
               </div>
@@ -516,7 +519,7 @@ export default function App() {
                   { img: companyImage3, width: 510 },
                 ].map((item, index) => (
                   <div key={index} className="shrink-0 rounded-2xl overflow-hidden" style={{ width: `${item.width}px` }}>
-                    <img src={item.img} alt={`採用イメージ${index + 1}`} className="w-full aspect-square object-cover" />
+                    <img src={item.img.src} alt={`採用イメージ${index + 1}`} className="w-full aspect-square object-cover" />
                   </div>
                 ))}
               </div>
@@ -570,7 +573,7 @@ export default function App() {
               </div>
               <div className="mt-8">
                 <a href="#" className="inline-block">
-                  <img src={imgInstagramGlyphBlack} alt="Instagram" className="w-6 h-6" />
+                  <img src={imgInstagramGlyphBlack.src} alt="Instagram" className="w-6 h-6" />
                 </a>
               </div>
             </div>
