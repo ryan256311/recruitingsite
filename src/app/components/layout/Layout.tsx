@@ -92,7 +92,6 @@ export default function Layout({ children }: LayoutProps) {
             <div className="hidden min-[1040px]:flex items-center gap-[1.36vw]">
               <Link href="/graduate" className="font-bold tracking-[0.42px] whitespace-nowrap" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>新卒採用</Link>
               <Link href="/career" className="font-bold tracking-[0.42px] whitespace-nowrap" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>キャリア採用</Link>
-              <a href="#faq" className="font-bold tracking-[0.42px] whitespace-nowrap" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>よくある質問</a>
             </div>
             <a href="#" className="bg-[#0064c8] text-white py-3 rounded-full font-bold flex items-center justify-center gap-2 whitespace-nowrap w-[210px] max-[1039px]:w-auto max-[1039px]:px-[14px] max-[1039px]:h-[38px] max-[1039px]:py-0 max-[1039px]:rounded-[8px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '12px' }}>
               <span className="hidden min-[1040px]:inline">会社見学会にエントリー</span>
@@ -113,7 +112,8 @@ export default function Layout({ children }: LayoutProps) {
               {[
                 { label: '新卒採用', href: '/graduate', delay: '0ms' },
                 { label: 'キャリア採用', href: '/career', delay: '50ms' },
-                { label: 'よくある質問', href: '#faq', delay: '100ms' },
+                { label: '募集中の求人', href: '/jobs', delay: '100ms' },
+                { label: 'お問い合わせ', href: '/contact', delay: '150ms' },
               ].map((item, index) => (
                 item.href.startsWith('#') ? (
                   <a
@@ -189,13 +189,29 @@ export default function Layout({ children }: LayoutProps) {
                 <span style={{ fontFamily: 'Verdana, sans-serif', fontSize: '20px' }}>Pickup</span>
               </div>
               <div className="grid grid-cols-2 gap-x-12 gap-y-4">
-                {['エクシートとは', 'お知らせ', '仲間を知る', 'コーポレートサイト', '環境を知る', '募集要項', 'よくある質問'].map((item, index) => (
-                  <a key={index} href="#" className="flex items-center gap-3 hover:opacity-70">
-                    <svg className="w-3 h-3" fill="none" viewBox="0 0 14 14">
-                      <path clipRule="evenodd" d={svgPaths.p17cd8580} fill="#4346BE" fillRule="evenodd" />
-                    </svg>
-                    <span className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>{item}</span>
-                  </a>
+                {[
+                  { label: 'エクシートとは', href: '/contents' },
+                  { label: 'お知らせ', href: '/news' },
+                  { label: '仲間を知る', href: '/contents' },
+                  { label: 'コーポレートサイト', href: '#' },
+                  { label: '募集中の求人', href: '/jobs' },
+                  { label: 'お問い合わせ', href: '/contact' },
+                ].map((item, index) => (
+                  item.href.startsWith('#') ? (
+                    <a key={index} href={item.href} className="flex items-center gap-3 hover:opacity-70">
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 14 14">
+                        <path clipRule="evenodd" d={svgPaths.p17cd8580} fill="#4346BE" fillRule="evenodd" />
+                      </svg>
+                      <span className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>{item.label}</span>
+                    </a>
+                  ) : (
+                    <Link key={index} href={item.href} className="flex items-center gap-3 hover:opacity-70">
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 14 14">
+                        <path clipRule="evenodd" d={svgPaths.p17cd8580} fill="#4346BE" fillRule="evenodd" />
+                      </svg>
+                      <span className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>{item.label}</span>
+                    </Link>
+                  )
                 ))}
               </div>
             </div>

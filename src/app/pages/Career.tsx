@@ -2,20 +2,21 @@
 
 import Link from "next/link";
 import svgPaths from "../../imports/svg-corg4qlf3y";
+import { careerJobs } from "../data/jobs";
 
-// ダミー求人データ
-const jobListings = [
-  { id: 1, title: 'Webデザイナー', department: 'クリエイティブ部', type: 'デザイン', description: 'Webサイトやアプリのデザイン業務を担当していただきます。' },
-  { id: 2, title: 'フロントエンドエンジニア', department: 'テクノロジー部', type: 'エンジニア', description: 'React/TypeScriptを用いたフロントエンド開発を担当していただきます。' },
-  { id: 3, title: 'プロジェクトマネージャー', department: '企画部', type: 'ディレクション', description: 'クライアントワークのプロジェクト管理を担当していただきます。' },
-  { id: 4, title: 'マーケティングプランナー', department: 'マーケティング部', type: '企画', description: 'デジタルマーケティング施策の企画立案を担当していただきます。' },
-];
+// 現在募集中の求人（Webデザイナーとフロントエンドエンジニアのみ表示）
+const displayedJobs = careerJobs.filter(job =>
+  job.id === 1 || job.id === 2 // Webデザイナー(id:1), フロントエンドエンジニア(id:2)
+);
 
 export default function Career() {
   return (
     <>
       {/* ===== Hero Section (01) ===== */}
       <section className="pt-32 pb-24 border-b border-black/15 relative">
+        {/* Vertical line - right of nav section */}
+        <div className="absolute top-0 left-[248px] w-px h-full bg-[#e0e0e0] z-0 pointer-events-none"></div>
+
         <div className="absolute top-[102px] left-[14px]">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>01</span>
         </div>
@@ -23,14 +24,56 @@ export default function Career() {
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<h1 class="career">`}</code>
         </div>
 
-        <div className="pl-[80px] pr-20 pt-8">
-          <h1 className="font-bold tracking-[2.34px] mb-8" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '72px', lineHeight: '1.2' }}>
-            キャリア採用
-          </h1>
-          <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
-            経験を活かし、新しいキャリアを築きませんか。<br />
-            私たちは、即戦力として活躍できる仲間を求めています。
-          </p>
+        <div className="flex pt-8">
+          {/* Section Nav - Left Side */}
+          <div className="w-[248px] shrink-0 py-8 pl-[80px] pr-[14px]">
+            <div className="flex items-center gap-3 mb-6">
+              <svg className="w-2 h-2" fill="none" viewBox="0 0 9 9.05359">
+                <path d="M9 0V9.05359H0L9 0Z" fill="#4346BE" />
+              </svg>
+              <span style={{ fontFamily: 'Verdana, sans-serif', fontSize: '16px' }}>Contents</span>
+            </div>
+            <div className="space-y-3 ml-[8px]">
+              {[
+                { label: '仕事環境', id: 'work-environment' },
+                { label: '募集要項', id: 'requirements' },
+                { label: '選考フロー', id: 'selection-flow' },
+                { label: '募集中の求人', id: 'job-listings' },
+              ].map((item, index) => (
+                <a
+                  key={index}
+                  href={`#${item.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.getElementById(item.id);
+                    if (element) {
+                      const headerOffset = 100;
+                      const elementPosition = element.getBoundingClientRect().top;
+                      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    }
+                  }}
+                  className="flex items-center gap-3 hover:opacity-70"
+                >
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 11 11">
+                    <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
+                  </svg>
+                  <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>{item.label}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Main Content - Right Side */}
+          <div className="flex-1 py-8 pr-20 max-w-[1400px] pl-[4%]">
+            <h1 className="font-bold tracking-[2.34px] mb-8" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '72px', lineHeight: '1.2' }}>
+              キャリア採用
+            </h1>
+            <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
+              経験を活かし、新しいキャリアを築きませんか。<br />
+              私たちは、即戦力として活躍できる仲間を求めています。
+            </p>
+          </div>
         </div>
       </section>
 
@@ -43,7 +86,7 @@ export default function Career() {
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="work-environment">`}</code>
         </div>
 
-        <div className="pl-[80px] pr-20">
+        <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
             <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '48px' }}>仕事環境</h2>
             <div className="w-12 h-px bg-[#313131]"></div>
@@ -102,7 +145,7 @@ export default function Career() {
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="requirements">`}</code>
         </div>
 
-        <div className="pl-[80px] pr-20">
+        <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
             <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '48px' }}>募集要項</h2>
             <div className="w-12 h-px bg-[#313131]"></div>
@@ -140,7 +183,7 @@ export default function Career() {
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="selection-flow">`}</code>
         </div>
 
-        <div className="pl-[80px] pr-20">
+        <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
             <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '48px' }}>試験内容とフロー図</h2>
             <div className="w-12 h-px bg-[#313131]"></div>
@@ -204,15 +247,15 @@ export default function Career() {
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="job-listings">`}</code>
         </div>
 
-        <div className="pl-[80px] pr-20">
+        <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
             <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '48px' }}>現在募集中の求人</h2>
             <div className="w-12 h-px bg-[#313131]"></div>
           </div>
 
           <div className="grid grid-cols-2 gap-6 mb-12">
-            {jobListings.map((job) => (
-              <Link key={job.id} href="#" className="block border border-[#707070] rounded-2xl p-8 hover:bg-gray-50 transition-colors">
+            {displayedJobs.map((job) => (
+              <Link key={job.id} href={`/career/${job.id}`} className="block border border-[#707070] rounded-2xl p-8 hover:bg-gray-50 transition-colors">
                 <div className="flex items-start justify-between mb-4">
                   <h3 className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '24px' }}>{job.title}</h3>
                   <span className="bg-[#0064c8] text-white text-sm px-3 py-1 rounded-full" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>キャリア</span>
