@@ -70,8 +70,8 @@ export default function Career() {
               キャリア採用
             </h1>
             <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
-              経験を活かし、新しいキャリアを築きませんか。<br />
-              私たちは、即戦力として活躍できる仲間を求めています。
+              ルーティンではなく、新しい価値を生み出す仕事に挑戦しませんか。<br />
+              BtoBの現場で課題解決に向き合い、学び続ける仲間を求めています。
             </p>
           </div>
         </div>
@@ -94,9 +94,9 @@ export default function Career() {
 
           <div className="grid grid-cols-3 gap-8 mb-12">
             {[
-              { title: 'フレックスタイム制', description: 'コアタイム10:00-15:00で柔軟な働き方が可能' },
-              { title: 'リモートワーク', description: '週2日までのリモートワークに対応' },
-              { title: '充実した福利厚生', description: '各種手当、社会保険完備、退職金制度あり' },
+              { title: '新規事業に関われる', description: 'BtoB向けEC構築や社内ツール開発など立ち上げに携われます' },
+              { title: 'BtoB×課題解決', description: 'お客様の課題に向き合い、提案から実装までを担います' },
+              { title: '学習支援が充実', description: 'Udemy受け放題や研修・セミナー参加支援で成長を後押し' },
             ].map((item, index) => (
               <div key={index} className="border border-[#707070] rounded-2xl p-8">
                 <h3 className="font-bold mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '24px' }}>{item.title}</h3>
@@ -108,9 +108,8 @@ export default function Career() {
           <div className="bg-gray-50 rounded-2xl p-10">
             <h3 className="font-bold mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '24px' }}>キャリアパス</h3>
             <p className="mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
-              入社後は、これまでのご経験を活かしながら、即戦力として活躍いただける環境を用意しています。<br />
-              専門性を深めるスペシャリストコース、マネジメントに挑戦するリーダーコースなど、<br />
-              ご自身の志向に合わせたキャリア形成が可能です。
+              入社後は、経験を活かして即戦力として成果を出せる環境を用意しています。<br />
+              新規事業や改善提案にも積極的に関わり、変化を楽しめる方が成長できるフェーズです。
             </p>
             <ul className="space-y-3 ml-6">
               <li className="flex items-start gap-3">
@@ -156,12 +155,12 @@ export default function Career() {
               <tbody>
                 {[
                   { label: '雇用形態', value: '正社員' },
-                  { label: '勤務地', value: '本社（東京都渋谷区）' },
-                  { label: '勤務時間', value: 'フレックスタイム制（コアタイム10:00-15:00）' },
-                  { label: '給与', value: '年俸制 450万円〜800万円（経験・能力により決定）' },
-                  { label: '休日休暇', value: '完全週休2日制（土日祝）、年末年始、夏季休暇、有給休暇' },
-                  { label: '福利厚生', value: '社会保険完備、交通費支給、住宅手当、資格取得支援、退職金制度' },
-                  { label: '応募資格', value: '該当職種での実務経験3年以上' },
+                  { label: '勤務地', value: '福井県坂井市春江町中庄61-32（春江本社）' },
+                  { label: '勤務時間', value: '9:00〜18:10（休憩70分）' },
+                  { label: '給与', value: '月給 220,000円〜380,000円（スキル・経験による）' },
+                  { label: '休日休暇', value: '日祝／年末年始／お盆（年間休日105日）' },
+                  { label: '福利厚生', value: '社会保険完備、駐車場完備、社員旅行・親睦行事' },
+                  { label: '求める人物像', value: '問題解決力・ロジカル思考・優先度判断ができる方' },
                 ].map((item, index) => (
                   <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                     <th className="text-left py-5 px-8 w-[200px] font-semibold border-r border-[#e0e0e0]">{item.label}</th>
@@ -188,6 +187,10 @@ export default function Career() {
             <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '48px' }}>試験内容とフロー図</h2>
             <div className="w-12 h-px bg-[#313131]"></div>
           </div>
+
+          <p className="mb-10" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '30px' }}>
+            Indeedからのご応募は原則24時間以内にご返信します。スピード感のある選考で進めます。
+          </p>
 
           <div className="flex items-center justify-between max-w-[1000px] mx-auto mb-12">
             {[

@@ -6,12 +6,15 @@ import heroImage from "../../assets/1989e711943a09dca66285d0e18edafbafe3fb9c.png
 import companyImage1 from "../../assets/2723acada69546ad44390f5e3d6b8730eb9c9744.png";
 import companyImage2 from "../../assets/e6f7b37fca2d865e3f35dae1ac050a9f0649c3e5.png";
 import companyImage3 from "../../assets/20381856004e60259556c5cc5cb1eaa849237729.png";
+import { contentItems, contentCategories, getCategoryColor } from "../data/contents";
+import Link from "next/link";
 
 // FV Slideshow images
 const slideshowImages = [heroImage, companyImage1, companyImage2, companyImage3];
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -123,16 +126,16 @@ export default function Home() {
               </div>
               <div className="space-y-4">
                 {[
-                  { date: '2025.04.01', text: 'キャリア採用：2025年度キャリア採用選考情報を公開しました' },
-                  { date: '2025.03.01', text: 'キャリア採用：2025年度キャリア採用選考情報を公開しました' },
-                  { date: '2025.02.01', text: 'キャリア採用：2025年度キャリア採用選考情報を公開しました' },
-                  { date: '2025.01.01', text: 'キャリア採用：2025年度キャリア採用選考情報を公開しました' },
-                  { date: '2024.10.21', text: 'キャリア採用：2025年度キャリア採用選考情報を公開しました' }
+                  { date: '2025.04.01', text: 'キャリア採用：2025年度キャリア採用選考情報を公開しました', href: '/news' },
+                  { date: '2025.03.01', text: 'キャリア採用：2025年度キャリア採用選考情報を公開しました', href: '/news' },
+                  { date: '2025.02.01', text: 'キャリア採用：2025年度キャリア採用選考情報を公開しました', href: '/news' },
+                  { date: '2025.01.01', text: 'キャリア採用：2025年度キャリア採用選考情報を公開しました', href: '/news' },
+                  { date: '2024.10.21', text: 'キャリア採用：2025年度キャリア採用選考情報を公開しました', href: '/news' }
                 ].map((item, index) => (
-                  <a key={index} href="#" className="flex gap-8 hover:opacity-70" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                  <Link key={index} href={item.href} className="flex gap-8 hover:opacity-70" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
                     <span className="font-semibold whitespace-nowrap">{item.date}</span>
                     <span className="font-medium">{item.text}</span>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -142,10 +145,14 @@ export default function Home() {
                 <div className="w-12 h-px bg-[#313131]"></div>
               </div>
               <div className="space-y-4">
-                {['キャリア採用向け', '新卒採用向け', 'インターンシップ'].map((item, index) => (
-                  <a key={index} href="#" className="block border border-[#707070] rounded-md p-5 bg-white hover:bg-gray-50 transition-colors">
-                    <span className="font-semibold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px' }}>{item}</span>
-                  </a>
+                {[
+                  { label: 'キャリア採用向け', href: '/jobs/career' },
+                  { label: '新卒採用向け', href: '/jobs/graduate' },
+                  { label: '会社見学', href: '/contact?type=company-visit' }
+                ].map((item, index) => (
+                  <Link key={index} href={item.href} className="block border border-[#707070] rounded-md p-5 bg-white hover:bg-gray-50 transition-colors">
+                    <span className="font-semibold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px' }}>{item.label}</span>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -175,12 +182,12 @@ export default function Home() {
                 <p className="mb-6">「もっとこうしたら、面白くなる」<br />「これは誰かの心を動かせるはず」<br />そんな想いを持って動ける人にこそ、<br />この場所はぴったりです。</p>
                 <p>さあ、私たちと一緒に。<br />変化を恐れず、未来を描く仲間になりませんか？</p>
               </div>
-              <a href="#" className="inline-flex items-center gap-4 border border-[#707070] bg-white rounded-full px-8 py-3 hover:bg-gray-50 transition-colors">
+              <Link href="/contents?category=company" className="inline-flex items-center gap-4 border border-[#707070] bg-white rounded-full px-8 py-3 hover:bg-gray-50 transition-colors">
                 <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>エクシートとは</span>
                 <svg className="w-2 h-3" fill="none" viewBox="0 0 7.32727 12.4">
                   <path d={svgPaths.p36961f00} fill="#2A2A2A" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -234,18 +241,22 @@ export default function Home() {
         <div className="pl-[80px] pr-20">
           <h3 className="font-bold mb-12" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>インタビュー & クロストーク</h3>
           <div className="grid grid-cols-5 gap-6">
-            {[1, 2, 3, 4, 5].map((item) => (
-              <a key={item} href="#" className="group">
+            {contentItems
+              .filter(item => item.tags.includes('インタビュー'))
+              .sort((a, b) => new Date(b.publishedAt.replace(/\./g, '-')).getTime() - new Date(a.publishedAt.replace(/\./g, '-')).getTime())
+              .slice(0, 5)
+              .map((item) => (
+              <Link key={item.id} href={`/contents/${item.id}`} className="group">
                 <div className="bg-[#505050] rounded-2xl aspect-square mb-4"></div>
                 <div className="mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px', lineHeight: '28px' }}>
-                  <p>プレイヤーからリーダーへ</p>
-                  <p>昇格を通じて描く自己成長の軌跡</p>
+                  <p className="line-clamp-2">{item.title}</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <span className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>#インタビュー</span>
-                  <span className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>#職種：デザイナー</span>
+                  {item.tags.map((tag, index) => (
+                    <span key={index} className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>#{tag}</span>
+                  ))}
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -292,12 +303,12 @@ export default function Home() {
               <p className="mb-12" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
                 当社では、「挑戦を楽しみながら、安心して働ける環境をつくる」という考えのもと、働きやすく成長しやすい職場づくりに取り組んでいます。ここでは、当社のカルチャーや福利厚生、人事制度など、日々の仕事を支える環境についてご紹介します。
               </p>
-              <a href="#" className="inline-flex items-center gap-4 border border-white bg-white text-[#313131] rounded-full px-8 py-3 w-fit hover:bg-gray-100 transition-colors">
+              <Link href="/contents?category=environment" className="inline-flex items-center gap-4 border border-white bg-white text-[#313131] rounded-full px-8 py-3 w-fit hover:bg-gray-100 transition-colors">
                 <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>働く環境をのぞく</span>
                 <svg className="w-2 h-3" fill="none" viewBox="0 0 7.32727 12.4">
                   <path d={svgPaths.p36961f00} fill="#2A2A2A" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -322,13 +333,37 @@ export default function Home() {
                   <span style={{ fontFamily: 'Verdana, sans-serif', fontSize: '16px' }}>Category</span>
                 </div>
                 <div className="space-y-3 ml-5">
-                  {['全て', '会社を知る', '仕事を知る', '仲間を知る', '環境を知る'].map((item, index) => (
-                    <a key={index} href="#" className="flex items-center gap-3 hover:opacity-70">
+                  {contentCategories.map((category) => (
+                    <button
+                      key={category.id}
+                      onClick={() => setSelectedCategory(category.id)}
+                      className={`flex items-center gap-3 w-full text-left px-4 py-2 rounded-lg transition-all ${selectedCategory === category.id ? 'font-bold' : ''}`}
+                      style={{
+                        backgroundColor: selectedCategory === category.id ? category.color : 'transparent',
+                        color: selectedCategory === category.id ? '#FFFFFF' : '#313131',
+                      }}
+                      onMouseEnter={(e) => {
+                        if (selectedCategory !== category.id) {
+                          e.currentTarget.style.backgroundColor = category.color;
+                          e.currentTarget.style.color = '#FFFFFF';
+                          const svg = e.currentTarget.querySelector('path');
+                          if (svg) svg.setAttribute('fill', '#FFFFFF');
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (selectedCategory !== category.id) {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                          e.currentTarget.style.color = '#313131';
+                          const svg = e.currentTarget.querySelector('path');
+                          if (svg) svg.setAttribute('fill', '#707070');
+                        }
+                      }}
+                    >
                       <svg className="w-3 h-3" fill="none" viewBox="0 0 11 11">
-                        <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
+                        <path clipRule="evenodd" d={svgPaths.pf417300} fill={selectedCategory === category.id ? '#FFFFFF' : '#707070'} fillRule="evenodd" />
                       </svg>
-                      <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>{item}</span>
-                    </a>
+                      <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>{category.label}</span>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -340,8 +375,15 @@ export default function Home() {
                   <span style={{ fontFamily: 'Verdana, sans-serif', fontSize: '16px' }}>Tag</span>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {['#インタビュー', '#職種：デザイナー', '#クロストーク', '#制度', '#新卒採用', '#キャリア採用'].map((tag, index) => (
-                    <a key={index} href="#" className="border border-[#707070] rounded-full px-3 py-1 hover:bg-gray-100 transition-colors" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>{tag}</a>
+                  {['Career', '新卒採用', 'キャリア採用', 'カルチャー', 'インタビュー', '制度'].map((tag, index) => (
+                    <Link
+                      key={index}
+                      href={`/contents?tag=${tag}`}
+                      className="border border-[#707070] rounded-full px-3 py-1 hover:bg-[#333] hover:text-white hover:border-[#333] transition-colors"
+                      style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}
+                    >
+                      #{tag}
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -349,27 +391,40 @@ export default function Home() {
             <div>
               <h2 className="font-bold mb-10" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>コンテンツ</h2>
               <div className="w-[1150px] flex flex-wrap gap-x-[20px] gap-y-[60px] mb-[70px]">
-                {[1, 2, 3, 4, 5, 6].map((item) => (
-                  <a key={item} href="#" className="group w-[370px]">
+                {contentItems
+                  .filter(item => selectedCategory === 'all' || item.category === selectedCategory)
+                  .sort((a, b) => new Date(b.publishedAt.replace(/\./g, '-')).getTime() - new Date(a.publishedAt.replace(/\./g, '-')).getTime())
+                  .slice(0, 6)
+                  .map((item) => (
+                  <Link key={item.id} href={`/contents/${item.id}`} className="group w-[370px]">
                     <div className="bg-[#505050] rounded-2xl aspect-square mb-4"></div>
+                    {/* カテゴリ */}
+                    <div className="mb-3 flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: getCategoryColor(item.category) }}></div>
+                      <span className="text-sm font-medium" style={{ fontFamily: 'Noto Sans JP, sans-serif', color: '#313131' }}>
+                        {item.categoryLabel}
+                      </span>
+                    </div>
+                    {/* タイトル */}
                     <div className="mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px', lineHeight: '28px' }}>
-                      <p>プレイヤーからリーダーへ</p>
-                      <p>昇格を通じて描く自己成長の軌跡</p>
+                      <p className="line-clamp-2">{item.title}</p>
                     </div>
+                    {/* タグ */}
                     <div className="flex flex-wrap gap-2">
-                      <span className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>#インタビュー</span>
-                      <span className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>#職種：デザイナー</span>
+                      {item.tags.slice(0, 2).map((tag, index) => (
+                        <span key={index} className="border border-[#707070] text-[#707070] text-xs px-3 py-1 rounded-full" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>#{tag}</span>
+                      ))}
                     </div>
-                  </a>
+                  </Link>
                 ))}
               </div>
               <div className="flex justify-center">
-                <a href="#" className="inline-flex items-center gap-4 border border-[#707070] bg-white rounded-full px-8 py-3 hover:bg-gray-50 transition-colors">
+                <Link href="/contents" className="inline-flex items-center gap-4 border border-[#707070] bg-white rounded-full px-8 py-3 hover:bg-gray-50 transition-colors">
                   <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>もっと見る</span>
                   <svg className="w-2 h-3" fill="none" viewBox="0 0 7.32727 12.4">
                     <path d={svgPaths.p36961f00} fill="#2A2A2A" />
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -414,12 +469,12 @@ export default function Home() {
                 <p className="mb-4">さあ、私たちと一緒に。変化を恐れず、未来を描く仲間になりませんか？</p>
                 <p>あなたのエントリーをお待ちしております。</p>
               </div>
-              <a href="#" className="inline-flex items-center gap-4 border border-[#707070] bg-white rounded-full px-8 py-3 hover:bg-gray-50 transition-colors">
+              <Link href="/jobs" className="inline-flex items-center gap-4 border border-[#707070] bg-white rounded-full px-8 py-3 hover:bg-gray-50 transition-colors">
                 <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>募集要項</span>
                 <svg className="w-2 h-3" fill="none" viewBox="0 0 7.32727 12.4">
                   <path d={svgPaths.p36961f00} fill="#2A2A2A" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

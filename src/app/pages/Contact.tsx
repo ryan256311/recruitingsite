@@ -1,8 +1,36 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import svgPaths from "../../imports/svg-corg4qlf3y";
 
 export default function Contact() {
+  const searchParams = useSearchParams();
+  const [inquiryType, setInquiryType] = useState<string>("");
+  const [selectedJobs, setSelectedJobs] = useState<string[]>([]);
+
+  useEffect(() => {
+    const type = searchParams.get("type");
+    const job = searchParams.get("job");
+
+    if (type === "company-visit") {
+      setInquiryType("会社見学");
+    } else if (type === "career" || type === "graduate") {
+      setInquiryType("選考への応募");
+    }
+
+    if (job) {
+      setSelectedJobs([decodeURIComponent(job)]);
+    }
+  }, [searchParams]);
+
+  const handleJobToggle = (job: string) => {
+    setSelectedJobs(prev =>
+      prev.includes(job)
+        ? prev.filter(j => j !== job)
+        : [...prev, job]
+    );
+  };
   return (
     <>
       {/* ===== Hero Section (01) ===== */}
@@ -95,8 +123,10 @@ export default function Contact() {
                       <input
                         type="radio"
                         name="inquiry_type"
+                        value={item}
+                        checked={inquiryType === item}
+                        onChange={(e) => setInquiryType(e.target.value)}
                         className="w-4 h-4 accent-[#4346BE]"
-                        disabled
                       />
                       <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>{item}</span>
                     </label>
@@ -125,8 +155,9 @@ export default function Contact() {
                     <label key={job} className="flex items-center gap-2 cursor-pointer">
                       <input
                         type="checkbox"
+                        checked={selectedJobs.includes(job)}
+                        onChange={() => handleJobToggle(job)}
                         className="w-4 h-4 accent-[#4346BE]"
-                        disabled
                       />
                       <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>{job}</span>
                     </label>
@@ -271,7 +302,7 @@ export default function Contact() {
                     disabled
                   />
                   <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
-                    <a href="#" className="text-[#4346BE] underline">プライバシーポリシー</a>に同意する <span className="text-red-600">*</span>
+                    <a href="https://exceet.co.jp/privacy/" target="_blank" rel="noopener noreferrer" className="text-[#4346BE] underline hover:opacity-70 transition-opacity">プライバシーポリシー</a>に同意する <span className="text-red-600">*</span>
                   </span>
                 </label>
               </div>

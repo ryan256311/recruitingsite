@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { contentItems, contentCategories, contentTags, ContentCategoryId } from "../data/contents";
+import { contentItems, contentCategories, contentTags, ContentCategoryId, getCategoryColor } from "../data/contents";
 import svgPaths from "../../imports/svg-corg4qlf3y";
 
 const ITEMS_PER_PAGE = 12;
@@ -86,20 +86,37 @@ export default function ContentsList() {
                     <button
                       key={category.id}
                       onClick={() => handleCategoryClick(category.id)}
-                      className="flex items-center gap-3 w-full text-left hover:opacity-70 transition-opacity"
+                      className={`flex items-center gap-3 w-full text-left px-4 py-2 rounded-lg transition-all ${selectedCategory === category.id ? 'font-bold' : ''}`}
+                      style={{
+                        backgroundColor: selectedCategory === category.id ? category.color : 'transparent',
+                        color: selectedCategory === category.id ? '#FFFFFF' : '#313131',
+                      }}
+                      onMouseEnter={(e) => {
+                        if (selectedCategory !== category.id) {
+                          e.currentTarget.style.backgroundColor = category.color;
+                          e.currentTarget.style.color = '#FFFFFF';
+                          const svg = e.currentTarget.querySelector('path');
+                          if (svg) svg.setAttribute('fill', '#FFFFFF');
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (selectedCategory !== category.id) {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                          e.currentTarget.style.color = '#313131';
+                          const svg = e.currentTarget.querySelector('path');
+                          if (svg) svg.setAttribute('fill', '#707070');
+                        }
+                      }}
                     >
                       <svg className="w-3 h-3" fill="none" viewBox="0 0 11 11">
                         <path
                           clipRule="evenodd"
                           d={svgPaths.pf417300}
-                          fill={selectedCategory === category.id ? '#4346BE' : '#707070'}
+                          fill={selectedCategory === category.id ? '#FFFFFF' : '#707070'}
                           fillRule="evenodd"
                         />
                       </svg>
-                      <span
-                        className={selectedCategory === category.id ? 'font-bold' : ''}
-                        style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
-                      >
+                      <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
                         {category.label}
                       </span>
                     </button>
@@ -123,7 +140,7 @@ export default function ContentsList() {
                       className={`border rounded-full px-3 py-1 transition-colors ${
                         selectedTag === tag
                           ? 'bg-[#4346BE] text-white border-[#4346BE]'
-                          : 'bg-white text-[#313131] border-[#707070] hover:bg-gray-100'
+                          : 'bg-white text-[#313131] border-[#707070] hover:bg-[#333] hover:text-white hover:border-[#333]'
                       }`}
                       style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}
                     >
@@ -153,19 +170,23 @@ export default function ContentsList() {
                         </svg>
                       </div>
                     </div>
+                    {/* Category */}
+                    <div className="mb-3 flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: getCategoryColor(item.category) }}></div>
+                      <span className="text-sm font-medium" style={{ fontFamily: 'Noto Sans JP, sans-serif', color: '#313131' }}>
+                        {item.categoryLabel}
+                      </span>
+                    </div>
                     {/* Title */}
                     <div className="mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px', lineHeight: '28px' }}>
                       <p className="line-clamp-2">{item.title}</p>
                     </div>
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2">
-                      <span className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
-                        {item.categoryLabel}
-                      </span>
-                      {item.tags.slice(0, 1).map((tag) => (
+                      {item.tags.slice(0, 2).map((tag) => (
                         <span
                           key={tag}
-                          className="border border-[#707070] rounded-full px-3 py-1 text-sm"
+                          className="border border-[#707070] text-[#707070] text-xs px-3 py-1 rounded-full"
                           style={{ fontFamily: 'Noto Sans JP, sans-serif' }}
                         >
                           #{tag}

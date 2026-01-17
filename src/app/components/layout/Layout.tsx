@@ -93,13 +93,13 @@ export default function Layout({ children }: LayoutProps) {
               <Link href="/graduate" className="font-bold tracking-[0.42px] whitespace-nowrap" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>新卒採用</Link>
               <Link href="/career" className="font-bold tracking-[0.42px] whitespace-nowrap" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>キャリア採用</Link>
             </div>
-            <a href="#" className="bg-[#0064c8] text-white py-3 rounded-full font-bold flex items-center justify-center gap-2 whitespace-nowrap w-[210px] max-[1039px]:w-auto max-[1039px]:px-[14px] max-[1039px]:h-[38px] max-[1039px]:py-0 max-[1039px]:rounded-[8px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '12px' }}>
+            <Link href="/contact?type=company-visit" className="bg-[#0064c8] text-white py-3 rounded-full font-bold flex items-center justify-center gap-2 whitespace-nowrap w-[210px] max-[1039px]:w-auto max-[1039px]:px-[14px] max-[1039px]:h-[38px] max-[1039px]:py-0 max-[1039px]:rounded-[8px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '12px' }}>
               <span className="hidden min-[1040px]:inline">会社見学会にエントリー</span>
               <span className="min-[1040px]:hidden">ENTRY</span>
               <svg className="w-2 h-3 hidden min-[1040px]:block" fill="none" viewBox="0 0 7 11.8462">
                 <path d={svgPaths.p190b2b48} fill="white" />
               </svg>
-            </a>
+            </Link>
           </nav>
         </div>
 
@@ -165,15 +165,15 @@ export default function Layout({ children }: LayoutProps) {
               <h2 className="font-bold mb-4" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '72px', lineHeight: '1.1' }}>Let ideas (X)plode.</h2>
               <p className="font-bold mb-12" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '24px' }}>変化を楽しみ挑戦し続けよう。</p>
               <div className="space-y-4 max-w-[400px]">
-                <a href="#" className="block border border-[#707070] bg-white rounded-md p-5 hover:bg-gray-50 transition-colors">
-                  <span className="font-semibold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>インターンシップ</span>
-                </a>
-                <a href="#" className="block border border-[#707070] bg-[#333] text-white rounded-md p-5 hover:bg-[#444] transition-colors">
+                <Link href="/contact?type=company-visit" className="block border border-[#707070] bg-white rounded-md p-5 hover:bg-gray-50 transition-colors">
+                  <span className="font-semibold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>会社見学</span>
+                </Link>
+                <Link href="/contact?type=career" className="block border border-[#707070] bg-[#333] text-white rounded-md p-5 hover:bg-[#444] transition-colors">
                   <span className="font-semibold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>キャリア採用エントリー</span>
-                </a>
-                <a href="#" className="block border border-[#707070] bg-[#333] text-white rounded-md p-5 hover:bg-[#444] transition-colors">
+                </Link>
+                <Link href="/contact?type=graduate" className="block border border-[#707070] bg-[#333] text-white rounded-md p-5 hover:bg-[#444] transition-colors">
                   <span className="font-semibold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>27卒エントリー</span>
-                </a>
+                </Link>
               </div>
               <div className="mt-8">
                 <a href="#" className="inline-block">
@@ -190,22 +190,22 @@ export default function Layout({ children }: LayoutProps) {
               </div>
               <div className="grid grid-cols-2 gap-x-12 gap-y-4">
                 {[
-                  { label: 'エクシートとは', href: '/contents' },
-                  { label: 'お知らせ', href: '/news' },
-                  { label: '仲間を知る', href: '/contents' },
-                  { label: 'コーポレートサイト', href: '#' },
-                  { label: '募集中の求人', href: '/jobs' },
-                  { label: 'お問い合わせ', href: '/contact' },
+                  { label: 'エクシートとは', href: '/contents', external: false },
+                  { label: 'コーポレートサイト', href: 'https://exceet.co.jp/', external: true },
+                  { label: 'お知らせ', href: '/news', external: false },
+                  { label: 'プライバシーポリシー', href: 'https://exceet.co.jp/privacy/', external: true },
+                  { label: '募集中の求人', href: '/jobs', external: false },
+                  { label: 'お問い合わせ', href: '/contact', external: false },
                 ].map((item, index) => (
-                  item.href.startsWith('#') ? (
-                    <a key={index} href={item.href} className="flex items-center gap-3 hover:opacity-70">
+                  item.external ? (
+                    <a key={index} href={item.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:opacity-70 transition-opacity">
                       <svg className="w-3 h-3" fill="none" viewBox="0 0 14 14">
                         <path clipRule="evenodd" d={svgPaths.p17cd8580} fill="#4346BE" fillRule="evenodd" />
                       </svg>
                       <span className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>{item.label}</span>
                     </a>
                   ) : (
-                    <Link key={index} href={item.href} className="flex items-center gap-3 hover:opacity-70">
+                    <Link key={index} href={item.href} className="flex items-center gap-3 hover:opacity-70 transition-opacity">
                       <svg className="w-3 h-3" fill="none" viewBox="0 0 14 14">
                         <path clipRule="evenodd" d={svgPaths.p17cd8580} fill="#4346BE" fillRule="evenodd" />
                       </svg>
@@ -249,7 +249,18 @@ export default function Layout({ children }: LayoutProps) {
               </div>
               <span className="font-medium tracking-[0.54px]" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '16px', color: '#272727' }}>Recruitment Site</span>
             </div>
-            <p className="font-normal tracking-[0.36px]" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '12px', color: '#333' }}>©株式会社エクシート All Rights</p>
+            <div className="flex items-center gap-6">
+              <a
+                href="https://exceet.co.jp/privacy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-normal tracking-[0.36px] hover:opacity-70 transition-opacity"
+                style={{ fontFamily: 'Roboto, sans-serif', fontSize: '12px', color: '#333' }}
+              >
+                プライバシーポリシー
+              </a>
+              <p className="font-normal tracking-[0.36px]" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '12px', color: '#333' }}>©株式会社エクシート All Rights</p>
+            </div>
           </div>
         </div>
       </footer>

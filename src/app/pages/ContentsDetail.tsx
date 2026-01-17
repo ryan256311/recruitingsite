@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ContentItem, getRelatedContents } from "../data/contents";
+import { ContentItem, getRelatedContents, getCategoryColor } from "../data/contents";
 import svgPaths from "../../imports/svg-corg4qlf3y";
 
 interface ContentsDetailProps {
@@ -16,11 +16,12 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
     const lines = text.split('\n');
     const elements: React.ReactNode[] = [];
     let currentParagraph: string[] = [];
+    let paragraphIndex = 0;
 
     const flushParagraph = () => {
       if (currentParagraph.length > 0) {
         elements.push(
-          <p key={elements.length} className="mb-6">
+          <p key={`p-${paragraphIndex++}`} className="mb-6">
             {currentParagraph.join('\n')}
           </p>
         );
@@ -32,28 +33,28 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
       if (line.startsWith('## ')) {
         flushParagraph();
         elements.push(
-          <h2 key={index} className="font-bold text-2xl mt-10 mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+          <h2 key={`h2-${index}`} className="font-bold text-2xl mt-10 mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
             {line.replace('## ', '')}
           </h2>
         );
       } else if (line.startsWith('### ')) {
         flushParagraph();
         elements.push(
-          <h3 key={index} className="font-bold text-xl mt-8 mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+          <h3 key={`h3-${index}`} className="font-bold text-xl mt-8 mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
             {line.replace('### ', '')}
           </h3>
         );
       } else if (line.startsWith('#### ')) {
         flushParagraph();
         elements.push(
-          <h4 key={index} className="font-bold text-lg mt-6 mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+          <h4 key={`h4-${index}`} className="font-bold text-lg mt-6 mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
             {line.replace('#### ', '')}
           </h4>
         );
       } else if (line.startsWith('- ')) {
         flushParagraph();
         elements.push(
-          <li key={index} className="ml-6 mb-2 list-disc">
+          <li key={`li-${index}`} className="ml-6 mb-2 list-disc">
             {line.replace('- ', '').replace(/\*\*(.*?)\*\*/g, '$1')}
           </li>
         );
@@ -93,14 +94,21 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
             <span className="text-[#313131]">{content.title}</span>
           </nav>
 
-          {/* Category & Tags */}
-          <div className="flex items-center gap-3 mb-6 flex-wrap">
-            <span
-              className="bg-[#4346BE] text-white text-xs px-3 py-1 rounded-full"
-              style={{ fontFamily: 'Noto Sans JP, sans-serif' }}
-            >
+          {/* Category */}
+          <div className="mb-4 flex items-center gap-2">
+            <div className="w-4 h-4 rounded-full" style={{ backgroundColor: getCategoryColor(content.category) }}></div>
+            <span className="text-sm font-medium" style={{ fontFamily: 'Noto Sans JP, sans-serif', color: '#313131' }}>
               {content.categoryLabel}
             </span>
+          </div>
+
+          {/* Title */}
+          <h1 className="font-bold tracking-[0.72px] mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px', lineHeight: '1.4' }}>
+            {content.title}
+          </h1>
+
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2">
             {content.tags.map((tag) => (
               <span
                 key={tag}
@@ -111,16 +119,6 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
               </span>
             ))}
           </div>
-
-          {/* Title */}
-          <h1 className="font-bold tracking-[0.72px] mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px', lineHeight: '1.4' }}>
-            {content.title}
-          </h1>
-
-          {/* Published Date */}
-          <p className="text-[#707070]" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '14px' }}>
-            {content.publishedAt}
-          </p>
         </div>
       </section>
 
@@ -191,12 +189,12 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
                     </div>
                   </div>
                   <div className="p-4">
-                    <span
-                      className="text-[#4346BE] text-xs font-bold mb-2 block"
-                      style={{ fontFamily: 'Noto Sans JP, sans-serif' }}
-                    >
-                      {item.categoryLabel}
-                    </span>
+                    <div className="mb-3 flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: getCategoryColor(item.category) }}></div>
+                      <span className="text-sm font-medium" style={{ fontFamily: 'Noto Sans JP, sans-serif', color: '#313131' }}>
+                        {item.categoryLabel}
+                      </span>
+                    </div>
                     <h3
                       className="font-bold line-clamp-2"
                       style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', lineHeight: '1.5' }}

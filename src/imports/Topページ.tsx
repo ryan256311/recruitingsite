@@ -339,7 +339,7 @@ function Component49() {
   return (
     <div className="absolute contents left-[1149px] top-[1943px]" data-name="グループ 474">
       <div className="absolute bg-white border border-[#707070] border-solid h-[68px] left-[1149px] opacity-[0.44] rounded-[5px] top-[1943px] w-[412px]" data-name="長方形 74" />
-      <p className="absolute font-['Noto_Sans_JP:SemiBold',sans-serif] leading-[33px] left-[1174px] not-italic text-[#313131] text-[20px] text-nowrap top-[1964px]">インターンシップ</p>
+      <p className="absolute font-['Noto_Sans_JP:SemiBold',sans-serif] leading-[33px] left-[1174px] not-italic text-[#313131] text-[20px] text-nowrap top-[1964px]">会社見学</p>
     </div>
   );
 }
@@ -1219,7 +1219,7 @@ function Component40() {
         </svg>
       </div>
       <div className="absolute font-['Noto_Sans_JP:SemiBold',sans-serif] leading-[20px] left-[1750.35px] not-italic text-[#313131] text-[0px] text-center text-nowrap top-[928px] translate-x-[-50%]">
-        <p className="mb-0 text-[14px]">インターンシップ</p>
+        <p className="mb-0 text-[14px]">会社見学</p>
         <p className="mb-0 text-[14px]">会社見学会</p>
         <p className="text-[13px]">はこちら</p>
       </div>
@@ -1449,7 +1449,7 @@ function Component97() {
   return (
     <div className="absolute contents left-[80px] top-[8610px]" data-name="グループ 547">
       <div className="absolute bg-white border border-[#707070] border-solid h-[68px] left-[80px] rounded-[5px] top-[8610px] w-[412px]" data-name="長方形 74" />
-      <p className="absolute font-['Noto_Sans_JP:SemiBold',sans-serif] leading-[33px] left-[222px] not-italic text-[#313131] text-[16px] text-nowrap top-[8630px]">インターンシップ</p>
+      <p className="absolute font-['Noto_Sans_JP:SemiBold',sans-serif] leading-[33px] left-[222px] not-italic text-[#313131] text-[16px] text-nowrap top-[8630px]">会社見学</p>
     </div>
   );
 }

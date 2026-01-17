@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import svgPaths from "../../imports/svg-corg4qlf3y";
 import { careerJobs, graduateJobs, Job } from "../data/jobs";
@@ -42,9 +43,17 @@ const employmentTypes = [
 ];
 
 export default function JobsList() {
+  const searchParams = useSearchParams();
   const [selectedType, setSelectedType] = useState<JobType>('all');
   const [selectedOccupation, setSelectedOccupation] = useState<string>('all');
   const [selectedEmploymentType, setSelectedEmploymentType] = useState<string>('all');
+
+  useEffect(() => {
+    const type = searchParams.get("type");
+    if (type === "career" || type === "graduate") {
+      setSelectedType(type as JobType);
+    }
+  }, [searchParams]);
 
   const filteredJobs = allJobs.filter(job => {
     const typeMatch = selectedType === 'all' || job.jobType === selectedType;
