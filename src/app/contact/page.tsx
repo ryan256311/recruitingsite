@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import Layout from "../components/layout/Layout";
 import Contact from "../pages/Contact";
 
@@ -9,7 +11,9 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <Layout>
-      <Contact />
+      <Suspense fallback={<div className="px-8 py-24">Loading...</div>}>
+        <Contact />
+      </Suspense>
     </Layout>
   );
 }

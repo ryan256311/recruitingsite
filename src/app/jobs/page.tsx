@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import Layout from "../components/layout/Layout";
 import JobsList from "../pages/JobsList";
 
@@ -9,7 +11,9 @@ export const metadata = {
 export default function JobsPage() {
   return (
     <Layout>
-      <JobsList />
+      <Suspense fallback={<div className="px-8 py-24">Loading...</div>}>
+        <JobsList />
+      </Suspense>
     </Layout>
   );
 }
