@@ -10,10 +10,10 @@ export const metadata = {
 
 export default function JobsPage() {
   return (
-    <Layout>
-      <Suspense fallback={<div className="px-8 py-24">Loading...</div>}>
+    <Suspense fallback={<div className="px-8 py-24">Loading...</div>}>
+      <Layout>
         <JobsList />
-      </Suspense>
-    </Layout>
+      </Layout>
+    </Suspense>
   );
 }
