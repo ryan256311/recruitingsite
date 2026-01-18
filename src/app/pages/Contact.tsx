@@ -7,6 +7,7 @@ import svgPaths from "../../imports/svg-corg4qlf3y";
 export default function Contact() {
   const searchParams = useSearchParams();
   const [inquiryType, setInquiryType] = useState<string>("");
+  const [recruitmentType, setRecruitmentType] = useState<string>("");
   const [selectedJobs, setSelectedJobs] = useState<string[]>([]);
 
   useEffect(() => {
@@ -15,8 +16,12 @@ export default function Contact() {
 
     if (type === "company-visit") {
       setInquiryType("会社見学");
-    } else if (type === "career" || type === "graduate") {
+    } else if (type === "career") {
       setInquiryType("選考への応募");
+      setRecruitmentType("キャリア採用");
+    } else if (type === "graduate") {
+      setInquiryType("選考への応募");
+      setRecruitmentType("新卒採用");
     }
 
     if (job) {
@@ -134,6 +139,28 @@ export default function Contact() {
                 </div>
               </div>
 
+              {/* 採用区分 */}
+              <div>
+                <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                  採用区分 <span className="text-red-600">*</span>
+                </label>
+                <div className="flex flex-wrap gap-4">
+                  {['新卒採用', 'キャリア採用'].map((item) => (
+                    <label key={item} className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="recruitment_type"
+                        value={item}
+                        checked={recruitmentType === item}
+                        onChange={(e) => setRecruitmentType(e.target.value)}
+                        className="w-4 h-4 accent-[#4346BE]"
+                      />
+                      <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>{item}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
               {/* 応募職種 */}
               <div>
                 <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
@@ -151,6 +178,7 @@ export default function Contact() {
                     '企画営業職（推し活グッズ事業）',
                     '企画営業',
                     '営業事務',
+                    'その他',
                   ].map((job) => (
                     <label key={job} className="flex items-center gap-2 cursor-pointer">
                       <input
@@ -249,33 +277,35 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* 職務経歴書の添付 */}
-              <div>
-                <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
-                  職務経歴書の添付 <span className="text-red-600">*</span>
-                </label>
-                <div className="border border-[#707070] border-dashed rounded-lg p-6 text-center bg-gray-50">
-                  <svg className="w-10 h-10 mx-auto mb-3 text-[#707070]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                  </svg>
-                  <p className="mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', color: '#707070' }}>
-                    ファイルをドラッグ＆ドロップ、または
-                  </p>
-                  <label className="inline-block">
-                    <span
-                      className="text-[#4346BE] underline cursor-pointer"
-                      style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}
-                    >
-                      ファイルを選択
-                    </span>
-                    <input
-                      type="file"
-                      className="hidden"
-                      disabled
-                    />
+              {/* 職務経歴書の添付（キャリア採用の場合のみ表示） */}
+              {recruitmentType === 'キャリア採用' && (
+                <div>
+                  <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                    職務経歴書の添付 <span className="text-red-600">*</span>
                   </label>
+                  <div className="border border-[#707070] border-dashed rounded-lg p-6 text-center bg-gray-50">
+                    <svg className="w-10 h-10 mx-auto mb-3 text-[#707070]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                    <p className="mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', color: '#707070' }}>
+                      ファイルをドラッグ＆ドロップ、または
+                    </p>
+                    <label className="inline-block">
+                      <span
+                        className="text-[#4346BE] underline cursor-pointer"
+                        style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}
+                      >
+                        ファイルを選択
+                      </span>
+                      <input
+                        type="file"
+                        className="hidden"
+                        disabled
+                      />
+                    </label>
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* その他 */}
               <div>
