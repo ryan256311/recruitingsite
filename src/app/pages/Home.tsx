@@ -148,7 +148,7 @@ export default function Home() {
                 {[
                   { label: 'キャリア採用向け', href: '/jobs/career' },
                   { label: '新卒採用向け', href: '/jobs/graduate' },
-                  { label: '会社見学', href: '/contact?type=company-visit' }
+                  { label: '会社見学', href: '/company-visit' }
                 ].map((item, index) => (
                   <Link key={index} href={item.href} className="block border border-[#707070] rounded-md p-5 bg-white hover:bg-gray-50 transition-colors">
                     <span className="font-semibold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px' }}>{item.label}</span>

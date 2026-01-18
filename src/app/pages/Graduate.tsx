@@ -286,7 +286,7 @@ export default function Graduate() {
                     <path d={svgPaths.p190b2b48} fill="white" />
                   </svg>
                 </a>
-                <Link href="/contact?type=company-visit" className="inline-flex items-center gap-4 border border-[#707070] bg-white rounded-full px-10 py-4 hover:bg-gray-50 transition-colors">
+                <Link href="/company-visit" className="inline-flex items-center gap-4 border border-[#707070] bg-white rounded-full px-10 py-4 hover:bg-gray-50 transition-colors">
                   <span className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>会社見学に参加する</span>
                   <svg className="w-2 h-3" fill="none" viewBox="0 0 7.32727 12.4">
                     <path d={svgPaths.p36961f00} fill="#2A2A2A" />
