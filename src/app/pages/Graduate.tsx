@@ -61,7 +61,7 @@ export default function Graduate() {
 
           {/* Main Content - Right Side */}
           <div className="flex-1 py-8 pr-20 max-w-[1400px] pl-[4%]">
-            <h1 className="font-bold tracking-[2.34px] mb-8" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '72px', lineHeight: '1.2' }}>
+            <h1 className="text-h1 tracking-[1.92px] mb-8">
               新卒採用
             </h1>
             <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
@@ -83,7 +83,7 @@ export default function Graduate() {
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '48px' }}>仕事環境</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>仕事環境</h2>
             <div className="w-12 h-px bg-[#313131]"></div>
           </div>
 
@@ -94,14 +94,14 @@ export default function Graduate() {
               { title: '学び続ける文化', description: '研修・メンター制度で着実にスキルを伸ばせます' },
             ].map((item, index) => (
               <div key={index} className="border border-[#707070] rounded-2xl p-8">
-                <h3 className="font-bold mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '24px' }}>{item.title}</h3>
+                <h3 className="font-bold mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>{item.title}</h3>
                 <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item.description}</p>
               </div>
             ))}
           </div>
 
           <div className="bg-gray-50 rounded-2xl p-10">
-            <h3 className="font-bold mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '24px' }}>成長を支える仕組み</h3>
+            <h3 className="font-bold mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>成長を支える仕組み</h3>
             <p className="mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
               新卒の皆さんが、地域で安心してスタートを切れるよう支援体制を整えています。<br />
               基礎力から実務まで、段階的に成長できる環境です。
@@ -147,7 +147,7 @@ export default function Graduate() {
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '48px' }}>募集要項</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>募集要項</h2>
             <div className="w-12 h-px bg-[#313131]"></div>
           </div>
 
@@ -186,7 +186,7 @@ export default function Graduate() {
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '48px' }}>試験内容とフロー図</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>試験内容とフロー図</h2>
             <div className="w-12 h-px bg-[#313131]"></div>
           </div>
 
@@ -206,7 +206,7 @@ export default function Graduate() {
               <div key={index} className="flex items-center">
                 <div className="text-center">
                   <span className="inline-block bg-[#4346BE] text-white text-sm px-4 py-1 rounded-full mb-3" style={{ fontFamily: 'Roboto, sans-serif' }}>{item.step}</span>
-                  <h3 className="font-bold mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>{item.title}</h3>
+                  <h3 className="font-bold mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>{item.title}</h3>
                   <p className="text-sm text-gray-600 whitespace-pre-line" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>{item.description}</p>
                 </div>
                 {index < arr.length - 1 && (
@@ -255,7 +255,7 @@ export default function Graduate() {
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '48px' }}>現在募集中の求人</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>現在募集中の求人</h2>
             <div className="w-12 h-px bg-[#313131]"></div>
           </div>
 
@@ -297,7 +297,7 @@ export default function Graduate() {
           ) : (
             <div className="bg-gray-50 rounded-2xl p-12 mb-12">
               <div className="text-center max-w-[600px] mx-auto">
-                <h3 className="font-bold mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '24px' }}>
+                <h3 className="font-bold mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>
                   現在、新卒採用の募集は行っておりません
                 </h3>
                 <p className="mb-8" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>

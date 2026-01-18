@@ -50,7 +50,7 @@ export default function NewsDetail({ news }: NewsDetailProps) {
           </div>
 
           {/* Title */}
-          <h1 className="font-bold tracking-[0.72px] mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px', lineHeight: '1.4' }}>
+          <h1 className="font-bold tracking-[1.92px] mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '64px', lineHeight: '1.3' }}>
             {news.title}
           </h1>
         </div>

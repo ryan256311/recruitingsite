@@ -98,7 +98,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
               {/* Title & Badge */}
               <div className="flex items-start gap-6 mb-6">
-                <h1 className="font-bold tracking-[1.5px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '48px', lineHeight: '1.3' }}>
+                <h1 className="text-h1 tracking-[1.92px]">
                   {job.title}
                 </h1>
                 <span className={`${badgeColor} text-white text-sm px-4 py-2 rounded-full mt-3`} style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
@@ -507,7 +507,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="flex flex-col items-center text-center">
-            <h2 className="font-bold mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '32px' }}>
+            <h2 className="font-bold mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>
               この求人に応募する
             </h2>
             <p className="mb-10 text-gray-600" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '28px' }}>
@@ -580,7 +580,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
                     </div>
                     <h3
                       className="font-bold line-clamp-2"
-                      style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', lineHeight: '1.5' }}
+                      style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px', lineHeight: '1.5' }}
                     >
                       {item.title}
                     </h3>

@@ -24,7 +24,7 @@ export default function NewsList() {
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8 pt-8">
-          <h1 className="font-bold tracking-[2.34px] mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '72px', lineHeight: '1.2' }}>
+          <h1 className="font-bold tracking-[1.92px] mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '64px', lineHeight: '1.2' }}>
             お知らせ
           </h1>
           <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>

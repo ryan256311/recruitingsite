@@ -151,6 +151,61 @@ export default function Layout({ children }: LayoutProps) {
       {/* Main content */}
       {children}
 
+      {/* ===== Recruit Section ===== */}
+      <section className="relative border-b border-black/15">
+        <div className="absolute top-[6px] left-[14px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>07</span>
+        </div>
+        <div className="absolute top-[6px] left-[54px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="recruit">`}</code>
+        </div>
+        <div className="overflow-hidden pt-[40px]">
+          <div className="flex items-center gap-6 pl-[80px] animate-scroll">
+            {[...Array(2)].map((_, setIndex) => (
+              <div key={setIndex} className="flex items-center gap-6 shrink-0">
+                {[
+                  { width: 440 },
+                  { width: 510 },
+                  { width: 440 },
+                  { width: 400 },
+                  { width: 440 },
+                  { width: 510 },
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className="shrink-0 rounded-2xl overflow-hidden bg-gray-200"
+                    style={{ width: `${item.width}px`, aspectRatio: '1/1' }}
+                  >
+                    <div className="w-full h-full flex items-center justify-center text-gray-400">
+                      採用イメージ{index + 1}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="border-t border-black/15 mt-[20px]"></div>
+        <div className="py-24">
+          <div className="max-w-[1180px] mx-auto flex justify-between">
+            <h2 className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '72px', lineHeight: '1.2' }}>採用について</h2>
+            <div className="w-[630px]">
+              <div className="mb-8" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
+                <p className="mb-4">当社では、「変化を楽しみ挑戦し続ける」「アイデアを形にする」という行動指針をもとに、職種や部署を超えて連携し合い、チームでの成果を追求しています。</p>
+                <p className="mb-4">さあ、私たちと一緒に。変化を恐れず、未来を描く仲間になりませんか？</p>
+                <p>あなたのエントリーをお待ちしております。</p>
+              </div>
+              <Link href="/jobs" className="inline-flex items-center gap-4 border border-[#707070] bg-white rounded-full px-8 py-3 hover:bg-gray-50 transition-colors">
+                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>募集要項</span>
+                <svg className="w-2 h-3" fill="none" viewBox="0 0 7.32727 12.4">
+                  <path d={svgPaths.p36961f00} fill="#2A2A2A" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ===== Footer Section ===== */}
       <section className="relative py-24 border-b border-black/15">
         <div className="absolute top-[6px] left-[14px]">

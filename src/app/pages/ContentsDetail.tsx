@@ -33,14 +33,14 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
       if (line.startsWith('## ')) {
         flushParagraph();
         elements.push(
-          <h2 key={`h2-${index}`} className="font-bold text-2xl mt-10 mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+          <h2 key={`h2-${index}`} className="font-bold mt-10 mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>
             {line.replace('## ', '')}
           </h2>
         );
       } else if (line.startsWith('### ')) {
         flushParagraph();
         elements.push(
-          <h3 key={`h3-${index}`} className="font-bold text-xl mt-8 mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+          <h3 key={`h3-${index}`} className="font-bold mt-8 mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>
             {line.replace('### ', '')}
           </h3>
         );
@@ -103,7 +103,7 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
           </div>
 
           {/* Title */}
-          <h1 className="font-bold tracking-[0.72px] mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px', lineHeight: '1.4' }}>
+          <h1 className="text-h1 tracking-[1.92px] mb-4">
             {content.title}
           </h1>
 
@@ -170,7 +170,7 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
           </div>
 
           <div className="max-w-[1180px] mx-auto px-8">
-            <h2 className="font-bold mb-8" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '24px' }}>
+            <h2 className="text-h2 mb-8">
               関連記事
             </h2>
             <div className="grid grid-cols-3 gap-6">
@@ -197,7 +197,7 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
                     </div>
                     <h3
                       className="font-bold line-clamp-2"
-                      style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', lineHeight: '1.5' }}
+                      style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px', lineHeight: '1.5' }}
                     >
                       {item.title}
                     </h3>

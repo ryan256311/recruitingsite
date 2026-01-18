@@ -66,7 +66,7 @@ export default function Career() {
 
           {/* Main Content - Right Side */}
           <div className="flex-1 py-8 pr-20 max-w-[1400px] pl-[4%]">
-            <h1 className="font-bold tracking-[2.34px] mb-8" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '72px', lineHeight: '1.2' }}>
+            <h1 className="text-h1 tracking-[1.92px] mb-8">
               キャリア採用
             </h1>
             <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
@@ -88,7 +88,7 @@ export default function Career() {
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '48px' }}>仕事環境</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>仕事環境</h2>
             <div className="w-12 h-px bg-[#313131]"></div>
           </div>
 
@@ -99,14 +99,14 @@ export default function Career() {
               { title: '学習支援が充実', description: 'Udemy受け放題や研修・セミナー参加支援で成長を後押し' },
             ].map((item, index) => (
               <div key={index} className="border border-[#707070] rounded-2xl p-8">
-                <h3 className="font-bold mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '24px' }}>{item.title}</h3>
+                <h3 className="font-bold mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>{item.title}</h3>
                 <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item.description}</p>
               </div>
             ))}
           </div>
 
           <div className="bg-gray-50 rounded-2xl p-10">
-            <h3 className="font-bold mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '24px' }}>キャリアパス</h3>
+            <h3 className="font-bold mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>キャリアパス</h3>
             <p className="mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
               入社後は、経験を活かして即戦力として成果を出せる環境を用意しています。<br />
               新規事業や改善提案にも積極的に関わり、変化を楽しめる方が成長できるフェーズです。
@@ -146,7 +146,7 @@ export default function Career() {
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '48px' }}>募集要項</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>募集要項</h2>
             <div className="w-12 h-px bg-[#313131]"></div>
           </div>
 
@@ -184,7 +184,7 @@ export default function Career() {
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '48px' }}>試験内容とフロー図</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>試験内容とフロー図</h2>
             <div className="w-12 h-px bg-[#313131]"></div>
           </div>
 
@@ -203,7 +203,7 @@ export default function Career() {
               <div key={index} className="flex items-center">
                 <div className="text-center">
                   <span className="inline-block bg-[#0064c8] text-white text-sm px-4 py-1 rounded-full mb-3" style={{ fontFamily: 'Roboto, sans-serif' }}>{item.step}</span>
-                  <h3 className="font-bold mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px' }}>{item.title}</h3>
+                  <h3 className="font-bold mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>{item.title}</h3>
                   <p className="text-sm text-gray-600 whitespace-pre-line" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>{item.description}</p>
                 </div>
                 {index < arr.length - 1 && (
@@ -252,7 +252,7 @@ export default function Career() {
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '48px' }}>現在募集中の求人</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>現在募集中の求人</h2>
             <div className="w-12 h-px bg-[#313131]"></div>
           </div>
 
@@ -260,7 +260,7 @@ export default function Career() {
             {displayedJobs.map((job) => (
               <Link key={job.id} href={`/career/${job.id}`} className="block border border-[#707070] rounded-2xl p-8 hover:bg-gray-50 transition-colors">
                 <div className="flex items-start justify-between mb-4">
-                  <h3 className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '24px' }}>{job.title}</h3>
+                  <h3 className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>{job.title}</h3>
                   <span className="bg-[#0064c8] text-white text-sm px-3 py-1 rounded-full" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>キャリア</span>
                 </div>
                 <div className="flex gap-4 mb-4">
