@@ -13,6 +13,7 @@ interface ContactFormData {
   furigana: string;
   email: string;
   phone: string;
+  portfolioUrl: string;
   message: string;
   privacyAgreed: boolean;
 }
@@ -71,6 +72,7 @@ export default function Contact() {
       furigana: '',
       email: '',
       phone: '',
+      portfolioUrl: '',
       message: '',
       privacyAgreed: false,
     },
@@ -186,8 +188,8 @@ export default function Contact() {
           resumeName: resume?.name,
           careerHistoryUrl: careerHistory?.url,
           careerHistoryName: careerHistory?.name,
-          portfolioUrl: portfolio?.url,
-          portfolioName: portfolio?.name,
+          portfolioFileUrl: portfolio?.url,
+          portfolioFileName: portfolio?.name,
         }),
       });
 
@@ -608,10 +610,10 @@ export default function Contact() {
                 </div>
               )}
 
-              {/* ポートフォリオ */}
+              {/* ポートフォリオ（ファイル） */}
               <div>
                 <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
-                  ポートフォリオ
+                  ポートフォリオ（ファイル）
                 </label>
                 <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
                   PDF、Word、JPG、PNG形式（5MB以下）
@@ -671,13 +673,30 @@ export default function Contact() {
                 )}
               </div>
 
+              {/* ポートフォリオ（URL） */}
+              <div>
+                <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                  ポートフォリオ（URL）
+                </label>
+                <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+                  ポートフォリオサイト、GitHub、Behance等のURLを入力してください
+                </p>
+                <input
+                  type="url"
+                  {...register('portfolioUrl')}
+                  className="w-full border border-[#707070] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#4346BE] focus:border-transparent"
+                  placeholder="https://example.com/portfolio"
+                  style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
+                />
+              </div>
+
               {/* その他 */}
               <div>
                 <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
                   その他
                 </label>
                 <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
-                  ※ポートフォリオURL、GitHubアカウント、その他アピールしたい情報など
+                  ※自己PR、志望動機、その他アピールしたい情報など
                 </p>
                 <textarea
                   {...register('message')}

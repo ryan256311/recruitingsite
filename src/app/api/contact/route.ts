@@ -24,14 +24,15 @@ const contactSchema = z.object({
   furigana: z.string().min(1, "フリガナを入力してください"),
   email: z.string().email("正しいメールアドレスを入力してください"),
   phone: z.string().optional(),
+  portfolioUrl: z.string().optional(),
   message: z.string().optional(),
   privacyAgreed: z.boolean().refine((val) => val === true, "プライバシーポリシーへの同意が必要です"),
   resumeUrl: z.string().optional(),
   resumeName: z.string().optional(),
   careerHistoryUrl: z.string().optional(),
   careerHistoryName: z.string().optional(),
-  portfolioUrl: z.string().optional(),
-  portfolioName: z.string().optional(),
+  portfolioFileUrl: z.string().optional(),
+  portfolioFileName: z.string().optional(),
 });
 
 // XSS protection - escape HTML
@@ -71,13 +72,14 @@ export async function POST(request: NextRequest) {
       furigana: escapeHtml(data.furigana),
       email: escapeHtml(data.email),
       phone: data.phone ? escapeHtml(data.phone) : "",
+      portfolioUrl: data.portfolioUrl ? escapeHtml(data.portfolioUrl) : "",
       message: data.message ? escapeHtml(data.message) : "",
       resumeUrl: data.resumeUrl || "",
       resumeName: data.resumeName ? escapeHtml(data.resumeName) : "",
       careerHistoryUrl: data.careerHistoryUrl || "",
       careerHistoryName: data.careerHistoryName ? escapeHtml(data.careerHistoryName) : "",
-      portfolioUrl: data.portfolioUrl || "",
-      portfolioName: data.portfolioName ? escapeHtml(data.portfolioName) : "",
+      portfolioFileUrl: data.portfolioFileUrl || "",
+      portfolioFileName: data.portfolioFileName ? escapeHtml(data.portfolioFileName) : "",
     };
 
     // Build file attachments section
@@ -88,8 +90,11 @@ export async function POST(request: NextRequest) {
     if (escapedData.careerHistoryUrl) {
       attachmentsHtml += `<p><strong>職務経歴書:</strong> <a href="${escapedData.careerHistoryUrl}">${escapedData.careerHistoryName}</a></p>`;
     }
+    if (escapedData.portfolioFileUrl) {
+      attachmentsHtml += `<p><strong>ポートフォリオ（ファイル）:</strong> <a href="${escapedData.portfolioFileUrl}">${escapedData.portfolioFileName}</a></p>`;
+    }
     if (escapedData.portfolioUrl) {
-      attachmentsHtml += `<p><strong>ポートフォリオ:</strong> <a href="${escapedData.portfolioUrl}">${escapedData.portfolioName}</a></p>`;
+      attachmentsHtml += `<p><strong>ポートフォリオ（URL）:</strong> <a href="${escapedData.portfolioUrl}">${escapedData.portfolioUrl}</a></p>`;
     }
 
     // Send email to admin
