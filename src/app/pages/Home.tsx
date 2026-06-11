@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from "react";
 import svgPaths from "../../imports/svg-corg4qlf3y";
-import heroImage from "../../assets/1989e711943a09dca66285d0e18edafbafe3fb9c.png";
+import fvImage1 from "../../assets/fv-1.jpg";
+import fvImage2 from "../../assets/fv-2.jpg";
+import fvImage3 from "../../assets/fv-3.jpg";
 import companyImage1 from "../../assets/2723acada69546ad44390f5e3d6b8730eb9c9744.png";
 import companyImage2 from "../../assets/e6f7b37fca2d865e3f35dae1ac050a9f0649c3e5.png";
 import companyImage3 from "../../assets/20381856004e60259556c5cc5cb1eaa849237729.png";
@@ -10,7 +12,7 @@ import { contentItems, contentCategories, getCategoryColor } from "../data/conte
 import Link from "next/link";
 
 // FV Slideshow images
-const slideshowImages = [heroImage, companyImage1, companyImage2, companyImage3];
+const slideshowImages = [fvImage1, fvImage2, fvImage3];
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
