@@ -15,6 +15,10 @@ import companySlide4 from "../../assets/company-slide-4.jpg";
 import companySlide5 from "../../assets/company-slide-5.jpg";
 import companySlide6 from "../../assets/company-slide-6.jpg";
 import companySlide7 from "../../assets/company-slide-7.jpg";
+import environment1 from "../../assets/environment-1.jpg";
+import environment2 from "../../assets/environment-2.jpg";
+import environment3 from "../../assets/environment-3.jpg";
+import environment4 from "../../assets/environment-4.jpg";
 import { contentItems, contentCategories, getCategoryColor } from "../data/contents";
 import Link from "next/link";
 
@@ -31,6 +35,10 @@ const companySlideImages = [
   { img: companySlide6, width: 510 },
   { img: companySlide7, width: 440 },
 ];
+
+// Environment section (05) slider images (left column scrolls down, right column scrolls up)
+const environmentImagesLeft = [environment1, environment2, environment3];
+const environmentImagesRight = [environment4, environment1, environment2];
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -292,8 +300,10 @@ export default function Home() {
                 <div className="flex flex-col gap-4 animate-scroll-down">
                   {[...Array(2)].map((_, setIndex) => (
                     <div key={setIndex} className="flex flex-col gap-4">
-                      {[1, 2, 3].map((item) => (
-                        <div key={item} className="bg-[#505050] rounded-2xl w-full" style={{ aspectRatio: '400/560' }}></div>
+                      {environmentImagesLeft.map((image, index) => (
+                        <div key={index} className="rounded-2xl overflow-hidden w-full" style={{ aspectRatio: '400/560' }}>
+                          <img src={image.src} alt={`働く環境${index + 1}`} className="w-full h-full object-cover" />
+                        </div>
                       ))}
                     </div>
                   ))}
@@ -303,8 +313,10 @@ export default function Home() {
                 <div className="flex flex-col gap-4 animate-scroll-up">
                   {[...Array(2)].map((_, setIndex) => (
                     <div key={setIndex} className="flex flex-col gap-4">
-                      {[1, 2, 3].map((item) => (
-                        <div key={item} className="bg-[#505050] rounded-2xl w-full" style={{ aspectRatio: '400/560' }}></div>
+                      {environmentImagesRight.map((image, index) => (
+                        <div key={index} className="rounded-2xl overflow-hidden w-full" style={{ aspectRatio: '400/560' }}>
+                          <img src={image.src} alt={`働く環境${index + 4}`} className="w-full h-full object-cover" />
+                        </div>
                       ))}
                     </div>
                   ))}
