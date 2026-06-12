@@ -16,6 +16,20 @@
   animation: scroll 30s linear infinite;
 }
 
+/* Recruit section slider (6 images, different total width from the company slider) */
+@keyframes scroll-recruit {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-2884px); /* 1セット分: 2740px(画像6枚) + 120px(gap×5) + 24px(セット間gap) */
+  }
+}
+
+.animate-scroll-recruit {
+  animation: scroll-recruit 30s linear infinite;
+}
+
 /* Vertical scroll animations */
 @keyframes scroll-down {
   0% {

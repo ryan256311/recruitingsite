@@ -5,6 +5,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import svgPaths from "../../../imports/svg-corg4qlf3y";
 import imgInstagramGlyphBlack from "../../../assets/f171275cdf27d311fd0a3b1f6ef7b82227a50ce2.png";
+import companyImage1 from "../../../assets/2723acada69546ad44390f5e3d6b8730eb9c9744.png";
+import companyImage2 from "../../../assets/e6f7b37fca2d865e3f35dae1ac050a9f0649c3e5.png";
+import companyImage3 from "../../../assets/20381856004e60259556c5cc5cb1eaa849237729.png";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -160,25 +163,19 @@ export default function Layout({ children }: LayoutProps) {
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="recruit">`}</code>
         </div>
         <div className="overflow-hidden pt-[40px]">
-          <div className="flex items-center gap-6 pl-[80px] animate-scroll">
+          <div className="flex items-center gap-6 pl-[80px] animate-scroll-recruit">
             {[...Array(2)].map((_, setIndex) => (
               <div key={setIndex} className="flex items-center gap-6 shrink-0">
                 {[
-                  { width: 440 },
-                  { width: 510 },
-                  { width: 440 },
-                  { width: 400 },
-                  { width: 440 },
-                  { width: 510 },
+                  { img: companyImage1, width: 440 },
+                  { img: companyImage2, width: 510 },
+                  { img: companyImage3, width: 440 },
+                  { img: companyImage1, width: 400 },
+                  { img: companyImage2, width: 440 },
+                  { img: companyImage3, width: 510 },
                 ].map((item, index) => (
-                  <div
-                    key={index}
-                    className="shrink-0 rounded-2xl overflow-hidden bg-gray-200"
-                    style={{ width: `${item.width}px`, aspectRatio: '1/1' }}
-                  >
-                    <div className="w-full h-full flex items-center justify-center text-gray-400">
-                      採用イメージ{index + 1}
-                    </div>
+                  <div key={index} className="shrink-0 rounded-2xl overflow-hidden" style={{ width: `${item.width}px` }}>
+                    <img src={item.img.src} alt={`採用イメージ${index + 1}`} className="w-full aspect-square object-cover" />
                   </div>
                 ))}
               </div>
