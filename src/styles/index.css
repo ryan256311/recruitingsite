@@ -36,11 +36,11 @@
 }
 
 .animate-scroll-down {
-  animation: scroll-down 20s linear infinite;
+  animation: scroll-down 60s linear infinite;
 }
 
 .animate-scroll-up {
-  animation: scroll-up 20s linear infinite;
+  animation: scroll-up 60s linear infinite;
 }
 
 /* FV Slideshow fade transition */
