@@ -16,6 +16,9 @@ import environment1 from "../../assets/environment-1.jpg";
 import environment2 from "../../assets/environment-2.jpg";
 import environment3 from "../../assets/environment-3.jpg";
 import environment4 from "../../assets/environment-4.jpg";
+import environment5 from "../../assets/environment-5.jpg";
+import environment6 from "../../assets/environment-6.jpg";
+import environment7 from "../../assets/environment-7.png";
 import { contentItems, contentCategories, getCategoryColor } from "../data/contents";
 import Link from "next/link";
 
@@ -34,8 +37,8 @@ const companySlideImages = [
 ];
 
 // Environment section (05) slider images (left column scrolls down, right column scrolls up)
-const environmentImagesLeft = [environment1, environment2, environment3];
-const environmentImagesRight = [environment4, environment1, environment2];
+const environmentImagesLeft = [environment1, environment2, environment3, environment4];
+const environmentImagesRight = [environment5, environment6, environment7];
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);

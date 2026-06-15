@@ -5,9 +5,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import svgPaths from "../../../imports/svg-corg4qlf3y";
 import imgInstagramGlyphBlack from "../../../assets/f171275cdf27d311fd0a3b1f6ef7b82227a50ce2.png";
-import companyImage1 from "../../../assets/2723acada69546ad44390f5e3d6b8730eb9c9744.png";
-import companyImage2 from "../../../assets/e6f7b37fca2d865e3f35dae1ac050a9f0649c3e5.png";
-import companyImage3 from "../../../assets/20381856004e60259556c5cc5cb1eaa849237729.png";
+import footerSlide1 from "../../../assets/footer-slide-1.jpg";
+import footerSlide2 from "../../../assets/footer-slide-2.jpg";
+import footerSlide3 from "../../../assets/footer-slide-3.jpg";
+import footerSlide4 from "../../../assets/footer-slide-4.png";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -167,12 +168,10 @@ export default function Layout({ children }: LayoutProps) {
             {[...Array(2)].map((_, setIndex) => (
               <div key={setIndex} className="flex items-center gap-6 shrink-0">
                 {[
-                  { img: companyImage1, width: 440 },
-                  { img: companyImage2, width: 510 },
-                  { img: companyImage3, width: 440 },
-                  { img: companyImage1, width: 400 },
-                  { img: companyImage2, width: 440 },
-                  { img: companyImage3, width: 510 },
+                  { img: footerSlide1, width: 440 },
+                  { img: footerSlide2, width: 510 },
+                  { img: footerSlide3, width: 440 },
+                  { img: footerSlide4, width: 510 },
                 ].map((item, index) => (
                   <div key={index} className="shrink-0 rounded-2xl overflow-hidden" style={{ width: `${item.width}px` }}>
                     <img src={item.img.src} alt={`採用イメージ${index + 1}`} className="w-full aspect-square object-cover" />
