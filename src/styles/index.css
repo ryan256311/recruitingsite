@@ -16,13 +16,13 @@
   animation: scroll 30s linear infinite;
 }
 
-/* Recruit section slider (6 images, different total width from the company slider) */
+/* Recruit section slider (5 images, different total width from the company slider) */
 @keyframes scroll-recruit {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-2884px); /* 1セット分: 2740px(画像6枚) + 120px(gap×5) + 24px(セット間gap) */
+    transform: translateX(-2460px); /* 1セット分: 2340px(画像5枚) + 96px(gap×4) + 24px(セット間gap) */
   }
 }
 
