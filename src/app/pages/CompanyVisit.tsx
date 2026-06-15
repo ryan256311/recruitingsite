@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import svgPaths from "../../imports/svg-corg4qlf3y";
-import companyImage1 from "../../assets/2723acada69546ad44390f5e3d6b8730eb9c9744.png";
-import companyImage2 from "../../assets/e6f7b37fca2d865e3f35dae1ac050a9f0649c3e5.png";
-import companyImage3 from "../../assets/20381856004e60259556c5cc5cb1eaa849237729.png";
+import companyImage1 from "../../assets/company-1.jpg";
+import cardImage1 from "../../assets/environment-1.jpg";
+import cardImage2 from "../../assets/footer-slide-3.jpg";
+import cardImage3 from "../../assets/environment-2.jpg";
 
 export default function CompanyVisit() {
   return (
@@ -134,19 +135,19 @@ export default function CompanyVisit() {
                 number: '01',
                 title: 'リアルな職場環境',
                 description: 'オフィスの雰囲気、社員同士のコミュニケーション、働く環境を実際に目で見て確認できます。',
-                image: companyImage1
+                image: cardImage1
               },
               {
                 number: '02',
                 title: '率直な社員の声',
                 description: '現場で働く社員と直接対話し、やりがいや働き方についてざっくばらんに質問できます。',
-                image: companyImage2
+                image: cardImage2
               },
               {
                 number: '03',
                 title: '入社後のイメージ',
                 description: '事業内容や組織体制を詳しく知ることで、入社後の自分を具体的にイメージできます。',
-                image: companyImage3
+                image: cardImage3
               }
             ].map((item, index) => (
               <div key={index} className="bg-white border border-[#e0e0e0] rounded-2xl overflow-hidden">
