@@ -9,6 +9,7 @@ import footerSlide1 from "../../../assets/footer-slide-1.jpg";
 import footerSlide2 from "../../../assets/footer-slide-2.jpg";
 import footerSlide3 from "../../../assets/footer-slide-3.jpg";
 import footerSlide4 from "../../../assets/footer-slide-4.png";
+import footerSlide5 from "../../../assets/footer-slide-5.jpg";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -172,6 +173,7 @@ export default function Layout({ children }: LayoutProps) {
                   { img: footerSlide2, width: 510 },
                   { img: footerSlide3, width: 440 },
                   { img: footerSlide4, width: 510 },
+                  { img: footerSlide5, width: 440 },
                 ].map((item, index) => (
                   <div key={index} className="shrink-0 rounded-2xl overflow-hidden" style={{ width: `${item.width}px` }}>
                     <img src={item.img.src} alt={`採用イメージ${index + 1}`} className="w-full aspect-square object-cover" />
