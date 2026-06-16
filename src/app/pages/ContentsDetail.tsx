@@ -12,9 +12,6 @@ interface ContentsDetailProps {
 export default function ContentsDetail({ content }: ContentsDetailProps) {
   const relatedContents = getRelatedContents(content.id, 3);
 
-  // インタビュー記事はQ&A形式のため、質問・回答の文字サイズを専用に調整する
-  const isInterview = content.tags.includes('インタビュー');
-
   // Markdownのシンプルなパース（##見出しのみ対応）
   const renderContent = (text: string) => {
     const lines = text.split('\n');
@@ -37,26 +34,20 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
       if (line.startsWith('## ')) {
         flushParagraph();
         elements.push(
-          isInterview ? (
-            // 質問：20px・太字・カテゴリーカラーのアクセント罫つき
-            <h2
-              key={`h2-${index}`}
-              className="font-bold mt-10 mb-4"
-              style={{
-                fontFamily: 'Noto Sans JP, sans-serif',
-                fontSize: '20px',
-                lineHeight: 1.6,
-                borderLeft: '4px solid #4346BE',
-                paddingLeft: '14px',
-              }}
-            >
-              {line.replace('## ', '')}
-            </h2>
-          ) : (
-            <h2 key={`h2-${index}`} className="font-bold mt-10 mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>
-              {line.replace('## ', '')}
-            </h2>
-          )
+          // 見出し（インタビューの質問と同じ体裁）：20px・太字・左アクセント罫つき
+          <h2
+            key={`h2-${index}`}
+            className="font-bold mt-10 mb-4"
+            style={{
+              fontFamily: 'Noto Sans JP, sans-serif',
+              fontSize: '20px',
+              lineHeight: 1.6,
+              borderLeft: '4px solid #4346BE',
+              paddingLeft: '14px',
+            }}
+          >
+            {line.replace('## ', '')}
+          </h2>
         );
       } else if (line.startsWith('### ')) {
         flushParagraph();
@@ -174,8 +165,8 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="content">`}</code>
         </div>
 
-        <div className={`${isInterview ? 'max-w-[1000px]' : 'max-w-[800px]'} mx-auto px-8`}>
-          <div style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: isInterview ? '18px' : '16px', lineHeight: '2' }}>
+        <div className="max-w-[1000px] mx-auto px-8">
+          <div style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px', lineHeight: '2' }}>
             {renderContent(content.content)}
           </div>
         </div>
