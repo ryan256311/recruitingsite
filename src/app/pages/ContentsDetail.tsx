@@ -174,7 +174,7 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="content">`}</code>
         </div>
 
-        <div className="max-w-[800px] mx-auto px-8">
+        <div className={`${isInterview ? 'max-w-[1000px]' : 'max-w-[800px]'} mx-auto px-8`}>
           <div style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: isInterview ? '18px' : '16px', lineHeight: '2' }}>
             {renderContent(content.content)}
           </div>
