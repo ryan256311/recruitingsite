@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import svgPaths from "../../imports/svg-corg4qlf3y";
+import ContentPhoto from "../components/ContentPhoto";
 import fvImage1 from "../../assets/fv-1.jpg";
 import fvImage2 from "../../assets/fv-2.jpg";
 import fvImage3 from "../../assets/fv-3.jpg";
@@ -268,7 +269,9 @@ export default function Home() {
               .slice(0, 5)
               .map((item) => (
               <Link key={item.id} href={`/contents/${item.id}`} className="group">
-                <div className="bg-[#505050] rounded-2xl aspect-square mb-4"></div>
+                <div className="bg-[#505050] rounded-2xl aspect-square mb-4 relative overflow-hidden">
+                  <ContentPhoto src={item.image} alt={item.title} />
+                </div>
                 <div className="mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px', lineHeight: '28px' }}>
                   <p className="line-clamp-2">{item.title}</p>
                 </div>
@@ -422,7 +425,9 @@ export default function Home() {
                   .slice(0, 6)
                   .map((item) => (
                   <Link key={item.id} href={`/contents/${item.id}`} className="group w-[370px]">
-                    <div className="bg-[#505050] rounded-2xl aspect-square mb-4"></div>
+                    <div className="bg-[#505050] rounded-2xl aspect-square mb-4 relative overflow-hidden">
+                  <ContentPhoto src={item.image} alt={item.title} />
+                </div>
                     {/* カテゴリ */}
                     <div className="mb-3 flex items-center gap-2">
                       <div className="w-3 h-3 rounded-full" style={{ backgroundColor: getCategoryColor(item.category) }}></div>
