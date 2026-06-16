@@ -46,7 +46,7 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
                 fontFamily: 'Noto Sans JP, sans-serif',
                 fontSize: '20px',
                 lineHeight: 1.6,
-                borderLeft: `4px solid ${getCategoryColor(content.category)}`,
+                borderLeft: '4px solid #4346BE',
                 paddingLeft: '14px',
               }}
             >
