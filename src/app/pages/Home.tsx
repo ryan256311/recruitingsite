@@ -190,7 +190,7 @@ export default function Home() {
       </section>
 
       {/* ===== Company Section (03) ===== */}
-      <section id="company" className="relative py-24">
+      <section id="company" className="relative pt-24">
         <div className="absolute top-[6px] left-[14px]">
           <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>03</span>
         </div>
