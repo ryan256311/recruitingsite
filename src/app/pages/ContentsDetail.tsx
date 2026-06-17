@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ContentItem, getRelatedContents, getCategoryColor } from "../data/contents";
 import svgPaths from "../../imports/svg-corg4qlf3y";
 import ContentPhoto from "../components/ContentPhoto";
+import CompanyVisitArticle from "../components/CompanyVisitArticle";
 
 interface ContentsDetailProps {
   content: ContentItem;
@@ -11,6 +12,9 @@ interface ContentsDetailProps {
 
 export default function ContentsDetail({ content }: ContentsDetailProps) {
   const relatedContents = getRelatedContents(content.id, 3);
+
+  // 会社見学会の記事は専用のリッチレイアウトで表示する（id 31）
+  const isCompanyVisitArticle = content.id === 31;
 
   // Markdownのシンプルなパース（##見出しのみ対応）
   const renderContent = (text: string) => {
@@ -134,6 +138,10 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
         </div>
       </section>
 
+      {isCompanyVisitArticle ? (
+        <CompanyVisitArticle />
+      ) : (
+       <>
       {/* ===== Featured Image Section (02) ===== */}
       <section className="relative py-12 border-b border-black/15">
         <div className="absolute top-[6px] left-[14px]">
@@ -171,6 +179,8 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
           </div>
         </div>
       </section>
+       </>
+      )}
 
       {/* ===== Related Contents Section (04) ===== */}
       {relatedContents.length > 0 && (
