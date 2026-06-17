@@ -268,7 +268,7 @@ export default function CompanyVisitArticle() {
       {/* ===== エクシート vs 一般的な会社見学会 ===== */}
       <section className="relative py-20 border-b border-black/15">
         <div className="max-w-[1000px] mx-auto px-8">
-          <SectionHeading>エクシート vs 一般的な会社見学会</SectionHeading>
+          <SectionHeading>一般的な会社見学会 vs エクシート</SectionHeading>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse" style={{ fontSize: "14px" }}>
               <thead>
