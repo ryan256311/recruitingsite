@@ -41,11 +41,12 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
           // 見出し（インタビューの質問と同じ体裁）：20px・太字・左アクセント罫つき
           <h2
             key={`h2-${index}`}
-            className="font-bold mt-10 mb-4"
+            className="font-bold mb-4"
             style={{
               fontFamily: 'Noto Sans JP, sans-serif',
               fontSize: '20px',
               lineHeight: 1.6,
+              marginTop: '90px',
               borderLeft: '4px solid #4346BE',
               paddingLeft: '14px',
             }}
