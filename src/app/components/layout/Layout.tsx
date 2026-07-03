@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import svgPaths from "../../../imports/svg-corg4qlf3y";
-import imgInstagramGlyphBlack from "../../../assets/f171275cdf27d311fd0a3b1f6ef7b82227a50ce2.png";
-import footerSlide1 from "../../../assets/footer-slide-1.jpg";
-import footerSlide2 from "../../../assets/footer-slide-2.jpg";
-import footerSlide3 from "../../../assets/footer-slide-3.jpg";
-import footerSlide4 from "../../../assets/footer-slide-4.png";
-import footerSlide5 from "../../../assets/footer-slide-5.jpg";
+import imgInstagramGlyphBlack from "../../../assets/f171275cdf27d311fd0a3b1f6ef7b82227a50ce2.webp";
+import footerSlide1 from "../../../assets/footer-slide-1.webp";
+import footerSlide2 from "../../../assets/footer-slide-2.webp";
+import footerSlide3 from "../../../assets/footer-slide-3.webp";
+import footerSlide4 from "../../../assets/footer-slide-4.webp";
+import footerSlide5 from "../../../assets/footer-slide-5.webp";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -166,7 +166,7 @@ export default function Layout({ children }: LayoutProps) {
         </div>
         <div className="overflow-hidden pt-[40px]">
           <div className="flex items-center gap-6 max-[539px]:gap-3 pl-[80px] max-[539px]:pl-[40px] animate-scroll-recruit">
-            {[...Array(2)].map((_, setIndex) => (
+            {[...Array(4)].map((_, setIndex) => (
               <div key={setIndex} className="flex items-center gap-6 max-[539px]:gap-3 shrink-0">
                 {[
                   { img: footerSlide1, widthClass: "w-[440px] max-[1039px]:w-[300px] max-[539px]:w-[220px]" },
@@ -229,7 +229,7 @@ export default function Layout({ children }: LayoutProps) {
                 </Link>
               </div>
               <div className="mt-8">
-                <a href="#" className="inline-block">
+                <a href="https://www.instagram.com/exceet_official?igsh=bnViejFlanh4N3U1&utm_source=qr" target="_blank" rel="noopener noreferrer" className="inline-block">
                   <img src={imgInstagramGlyphBlack.src} alt="Instagram" className="w-6 h-6" />
                 </a>
               </div>

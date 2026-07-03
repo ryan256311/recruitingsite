@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import svgPaths from "../../imports/svg-corg4qlf3y";
-import companyImage1 from "../../assets/company-1.jpg";
-import cardImage1 from "../../assets/environment-1.jpg";
-import cardImage2 from "../../assets/footer-slide-3.jpg";
-import cardImage3 from "../../assets/environment-2.jpg";
+import companyImage1 from "../../assets/company-1.webp";
+import cardImage1 from "../../assets/environment-1.webp";
+import cardImage2 from "../../assets/footer-slide-3.webp";
+import cardImage3 from "../../assets/environment-2.webp";
 
 export default function CompanyVisit() {
   return (

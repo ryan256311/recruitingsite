@@ -3,23 +3,23 @@
 import { useState, useEffect } from "react";
 import svgPaths from "../../imports/svg-corg4qlf3y";
 import ContentPhoto from "../components/ContentPhoto";
-import fvImage1 from "../../assets/fv-1.jpg";
-import fvImage2 from "../../assets/fv-2.jpg";
-import fvImage3 from "../../assets/fv-3.jpg";
-import companySlide1 from "../../assets/company-slide-1.jpg";
-import companySlide2 from "../../assets/company-slide-2.jpg";
-import companySlide3 from "../../assets/company-slide-3.jpg";
-import companySlide4 from "../../assets/company-slide-4.jpg";
-import companySlide5 from "../../assets/company-slide-5.jpg";
-import companySlide6 from "../../assets/company-slide-6.jpg";
-import companySlide7 from "../../assets/company-slide-7.jpg";
-import environment1 from "../../assets/environment-1.jpg";
-import environment2 from "../../assets/environment-2.jpg";
-import environment3 from "../../assets/environment-3.jpg";
-import environment4 from "../../assets/environment-4.jpg";
-import environment5 from "../../assets/environment-5.jpg";
-import environment6 from "../../assets/environment-6.jpg";
-import environment7 from "../../assets/environment-7.png";
+import fvImage1 from "../../assets/fv-1.webp";
+import fvImage2 from "../../assets/fv-2.webp";
+import fvImage3 from "../../assets/fv-3.webp";
+import companySlide1 from "../../assets/company-slide-1.webp";
+import companySlide2 from "../../assets/company-slide-2.webp";
+import companySlide3 from "../../assets/company-slide-3.webp";
+import companySlide4 from "../../assets/company-slide-4.webp";
+import companySlide5 from "../../assets/company-slide-5.webp";
+import companySlide6 from "../../assets/company-slide-6.webp";
+import companySlide7 from "../../assets/company-slide-7.webp";
+import environment1 from "../../assets/environment-1.webp";
+import environment2 from "../../assets/environment-2.webp";
+import environment3 from "../../assets/environment-3.webp";
+import environment4 from "../../assets/environment-4.webp";
+import environment5 from "../../assets/environment-5.webp";
+import environment6 from "../../assets/environment-6.webp";
+import environment7 from "../../assets/environment-7.webp";
 import { contentItems, contentCategories, getCategoryColor } from "../data/contents";
 import Link from "next/link";
 
@@ -240,8 +240,8 @@ export default function Home() {
               </div>
               <div className="space-y-4">
                 {[
-                  { label: 'キャリア採用向け', href: '/jobs/career', variant: 'invert' },
-                  { label: '新卒採用向け', href: '/jobs/graduate' },
+                  { label: 'キャリア採用向け', href: '/career', variant: 'invert' },
+                  { label: '新卒採用向け', href: '/graduate' },
                   { label: '会社見学', href: '/company-visit', variant: 'blue' }
                 ].map((item, index) => (
                   <Link

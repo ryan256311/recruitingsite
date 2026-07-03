@@ -144,7 +144,7 @@ SDGsへの関心が高まる中、環境に配慮した印刷ソリューショ�
 ---
 
 **代表取締役社長　出口 淳**`,
-    image: '/images/contents/message.jpg',
+    image: '/images/contents/message.webp',
     category: 'company',
     categoryLabel: '会社を知る',
     tags: ['カルチャー'],
@@ -215,7 +215,7 @@ SDGsへの関心が高まる中、環境に配慮した印刷ソリューショ�
 - CI/VI設計
 - ロゴ・パッケージデザイン
 - ブランドガイドライン策定`,
-    image: '/images/contents/business.jpg',
+    image: '/images/contents/business.webp',
     category: 'company',
     categoryLabel: '会社を知る',
     tags: ['Career', 'カルチャー'],
@@ -294,7 +294,7 @@ SDGsへの関心が高まる中、環境に配慮した印刷ソリューショ�
 この言葉にピンと来たなら、ぜひエクシートで私たちと一緒に、あなたのスキルと情熱を次なるステージへ。
 
 さあ、あなたも一歩踏み出して、まだ見ぬ自分に出会いましょう。`,
-    image: '/images/contents/project-team.jpg',
+    image: '/images/contents/project-team.webp',
     category: 'environment',
     categoryLabel: '働く環境',
     tags: ['制度', 'カルチャー'],
@@ -346,7 +346,7 @@ SDGsへの関心が高まる中、環境に配慮した印刷ソリューショ�
 デザインの力で課題を解決し、お客様の成功に貢献したい。そんな想いを持った方と一緒に働けることを楽しみにしています。
 
 メディアコンテンツ部は、多角的なアプローチで価値を生み出せる、やりがいのある職場です。`,
-    image: '/images/contents/interview-saito.jpg',
+    image: '/images/contents/interview-saito.webp',
     category: 'members',
     categoryLabel: '仲間を知る',
     tags: ['インタビュー', 'キャリア採用'],
@@ -434,7 +434,7 @@ SDGsへの関心が高まる中、環境に配慮した印刷ソリューショ�
 ## メッセージ
 
 お客様の成果に本気でコミットしたい、マーケティングのプロフェッショナルを目指したい、そんな想いを持った方と一緒に働けることを楽しみにしています。`,
-    image: '/images/contents/interview-miyaji.jpg',
+    image: '/images/contents/interview-miyaji.webp',
     category: 'members',
     categoryLabel: '仲間を知る',
     tags: ['インタビュー', 'キャリア採用'],
@@ -496,7 +496,7 @@ SDGsへの関心が高まる中、環境に配慮した印刷ソリューショ�
 もしデジタルマーケティングに少しでも興味がある方、自分の手で会社を動かすワクワク感を味わいたい方がいたら、ぜひ一緒に弊社を盛り上げていきましょう！
 
 一緒に働くことを楽しみにしています！」`,
-    image: '/images/contents/interview-nishi.jpg',
+    image: '/images/contents/interview-nishi.webp',
     category: 'members',
     categoryLabel: '仲間を知る',
     tags: ['インタビュー', 'Career'],
@@ -562,7 +562,7 @@ SDGsへの関心が高まる中、環境に配慮した印刷ソリューショ�
 ## 休日の過ごし方を教えてください
 
 もっぱら家で家事をしています。休みの日まで頑張って掃除をしていますね（笑）。`,
-    image: '/images/contents/interview-amaya.jpg',
+    image: '/images/contents/interview-amaya.webp',
     category: 'members',
     categoryLabel: '仲間を知る',
     tags: ['インタビュー', 'キャリア採用'],
@@ -604,7 +604,7 @@ SDGsへの関心が高まる中、環境に配慮した印刷ソリューショ�
 ## 休日の過ごし方を教えてください
 
 休日は、友人とご飯に行ったり、好きなMrs. GREEN APPLE（ミセス）のライブビューイングを見たりして過ごしています。`,
-    image: '/images/contents/interview-matsuoka.jpg',
+    image: '/images/contents/interview-matsuoka.webp',
     category: 'members',
     categoryLabel: '仲間を知る',
     tags: ['インタビュー', 'キャリア採用'],
@@ -659,7 +659,7 @@ SDGsへの関心が高まる中、環境に配慮した印刷ソリューショ�
 あなたの努力と情熱を正しく評価し、未来のステージへと繋げていきます。
 
 さあ、あなたも一歩踏み出して、自身の成長を加速させましょう。`,
-    image: '/images/contents/evaluation.jpg',
+    image: '/images/contents/evaluation.webp',
     category: 'environment',
     categoryLabel: '働く環境',
     tags: ['制度', 'カルチャー'],
@@ -732,7 +732,7 @@ SDGsへの関心が高まる中、環境に配慮した印刷ソリューショ�
 そんな環境がエクシートにはあります。
 
 あなたも、この意味深いロゴの下で、自分の可能性を広げてみませんか？`,
-    image: '/images/contents/logo-story.jpg',
+    image: '/images/contents/logo-story.webp',
     category: 'company',
     categoryLabel: '会社を知る',
     tags: ['カルチャー'],
@@ -833,7 +833,7 @@ AI技術の活用、インタラクティブ動画の制作、さらなるDX推�
 次の10年、20年を共に創っていく仲間として、あなたの力を貸してください。
 
 エクシートの新しい1ページを、一緒に書いていきましょう。`,
-    image: '/images/contents/history.jpg',
+    image: '/images/contents/history.webp',
     category: 'company',
     categoryLabel: '会社を知る',
     tags: ['カルチャー'],
@@ -1021,7 +1021,7 @@ A. もちろん可能です。見学後に個別相談の時間も設けてお�
 **入社後の不安を、見学で解消しませんか？**
 
 まずは気軽にお申し込みください。オフィス見学やカジュアルトークからでも大歓迎です。`,
-    image: '/images/contents/company-visit.jpg',
+    image: '/images/contents/company-visit.webp',
     category: 'company',
     categoryLabel: '会社を知る',
     tags: ['カルチャー', 'キャリア採用', '新卒採用'],

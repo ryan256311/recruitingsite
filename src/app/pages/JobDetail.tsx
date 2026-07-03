@@ -5,7 +5,7 @@ import svgPaths from "../../imports/svg-corg4qlf3y";
 import { Job } from "../data/jobs";
 import { ContentItem, getCategoryColor } from "../data/contents";
 import ContentPhoto from "../components/ContentPhoto";
-import jobImage from "../../assets/company-1.jpg";
+import jobImage from "../../assets/company-1.webp";
 
 interface JobDetailProps {
   job: Job;
