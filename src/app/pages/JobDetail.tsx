@@ -23,27 +23,31 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
   return (
     <>
       {/* ===== Breadcrumb & Hero Section (01) ===== */}
-      <section className="pt-32 pb-16 border-b border-black/15 relative">
+      <section className="pt-[90px] max-[1039px]:pt-[68px] max-[539px]:pt-[58px] pb-16 border-b border-black/15 relative">
         {/* Vertical line - right of nav section */}
-        <div className="absolute top-0 left-[248px] w-px h-full bg-[#e0e0e0] z-0 pointer-events-none"></div>
+        <div className="absolute top-0 left-[248px] w-px h-full bg-[#e0e0e0] z-0 pointer-events-none max-[1039px]:hidden"></div>
 
-        <div className="absolute top-[102px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>01</span>
+        <div className="absolute top-[102px] left-[14px] max-[1039px]:top-[75px] max-[539px]:top-[59px] max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>01</span>
         </div>
-        <div className="absolute top-[102px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<article class="job-detail">`}</code>
+        <div className="absolute top-[102px] left-[54px] max-[1039px]:top-[75px] max-[539px]:top-[59px] max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<article class="job-detail">`}</code>
         </div>
 
-        <div className="flex pt-8">
+        <div className="flex pt-8 max-[1039px]:flex-col-reverse">
           {/* Section Nav - Left Side */}
-          <div className="w-[248px] shrink-0 py-8 pl-[80px] pr-[14px]">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="relative w-[248px] shrink-0 py-8 pl-[80px] pr-[14px] max-[1039px]:w-full max-[1039px]:pt-[40px] max-[1039px]:pb-[40px] max-[1039px]:pl-[82px] max-[1039px]:pr-[20px] max-[539px]:pl-[40px] max-[539px]:pr-[20px]">
+            {/* <nav> marker - tablet/SP only */}
+            <div className="hidden max-[1039px]:block absolute top-0 left-[48px] max-[539px]:left-[28px]">
+              <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<nav>`}</code>
+            </div>
+            <div className="flex items-center gap-3 mb-6 max-[1039px]:hidden">
               <svg className="w-2 h-2" fill="none" viewBox="0 0 9 9.05359">
                 <path d="M9 0V9.05359H0L9 0Z" fill="#4346BE" />
               </svg>
               <span style={{ fontFamily: 'Verdana, sans-serif', fontSize: '16px' }}>Contents</span>
             </div>
-            <div className="space-y-3 ml-[8px]">
+            <div className="space-y-3 ml-[8px] max-[1039px]:flex max-[1039px]:flex-wrap max-[1039px]:gap-x-6 max-[1039px]:gap-y-3 max-[1039px]:space-y-0 max-[1039px]:ml-0">
               {[
                 { label: '募集背景', id: 'background' },
                 { label: '部署について', id: 'department' },
@@ -83,7 +87,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
           </div>
 
           {/* Main Content - Right Side */}
-          <div className="flex-1 py-8 flex gap-12 max-w-[1400px] mx-auto">
+          <div className="flex-1 py-8 flex gap-12 max-w-[1400px] mx-auto max-[1039px]:flex-col max-[1039px]:px-[80px] max-[1039px]:pb-[40px] max-[1039px]:border-b max-[1039px]:border-black/15 max-[539px]:px-[40px]">
             {/* Text Content */}
             <div className="flex-1">
               {/* Breadcrumb */}
@@ -99,7 +103,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
               {/* Title & Badge */}
               <div className="flex items-start gap-6 mb-6">
-                <h1 className="text-h1 tracking-[1.92px]">
+                <h1 className="text-h1 tracking-[1.92px] max-[1039px]:!text-[40px] max-[539px]:!text-[32px]">
                   {job.title}
                 </h1>
                 <span className={`${badgeColor} text-white text-sm px-4 py-2 rounded-full mt-3`} style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
@@ -136,7 +140,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
             </div>
 
             {/* Job Image */}
-            <div className="w-[40%] shrink-0" style={{ aspectRatio: '1 / .65' }}>
+            <div className="w-[40%] shrink-0 max-[1039px]:w-full" style={{ aspectRatio: '1 / .65' }}>
               <img
                 src={jobImage.src}
                 alt={`${job.title}の仕事風景`}
@@ -150,17 +154,17 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
       {/* ===== 募集背景 Section (02) ===== */}
       <section id="background" className="relative py-20 border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>02</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>02</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="background">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="background">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>募集背景</h2>
-            <div className="w-12 h-px bg-[#313131]"></div>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>募集背景</h2>
+            <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
           <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
@@ -171,17 +175,17 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
       {/* ===== 部署について Section (03) ===== */}
       <section id="department" className="relative py-20 border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>03</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>03</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="department">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="department">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>部署について</h2>
-            <div className="w-12 h-px bg-[#313131]"></div>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>部署について</h2>
+            <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
           <div className="bg-gray-50 rounded-2xl p-8">
@@ -195,17 +199,17 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
       {/* ===== 仕事内容 Section (04) ===== */}
       <section id="responsibilities" className="relative py-20 border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>04</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>04</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="responsibilities">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="responsibilities">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>仕事内容</h2>
-            <div className="w-12 h-px bg-[#313131]"></div>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>仕事内容</h2>
+            <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
           <ul className="space-y-4">
@@ -223,17 +227,17 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
       {/* ===== 応募資格 Section (05) ===== */}
       <section id="requirements" className="relative py-20 border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>05</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>05</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="requirements">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="requirements">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>応募資格</h2>
-            <div className="w-12 h-px bg-[#313131]"></div>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>応募資格</h2>
+            <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
           <ul className="space-y-4">
@@ -254,8 +258,8 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
         <section id="welcome-skills" className="relative py-20 border-b border-black/15">
           <div className="max-w-[1180px] mx-auto px-8">
             <div className="mb-8">
-              <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>歓迎するスキル・マインド</h2>
-              <div className="w-12 h-px bg-[#313131]"></div>
+              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>歓迎するスキル・マインド</h2>
+              <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
             </div>
 
             <ul className="space-y-4">
@@ -277,8 +281,8 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
         <section id="dev-environment" className="relative py-20 border-b border-black/15">
           <div className="max-w-[1180px] mx-auto px-8">
             <div className="mb-8">
-              <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>開発環境・スタイル</h2>
-              <div className="w-12 h-px bg-[#313131]"></div>
+              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>開発環境・スタイル</h2>
+              <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
             </div>
 
             <div className="space-y-8">
@@ -352,8 +356,8 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
         <section id="appeal-points" className="relative py-20 border-b border-black/15">
           <div className="max-w-[1180px] mx-auto px-8">
             <div className="mb-8">
-              <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>アピールポイント</h2>
-              <div className="w-12 h-px bg-[#313131]"></div>
+              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>アピールポイント</h2>
+              <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
             </div>
 
             <div className="space-y-6">
@@ -369,23 +373,23 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
       {/* ===== 募集要項 Section (06) ===== */}
       <section id="details" className="relative py-20 border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: "Verdana, sans-serif", fontSize: "10px" }}>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: "Verdana, sans-serif", fontSize: "var(--marker-font-size)" }}>
             06
           </span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: "Verdana, sans-serif", fontSize: "10px" }}>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: "Verdana, sans-serif", fontSize: "var(--marker-font-size)" }}>
             {`<section class="details">`}
           </code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: "Noto Sans JP, sans-serif", fontSize: "36px" }}>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: "Noto Sans JP, sans-serif", fontSize: "36px" }}>
               募集要項
             </h2>
-            <div className="w-12 h-px bg-[#313131]" />
+            <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]" />
           </div>
 
           <div className="border border-[#707070] rounded-2xl overflow-hidden">
@@ -398,11 +402,11 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
                   { label: "部署", value: job.department },
                   { label: "職種", value: job.type },
                 ].map((item, index) => (
-                  <tr key={index} className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                    <th className="text-left py-5 px-8 w-[200px] font-semibold border-r border-[#e0e0e0]">
+                  <tr key={index} className={`max-[1039px]:flex max-[1039px]:flex-col ${index % 2 === 0 ? "bg-white" : "bg-gray-50"}`}>
+                    <th className="text-left py-5 px-8 w-[200px] font-semibold border-r border-[#e0e0e0] max-[1039px]:w-full max-[1039px]:border-r-0 max-[1039px]:pb-2">
                       {item.label}
                     </th>
-                    <td className="py-5 px-8">{item.value}</td>
+                    <td className="py-5 px-8 max-[1039px]:pt-0">{item.value}</td>
                   </tr>
                 ))}
               </tbody>
@@ -442,11 +446,11 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
         <section id="benefits" className="relative py-20 border-b border-black/15">
           <div className="max-w-[1180px] mx-auto px-8">
             <div className="mb-8">
-              <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>待遇・福利厚生</h2>
-              <div className="w-12 h-px bg-[#313131]"></div>
+              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>待遇・福利厚生</h2>
+              <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 max-[539px]:grid-cols-1">
               {job.benefits.map((benefit, index) => (
                 <div key={index} className="flex items-start gap-4">
                   <svg className="w-3 h-3 mt-2 shrink-0" fill="none" viewBox="0 0 11 11">
@@ -465,11 +469,11 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
         <section id="selection" className="relative py-20 border-b border-black/15">
           <div className="max-w-[1180px] mx-auto px-8">
             <div className="mb-8">
-              <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>選考フロー</h2>
-              <div className="w-12 h-px bg-[#313131]"></div>
+              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>選考フロー</h2>
+              <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
             </div>
 
-            <div className="flex items-center justify-between max-w-[1000px] mx-auto">
+            <div className="flex items-center justify-between max-w-[1000px] mx-auto max-[1039px]:flex-col max-[1039px]:items-stretch max-[1039px]:gap-4">
               {job.selectionProcess.map((step, index, arr) => (
                 <div key={index} className="flex items-center">
                   <div className="text-center">
@@ -479,7 +483,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
                     <p className="text-sm" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', lineHeight: '24px' }}>{step.replace(/STEP\d+：/, '')}</p>
                   </div>
                   {index < arr.length - 1 && (
-                    <svg className="w-6 h-6 mx-4 text-[#4346BE]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-6 h-6 mx-4 text-[#4346BE] max-[1039px]:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   )}
@@ -499,16 +503,16 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
       {/* ===== 応募ボタン Section (07) ===== */}
       <section id="apply" className="relative py-20 border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>07</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>07</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="apply">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="apply">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="flex flex-col items-center text-center">
-            <h2 className="font-bold mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>
+            <h2 className="font-bold mb-6 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>
               この求人に応募する
             </h2>
             <p className="mb-10 text-gray-600" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '28px' }}>
@@ -544,20 +548,20 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
       {/* ===== 関連コンテンツ Section (08) ===== */}
       {relatedContents.length > 0 && (
         <section id="related" className="relative py-20 border-b border-black/15">
-          <div className="absolute top-[6px] left-[14px]">
-            <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>08</span>
+          <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+            <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>08</span>
           </div>
-          <div className="absolute top-[6px] left-[54px]">
-            <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="related">`}</code>
+          <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+            <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="related">`}</code>
           </div>
 
           <div className="max-w-[1180px] mx-auto px-8">
             <div className="mb-8">
-              <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>関連コンテンツ</h2>
-              <div className="w-12 h-px bg-[#313131]"></div>
+              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>関連コンテンツ</h2>
+              <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
             </div>
 
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-6 max-[1039px]:grid-cols-2 max-[539px]:grid-cols-1">
               {relatedContents.map((item) => (
                 <Link
                   key={item.id}

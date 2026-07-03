@@ -15,16 +15,16 @@ export default function NewsList() {
   return (
     <>
       {/* ===== Hero Section (01) ===== */}
-      <section className="pt-32 pb-16 border-b border-black/15 relative">
-        <div className="absolute top-[102px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>01</span>
+      <section className="pt-[90px] max-[1039px]:pt-[68px] max-[539px]:pt-[58px] pb-16 border-b border-black/15 relative">
+        <div className="absolute top-[102px] left-[14px] max-[1039px]:top-[75px] max-[539px]:top-[59px] max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>01</span>
         </div>
-        <div className="absolute top-[102px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<h1 class="news">`}</code>
+        <div className="absolute top-[102px] left-[54px] max-[1039px]:top-[75px] max-[539px]:top-[59px] max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<h1 class="news">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8 pt-8">
-          <h1 className="font-bold tracking-[1.92px] mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '64px', lineHeight: '1.2' }}>
+          <h1 className="font-bold tracking-[1.92px] mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: 'clamp(36px, 5vw, 64px)', lineHeight: '1.2' }}>
             お知らせ
           </h1>
           <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
@@ -35,17 +35,17 @@ export default function NewsList() {
 
       {/* ===== News List Section (02) ===== */}
       <section className="relative py-24 border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>02</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>02</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="news-list">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="news-list">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8">
-          <div className="flex gap-16">
+          <div className="flex gap-16 max-[1039px]:flex-col">
             {/* Sidebar */}
-            <div className="w-[200px] shrink-0">
+            <div className="w-[200px] shrink-0 max-[1039px]:w-full">
               <div className="flex items-center gap-3 mb-6">
                 <svg className="w-2 h-2" fill="none" viewBox="0 0 9 9.05359">
                   <path d="M9 0V9.05359H0L9 0Z" fill="#4346BE" />

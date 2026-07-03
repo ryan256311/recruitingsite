@@ -89,12 +89,12 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
   return (
     <>
       {/* ===== Hero Section (01) ===== */}
-      <section className="pt-32 pb-16 border-b border-black/15 relative">
-        <div className="absolute top-[102px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>01</span>
+      <section className="pt-[90px] max-[1039px]:pt-[68px] max-[539px]:pt-[58px] pb-16 border-b border-black/15 relative">
+        <div className="absolute top-[102px] left-[14px] max-[1039px]:top-[75px] max-[539px]:top-[59px] max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>01</span>
         </div>
-        <div className="absolute top-[102px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<article class="contents-detail">`}</code>
+        <div className="absolute top-[102px] left-[54px] max-[1039px]:top-[75px] max-[539px]:top-[59px] max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<article class="contents-detail">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8 pt-8">
@@ -120,7 +120,7 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
           </div>
 
           {/* Title */}
-          <h1 className="text-h1 tracking-[1.92px] mb-4">
+          <h1 className="text-h1 tracking-[1.92px] mb-4 max-[1039px]:!text-[40px] max-[539px]:!text-[32px]">
             {content.title}
           </h1>
 
@@ -145,11 +145,11 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
        <>
       {/* ===== Featured Image Section (02) ===== */}
       <section className="relative py-12 border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>02</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>02</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="featured-image">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="featured-image">`}</code>
         </div>
 
         <div className="max-w-[900px] mx-auto px-8">
@@ -167,11 +167,11 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
 
       {/* ===== Content Section (03) ===== */}
       <section className="relative py-24 border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>03</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>03</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="content">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="content">`}</code>
         </div>
 
         <div className="max-w-[1000px] mx-auto px-8">
@@ -186,18 +186,18 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
       {/* ===== Related Contents Section (04) ===== */}
       {relatedContents.length > 0 && (
         <section className="relative py-24 border-b border-black/15">
-          <div className="absolute top-[6px] left-[14px]">
-            <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>04</span>
+          <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+            <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>04</span>
           </div>
-          <div className="absolute top-[6px] left-[54px]">
-            <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="related">`}</code>
+          <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+            <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="related">`}</code>
           </div>
 
           <div className="max-w-[1180px] mx-auto px-8">
-            <h2 className="text-h2 mb-8">
+            <h2 className="text-h2 mb-8 max-[539px]:!text-[26px]">
               関連記事
             </h2>
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-6 max-[1039px]:grid-cols-2 max-[539px]:grid-cols-1">
               {relatedContents.map((item) => (
                 <Link
                   key={item.id}
@@ -236,11 +236,11 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
 
       {/* ===== Back Button Section (05) ===== */}
       <section className="relative py-16 border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{relatedContents.length > 0 ? '05' : '04'}</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{relatedContents.length > 0 ? '05' : '04'}</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="navigation">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="navigation">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8">

@@ -11,12 +11,12 @@ export default function CompanyVisit() {
   return (
     <>
       {/* ===== ファーストビュー Section (01) ===== */}
-      <section className="pt-32 pb-16 border-b border-black/15 relative">
-        <div className="absolute top-[102px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>01</span>
+      <section className="pt-[90px] max-[1039px]:pt-[68px] max-[539px]:pt-[58px] pb-16 border-b border-black/15 relative">
+        <div className="absolute top-[102px] left-[14px] max-[1039px]:top-[75px] max-[539px]:top-[59px] max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>01</span>
         </div>
-        <div className="absolute top-[102px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="fv">`}</code>
+        <div className="absolute top-[102px] left-[54px] max-[1039px]:top-[75px] max-[539px]:top-[59px] max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="fv">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8 pt-8">
@@ -30,11 +30,11 @@ export default function CompanyVisit() {
           </nav>
 
           {/* 2カラムレイアウト */}
-          <div className="flex gap-16 items-center">
+          <div className="flex gap-16 items-center max-[1039px]:flex-col max-[1039px]:items-start">
             {/* 左側: テキストとCTA */}
             <div className="flex-1">
               {/* キャッチコピー */}
-              <h1 className="text-h1 tracking-[1.92px] mb-6">
+              <h1 className="text-h1 tracking-[1.92px] mb-6 max-[1039px]:!text-[40px] max-[539px]:!text-[32px]">
                 入社後の不安を、<br />
                 見学で解消する。
               </h1>
@@ -61,7 +61,7 @@ export default function CompanyVisit() {
             </div>
 
             {/* 右側: 画像 */}
-            <div className="w-[45%] shrink-0">
+            <div className="w-[45%] shrink-0 max-[1039px]:w-full">
               <img
                 src={companyImage1.src}
                 alt="会社見学の様子"
@@ -75,16 +75,16 @@ export default function CompanyVisit() {
 
       {/* ===== 共感セクション (02) ===== */}
       <section className="relative py-24 border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>02</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>02</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="empathy">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="empathy">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-12 text-center">
-            <h2 className="text-h2 tracking-[1.08px] \1">
+            <h2 className="text-h2 tracking-[1.08px] max-[539px]:!text-[26px]">
               こんな不安、ありませんか？
             </h2>
           </div>
@@ -114,22 +114,22 @@ export default function CompanyVisit() {
 
       {/* ===== 解決策（見学で得られること） Section (03) ===== */}
       <section className="relative py-24 border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>03</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>03</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="benefits">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="benefits">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-12">
-            <h2 className="text-h2 tracking-[1.08px] \1">
+            <h2 className="text-h2 tracking-[1.08px] max-[539px]:!text-[26px]">
               会社見学で得られる3つのこと
             </h2>
-            <div className="w-12 h-px bg-[#313131]"></div>
+            <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-3 gap-8 max-[1039px]:grid-cols-2 max-[539px]:grid-cols-1">
             {[
               {
                 number: '01',
@@ -181,20 +181,20 @@ export default function CompanyVisit() {
 
       {/* ===== 社会的証明 Section (04) ===== */}
       <section className="relative py-24 border-b border-black/15 bg-gray-50">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>04</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>04</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="proof">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="proof">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-12 text-center">
-            <h2 className="text-h2 tracking-[1.08px] \1">
+            <h2 className="text-h2 tracking-[1.08px] max-[539px]:!text-[26px]">
               参加者の声
             </h2>
             <div className="flex items-baseline justify-center gap-2 mb-2">
-              <span className="font-bold text-[#0064c8]" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '72px' }}>95</span>
+              <span className="font-bold text-[#0064c8]" style={{ fontFamily: 'Roboto, sans-serif', fontSize: 'clamp(44px, 5vw, 72px)' }}>95</span>
               <span className="font-bold text-[#0064c8]" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '36px' }}>%</span>
             </div>
             <p className="font-medium" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
@@ -202,7 +202,7 @@ export default function CompanyVisit() {
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-3 gap-8 max-[1039px]:grid-cols-2 max-[539px]:grid-cols-1">
             {[
               {
                 name: 'Aさん（27歳・エンジニア）',
@@ -246,20 +246,20 @@ export default function CompanyVisit() {
 
       {/* ===== 見学スタイル Section (05) ===== */}
       <section className="relative py-24 border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>05</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>05</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="visit-styles">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="visit-styles">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-12">
-            <h2 className="text-h2 tracking-[1.08px] \1">3つの見学スタイル</h2>
-            <div className="w-12 h-px bg-[#313131]"></div>
+            <h2 className="text-h2 tracking-[1.08px] max-[539px]:!text-[26px]">3つの見学スタイル</h2>
+            <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-3 gap-8 max-[1039px]:grid-cols-2 max-[539px]:grid-cols-1">
             {[
               {
                 title: '通常見学会',
@@ -318,17 +318,17 @@ export default function CompanyVisit() {
 
       {/* ===== 当日の流れ Section (06) ===== */}
       <section className="relative py-24 border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>06</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>06</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="schedule">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="schedule">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-12">
-            <h2 className="text-h2 tracking-[1.08px] \1">当日の流れ（通常見学会）</h2>
-            <div className="w-12 h-px bg-[#313131]"></div>
+            <h2 className="text-h2 tracking-[1.08px] max-[539px]:!text-[26px]">当日の流れ（通常見学会）</h2>
+            <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
           <div className="max-w-[800px] mx-auto space-y-6">
@@ -381,21 +381,21 @@ export default function CompanyVisit() {
 
       {/* ===== 見学前→見学後 Section (07) ===== */}
       <section className="relative py-24 border-b border-black/15 bg-gray-50">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>07</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>07</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="transformation">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="transformation">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-12 text-center">
-            <h2 className="text-h2 tracking-[1.08px] \1">
+            <h2 className="text-h2 tracking-[1.08px] max-[539px]:!text-[26px]">
               見学前 → 見学後の変化
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 gap-12 max-w-[900px] mx-auto">
+          <div className="grid grid-cols-2 gap-12 max-w-[900px] mx-auto max-[539px]:grid-cols-1">
             <div className="bg-white rounded-2xl p-8 border-2 border-[#e0e0e0]">
               <div className="text-center mb-4">
                 <span className="inline-block bg-gray-300 text-white px-4 py-2 rounded-full font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>
@@ -449,17 +449,17 @@ export default function CompanyVisit() {
 
       {/* ===== FAQ Section (08) ===== */}
       <section className="relative py-24 border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>08</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>08</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="faq">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="faq">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-12">
-            <h2 className="text-h2 tracking-[1.08px] \1">よくある質問</h2>
-            <div className="w-12 h-px bg-[#313131]"></div>
+            <h2 className="text-h2 tracking-[1.08px] max-[539px]:!text-[26px]">よくある質問</h2>
+            <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
           <div className="max-w-[900px] mx-auto space-y-6">
@@ -505,16 +505,16 @@ export default function CompanyVisit() {
 
       {/* ===== クロージングCTA Section (09) ===== */}
       <section className="relative py-24 border-b border-black/15 bg-[#0064c8]">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-white" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>09</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-white" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>09</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-white" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="cta">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-white" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="cta">`}</code>
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="text-center text-white">
-            <h2 className="font-bold mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px', lineHeight: '1.4' }}>
+            <h2 className="font-bold mb-6 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px', lineHeight: '1.4' }}>
               入社後の不安を、<br />
               見学で解消しませんか？
             </h2>

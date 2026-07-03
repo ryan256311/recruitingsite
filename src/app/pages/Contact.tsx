@@ -221,9 +221,9 @@ export default function Contact() {
   if (submitStatus === 'success') {
     return (
       <>
-        <section className="pt-32 pb-16 border-b border-black/15 relative">
-          <div className="pl-[80px] pr-20 pt-8">
-            <h1 className="text-h1 font-roboto tracking-[1.92px] mb-4">
+        <section className="pt-[90px] max-[1039px]:pt-[68px] max-[539px]:pt-[58px] pb-16 border-b border-black/15 relative">
+          <div className="pl-[80px] pr-20 pt-8 max-[539px]:pl-[40px] max-[539px]:pr-[40px]">
+            <h1 className="text-h1 font-roboto tracking-[1.92px] mb-4 max-[1039px]:!text-[40px] max-[539px]:!text-[32px]">
               Contact
             </h1>
           </div>
@@ -262,12 +262,12 @@ export default function Contact() {
   return (
     <>
       {/* ===== Hero Section (01) ===== */}
-      <section className="pt-32 pb-16 border-b border-black/15 relative">
-        <div className="absolute top-[102px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>01</span>
+      <section className="pt-[90px] max-[1039px]:pt-[68px] max-[539px]:pt-[58px] pb-16 border-b border-black/15 relative">
+        <div className="absolute top-[102px] left-[14px] max-[1039px]:top-[75px] max-[539px]:top-[59px] max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>01</span>
         </div>
-        <div className="absolute top-[102px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<h1 class="contact">`}</code>
+        <div className="absolute top-[102px] left-[54px] max-[1039px]:top-[75px] max-[539px]:top-[59px] max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<h1 class="contact">`}</code>
         </div>
 
         <div className="pl-[80px] pr-20 pt-8">
@@ -282,19 +282,19 @@ export default function Contact() {
 
       {/* ===== Contact Form Section (02) ===== */}
       <section className="relative py-24 border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>02</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>02</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="contact-form">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="contact-form">`}</code>
         </div>
 
         <div className="max-w-[900px] mx-auto px-8">
           <div className="mb-12">
-            <h2 className="font-bold tracking-[1.08px] mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>
               お問い合わせフォーム
             </h2>
-            <div className="w-12 h-px bg-[#313131]"></div>
+            <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
           {/* お問い合わせ前の注意事項 */}
@@ -758,7 +758,7 @@ export default function Contact() {
             <h3 className="font-bold mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>
               その他のお問い合わせ方法
             </h3>
-            <div className="flex justify-center gap-8">
+            <div className="flex justify-center gap-8 max-[539px]:flex-col max-[539px]:items-center max-[539px]:gap-4">
               <div className="flex items-center gap-3">
                 <svg className="w-6 h-6 text-[#4346BE]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />

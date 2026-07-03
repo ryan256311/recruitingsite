@@ -37,7 +37,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="bg-white min-h-screen w-full overflow-x-hidden relative">
       {/* Global vertical line - lowest layer */}
-      <div className="fixed top-0 left-[40px] w-px h-full bg-[#e0e0e0] z-0 pointer-events-none"></div>
+      <div className="fixed top-0 left-[40px] max-[539px]:left-[20px] w-px h-full bg-[#e0e0e0] z-0 pointer-events-none"></div>
 
       {/* ===== Header ===== */}
       <header
@@ -158,24 +158,24 @@ export default function Layout({ children }: LayoutProps) {
 
       {/* ===== Recruit Section ===== */}
       <section className="relative border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>07</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>07</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="recruit">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="recruit">`}</code>
         </div>
         <div className="overflow-hidden pt-[40px]">
-          <div className="flex items-center gap-6 pl-[80px] animate-scroll-recruit">
+          <div className="flex items-center gap-6 max-[539px]:gap-3 pl-[80px] max-[539px]:pl-[40px] animate-scroll-recruit">
             {[...Array(2)].map((_, setIndex) => (
-              <div key={setIndex} className="flex items-center gap-6 shrink-0">
+              <div key={setIndex} className="flex items-center gap-6 max-[539px]:gap-3 shrink-0">
                 {[
-                  { img: footerSlide1, width: 440 },
-                  { img: footerSlide2, width: 510 },
-                  { img: footerSlide3, width: 440 },
-                  { img: footerSlide4, width: 510 },
-                  { img: footerSlide5, width: 440 },
+                  { img: footerSlide1, widthClass: "w-[440px] max-[1039px]:w-[300px] max-[539px]:w-[220px]" },
+                  { img: footerSlide2, widthClass: "w-[510px] max-[1039px]:w-[350px] max-[539px]:w-[255px]" },
+                  { img: footerSlide3, widthClass: "w-[440px] max-[1039px]:w-[300px] max-[539px]:w-[220px]" },
+                  { img: footerSlide4, widthClass: "w-[510px] max-[1039px]:w-[350px] max-[539px]:w-[255px]" },
+                  { img: footerSlide5, widthClass: "w-[440px] max-[1039px]:w-[300px] max-[539px]:w-[220px]" },
                 ].map((item, index) => (
-                  <div key={index} className="shrink-0 rounded-2xl overflow-hidden" style={{ width: `${item.width}px` }}>
+                  <div key={index} className={`shrink-0 rounded-2xl overflow-hidden ${item.widthClass}`}>
                     <img src={item.img.src} alt={`採用イメージ${index + 1}`} className="w-full aspect-square object-cover" />
                   </div>
                 ))}
@@ -184,10 +184,10 @@ export default function Layout({ children }: LayoutProps) {
           </div>
         </div>
         <div className="border-t border-black/15 mt-[20px]"></div>
-        <div className="py-24">
-          <div className="max-w-[1180px] mx-auto flex justify-between">
-            <h2 className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '72px', lineHeight: '1.2' }}>採用について</h2>
-            <div className="w-[630px]">
+        <div className="py-24 max-[539px]:py-16">
+          <div className="pl-[80px] pr-20 max-[539px]:pl-[40px] max-[539px]:pr-[40px] flex justify-between max-[1039px]:flex-col max-[1039px]:gap-8">
+            <h2 className="font-bold max-[1039px]:!text-[48px] max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '72px', lineHeight: '1.2' }}>採用について</h2>
+            <div className="w-[630px] max-[1039px]:w-full">
               <div className="mb-8" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
                 <p className="mb-4">当社では、「変化を楽しみ挑戦し続ける」「アイデアを形にする」という行動指針をもとに、職種や部署を超えて連携し合い、チームでの成果を追求しています。</p>
                 <p className="mb-4">さあ、私たちと一緒に。変化を恐れず、未来を描く仲間になりませんか？</p>
@@ -205,26 +205,26 @@ export default function Layout({ children }: LayoutProps) {
       </section>
 
       {/* ===== Footer Section ===== */}
-      <section className="relative py-24 border-b border-black/15">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>08</span>
+      <section className="relative py-24 max-[539px]:py-16 border-b border-black/15">
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>08</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="(X)plode">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="(X)plode">`}</code>
         </div>
-        <div className="pl-[80px] pr-20">
-          <div className="grid grid-cols-2 gap-24">
+        <div className="pl-[80px] pr-20 max-[539px]:pl-[40px] max-[539px]:pr-[40px]">
+          <div className="grid grid-cols-2 gap-24 max-[1039px]:grid-cols-1 max-[1039px]:gap-12">
             <div>
-              <h2 className="font-bold mb-4" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '72px', lineHeight: '1.1' }}>Let ideas (X)plode.</h2>
-              <p className="font-bold mb-12" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '24px' }}>変化を楽しみ挑戦し続けよう。</p>
+              <h2 className="font-bold mb-4 max-[1039px]:!text-[48px] max-[539px]:!text-[26px]" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '72px', lineHeight: '1.1' }}>Let ideas (X)plode.</h2>
+              <p className="font-bold mb-12 max-[539px]:!text-[18px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '24px' }}>変化を楽しみ挑戦し続けよう。</p>
               <div className="space-y-4 max-w-[400px]">
-                <Link href="/company-visit" className="block border border-[#707070] bg-white rounded-md p-5 hover:bg-gray-50 transition-colors">
+                <Link href="/company-visit" className="block border border-[#0064c8] bg-[#0064c8] text-white rounded-md p-5 hover:bg-[#0057b0] transition-colors">
                   <span className="font-semibold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>会社見学</span>
                 </Link>
-                <Link href="/contact?type=career" className="block border border-[#707070] bg-[#333] text-white rounded-md p-5 hover:bg-[#444] transition-colors">
+                <Link href="/contact?type=career" className="block border border-[#313131] bg-[#313131] text-white rounded-md p-5 hover:bg-[#4a4a4a] transition-colors">
                   <span className="font-semibold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>キャリア採用エントリー</span>
                 </Link>
-                <Link href="/contact?type=graduate" className="block border border-[#707070] bg-[#333] text-white rounded-md p-5 hover:bg-[#444] transition-colors">
+                <Link href="/contact?type=graduate" className="block border border-[#707070] bg-white rounded-md p-5 hover:bg-gray-50 transition-colors">
                   <span className="font-semibold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>27卒エントリー</span>
                 </Link>
               </div>
@@ -241,7 +241,7 @@ export default function Layout({ children }: LayoutProps) {
                 </svg>
                 <span style={{ fontFamily: 'Verdana, sans-serif', fontSize: '20px' }}>Pickup</span>
               </div>
-              <div className="grid grid-cols-2 gap-x-12 gap-y-4">
+              <div className="grid grid-cols-2 gap-x-12 gap-y-4 max-[539px]:grid-cols-1">
                 {[
                   { label: 'エクシートとは', href: '/contents', external: false },
                   { label: 'コーポレートサイト', href: 'https://exceet.co.jp/', external: true },
@@ -274,8 +274,8 @@ export default function Layout({ children }: LayoutProps) {
 
       {/* ===== Footer Bottom ===== */}
       <footer className="py-12 bg-white">
-        <div className="pl-[80px] pr-20">
-          <div className="flex items-center justify-between">
+        <div className="pl-[80px] pr-20 max-[539px]:pl-[40px] max-[539px]:pr-[40px]">
+          <div className="flex items-center justify-between max-[539px]:flex-col max-[539px]:items-start max-[539px]:gap-6">
             <div className="flex items-center gap-8">
               <div className="w-[200px] h-8">
                 <svg className="block w-full h-full" fill="none" preserveAspectRatio="none" viewBox="0 0 270 39.735">
@@ -302,7 +302,7 @@ export default function Layout({ children }: LayoutProps) {
               </div>
               <span className="font-medium tracking-[0.54px]" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '16px', color: '#272727' }}>Recruitment Site</span>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-6 max-[539px]:flex-col max-[539px]:items-start max-[539px]:gap-2">
               <a
                 href="https://exceet.co.jp/privacy/"
                 target="_blank"

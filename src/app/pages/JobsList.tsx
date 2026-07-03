@@ -78,16 +78,16 @@ export default function JobsList() {
   return (
     <>
       {/* ===== Hero Section (01) ===== */}
-      <section className="pt-32 pb-16 border-b border-black/15 relative">
-        <div className="absolute top-[102px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>01</span>
+      <section className="pt-[90px] max-[1039px]:pt-[68px] max-[539px]:pt-[58px] pb-16 border-b border-black/15 relative">
+        <div className="absolute top-[102px] left-[14px] max-[1039px]:top-[75px] max-[539px]:top-[59px] max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>01</span>
         </div>
-        <div className="absolute top-[102px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<h1 class="jobs">`}</code>
+        <div className="absolute top-[102px] left-[54px] max-[1039px]:top-[75px] max-[539px]:top-[59px] max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<h1 class="jobs">`}</code>
         </div>
 
-        <div className="pl-[80px] pr-20 pt-8">
-          <h1 className="font-bold tracking-[1.92px] mb-4" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '64px', lineHeight: '1.2' }}>
+        <div className="pl-[80px] pr-20 pt-8 max-[539px]:pl-[40px] max-[539px]:pr-[40px]">
+          <h1 className="font-bold tracking-[1.92px] mb-4" style={{ fontFamily: 'Roboto, sans-serif', fontSize: 'clamp(36px, 5vw, 64px)', lineHeight: '1.2' }}>
             Jobs
           </h1>
           <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
@@ -98,17 +98,17 @@ export default function JobsList() {
 
       {/* ===== Jobs List Section (02) ===== */}
       <section className="relative py-24 border-b border-black/15 overflow-visible">
-        <div className="absolute top-[6px] left-[14px]">
-          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>02</span>
+        <div className="absolute top-[6px] left-[14px] max-[539px]:top-0 max-[539px]:left-[6px]">
+          <span className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>02</span>
         </div>
-        <div className="absolute top-[6px] left-[54px]">
-          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: '10px' }}>{`<section class="jobs-list">`}</code>
+        <div className="absolute top-[6px] left-[54px] max-[539px]:top-0 max-[539px]:left-[30px]">
+          <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section class="jobs-list">`}</code>
         </div>
 
-        <div className="pl-[80px] pr-20">
-          <div className="flex gap-[7.29%] items-start">
+        <div className="pl-[80px] pr-20 max-[539px]:pl-[40px] max-[539px]:pr-[40px]">
+          <div className="flex gap-[7.29%] items-start max-[1039px]:flex-col">
             {/* Sidebar */}
-            <div className="w-[307px] min-w-[250px] shrink-0 self-start sticky top-[100px]">
+            <div className="w-[307px] min-w-[250px] shrink-0 self-start sticky top-[100px] max-[1039px]:w-full max-[1039px]:static max-[1039px]:top-auto">
               {/* Job Type Filter */}
               <div className="mb-10">
                 <div className="flex items-center gap-3 mb-6">
@@ -244,14 +244,14 @@ export default function JobsList() {
 
             {/* Jobs Grid */}
             <div className="flex-1" style={{ maxWidth: '1150px' }}>
-              <h2 className="font-bold mb-10" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>
+              <h2 className="font-bold mb-10 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>
                 募集中の求人
                 <span className="ml-4 text-[#707070] font-normal" style={{ fontSize: '18px' }}>
                   （{filteredJobs.length}件）
                 </span>
               </h2>
 
-              <div className="grid grid-cols-2 gap-6 mb-12">
+              <div className="grid grid-cols-2 gap-6 mb-12 max-[1039px]:grid-cols-1">
                 {filteredJobs.map((job) => (
                   <Link
                     key={`${job.jobType}-${job.id}`}

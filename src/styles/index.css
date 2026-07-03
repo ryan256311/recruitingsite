@@ -2,6 +2,17 @@
 @import './tailwind.css';
 @import './theme.css';
 
+/* Section code-marker font size (the "01" numbers and <code> tags).
+   Shrinks on SP (<=539px). Referenced inline via fontSize: 'var(--marker-font-size)'. */
+:root {
+  --marker-font-size: 10px;
+}
+@media (max-width: 539px) {
+  :root {
+    --marker-font-size: 7.5px;
+  }
+}
+
 /* Infinite scroll animation for image slider */
 @keyframes scroll {
   0% {
@@ -57,17 +68,71 @@
   animation: scroll-up 60s linear infinite;
 }
 
+/* Environment section horizontal sliders (上下レイアウト時に表示 / -50%でシームレスループ) */
+@keyframes scroll-h-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+@keyframes scroll-h-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-h-left {
+  animation: scroll-h-left 50s linear infinite;
+}
+
+.animate-scroll-h-right {
+  animation: scroll-h-right 50s linear infinite;
+}
+
 /* FV Slideshow fade transition */
 .slideshow-image {
   transition: opacity 1s ease-in-out;
+  object-position: left center;
+}
+
+/* Horizontal pan for wide FV images: reveal left -> right while the slide is shown.
+   Duration (6s) is slightly longer than the JS switch interval (5s in Home.tsx)
+   so the visible image is always moving and never sits still. */
+@keyframes fv-pan {
+  from {
+    object-position: left center;
+  }
+  to {
+    object-position: right center;
+  }
 }
 
 .slideshow-visible {
   opacity: 1;
+  animation: fv-pan 6s ease-in-out forwards;
 }
 
 .slideshow-hidden {
   opacity: 0;
+}
+
+/* SP: finish the left->right pan fully, then switch.
+   - Match the pan duration (5s) to the JS switch interval so the right edge is
+     fully revealed before the slide changes.
+   - Keep the outgoing image pinned to the right edge while it fades out, so it
+     never snaps back to the left edge just before switching. */
+@media (max-width: 539px) {
+  .slideshow-visible {
+    animation-duration: 5s;
+  }
+  .slideshow-hidden {
+    object-position: right center;
+  }
 }
 
 /* Typography Utility Classes */

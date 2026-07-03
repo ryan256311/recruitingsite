@@ -149,7 +149,7 @@ function SectionHeading({ children, center = false }: { children: React.ReactNod
       >
         {children}
       </h2>
-      {!center && <div className="w-12 h-px bg-[#313131]"></div>}
+      {!center && <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>}
     </div>
   );
 }
