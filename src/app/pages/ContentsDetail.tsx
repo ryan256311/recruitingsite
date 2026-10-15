@@ -43,7 +43,7 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
             key={`h2-${index}`}
             className="font-bold mb-4"
             style={{
-              fontFamily: 'Noto Sans JP, sans-serif',
+              fontFamily: 'var(--font-noto), sans-serif',
               fontSize: '20px',
               lineHeight: 1.6,
               marginTop: '90px',
@@ -57,14 +57,14 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
       } else if (line.startsWith('### ')) {
         flushParagraph();
         elements.push(
-          <h3 key={`h3-${index}`} className="font-bold mt-8 mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>
+          <h3 key={`h3-${index}`} className="font-bold mt-8 mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>
             {line.replace('### ', '')}
           </h3>
         );
       } else if (line.startsWith('#### ')) {
         flushParagraph();
         elements.push(
-          <h4 key={`h4-${index}`} className="font-bold text-lg mt-6 mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+          <h4 key={`h4-${index}`} className="font-bold text-lg mt-6 mb-2" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
             {line.replace('#### ', '')}
           </h4>
         );
@@ -99,7 +99,7 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
 
         <div className="max-w-[1180px] mx-auto px-8 pt-8">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 mb-8 flex-wrap" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>
+          <nav className="flex items-center gap-2 mb-8 flex-wrap" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>
             <Link href="/" className="text-[#707070] hover:text-[#313131]">TOP</Link>
             <span className="text-[#707070]">/</span>
             <Link href="/contents" className="text-[#707070] hover:text-[#313131]">Contents</Link>
@@ -114,7 +114,7 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
           {/* Category */}
           <div className="mb-4 flex items-center gap-2">
             <div className="w-4 h-4 rounded-full" style={{ backgroundColor: getCategoryColor(content.category) }}></div>
-            <span className="text-sm font-medium" style={{ fontFamily: 'Noto Sans JP, sans-serif', color: '#313131' }}>
+            <span className="text-sm font-medium" style={{ fontFamily: 'var(--font-noto), sans-serif', color: '#313131' }}>
               {content.categoryLabel}
             </span>
           </div>
@@ -130,7 +130,7 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
               <span
                 key={tag}
                 className="border border-[#707070] text-[#707070] text-xs px-3 py-1 rounded-full"
-                style={{ fontFamily: 'Noto Sans JP, sans-serif' }}
+                style={{ fontFamily: 'var(--font-noto), sans-serif' }}
               >
                 #{tag}
               </span>
@@ -175,7 +175,7 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
         </div>
 
         <div className="max-w-[1000px] mx-auto px-8">
-          <div style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px', lineHeight: '2' }}>
+          <div style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '18px', lineHeight: '2' }}>
             {renderContent(content.content)}
           </div>
         </div>
@@ -216,13 +216,13 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
                   <div className="p-4">
                     <div className="mb-3 flex items-center gap-2">
                       <div className="w-3 h-3 rounded-full" style={{ backgroundColor: getCategoryColor(item.category) }}></div>
-                      <span className="text-sm font-medium" style={{ fontFamily: 'Noto Sans JP, sans-serif', color: '#313131' }}>
+                      <span className="text-sm font-medium" style={{ fontFamily: 'var(--font-noto), sans-serif', color: '#313131' }}>
                         {item.categoryLabel}
                       </span>
                     </div>
                     <h3
                       className="font-bold line-clamp-2"
-                      style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px', lineHeight: '1.5' }}
+                      style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px', lineHeight: '1.5' }}
                     >
                       {item.title}
                     </h3>
@@ -252,7 +252,7 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
               <svg className="w-2 h-3 rotate-180" fill="none" viewBox="0 0 7.32727 12.4">
                 <path d={svgPaths.p36961f00} fill="#2A2A2A" />
               </svg>
-              <span className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+              <span className="font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                 コンテンツ一覧へ戻る
               </span>
             </Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import svgPaths from "../../imports/svg-corg4qlf3y";
 import companyImage1 from "../../assets/company-1.webp";
 import cardImage1 from "../../assets/environment-1.webp";
@@ -21,7 +22,7 @@ export default function CompanyVisit() {
 
         <div className="max-w-[1180px] mx-auto px-8 pt-8">
           {/* Breadcrumb */}
-          <nav className="mb-8" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>
+          <nav className="mb-8" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>
             <ol className="flex items-center gap-2 text-gray-600">
               <li><Link href="/" className="hover:text-[#0064c8]">TOP</Link></li>
               <li>/</li>
@@ -40,7 +41,7 @@ export default function CompanyVisit() {
               </h1>
 
               {/* リードテキスト */}
-              <p className="text-lg mb-10" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px', lineHeight: '32px' }}>
+              <p className="text-lg mb-10" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '18px', lineHeight: '32px' }}>
                 ネットの情報だけでは分からない、リアルな職場の空気。<br />
                 エクシートの会社見学で、働く環境を自分の目で確かめてください。
               </p>
@@ -50,7 +51,7 @@ export default function CompanyVisit() {
                 <Link
                   href="/contact?type=company-visit"
                   className="bg-[#0064c8] text-white rounded-full px-12 py-4 font-bold inline-flex items-center gap-3 hover:opacity-90 transition-opacity"
-                  style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px' }}
+                  style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '18px' }}
                 >
                   会社見学に申し込む
                   <svg className="w-2 h-3" fill="none" viewBox="0 0 7 11.8462">
@@ -62,12 +63,15 @@ export default function CompanyVisit() {
 
             {/* 右側: 画像 */}
             <div className="w-[45%] shrink-0 max-[1039px]:w-full">
-              <img
-                src={companyImage1.src}
-                alt="会社見学の様子"
-                className="w-full rounded-2xl object-cover"
-                style={{ aspectRatio: '4/3' }}
-              />
+              <div className="relative w-full rounded-2xl overflow-hidden" style={{ aspectRatio: '4/3' }}>
+                <Image
+                  src={companyImage1}
+                  alt="会社見学の様子"
+                  fill
+                  sizes="(max-width: 1039px) 100vw, 45vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -99,14 +103,14 @@ export default function CompanyVisit() {
                 <svg className="w-6 h-6 shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="#0064c8" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '28px' }}>
+                <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '28px' }}>
                   {text}
                 </p>
               </div>
             ))}
           </div>
 
-          <p className="text-center mt-10 font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px' }}>
+          <p className="text-center mt-10 font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '18px' }}>
             エクシートの会社見学なら、その不安を解消できます。
           </p>
         </div>
@@ -153,23 +157,25 @@ export default function CompanyVisit() {
               <div key={index} className="bg-white border border-[#e0e0e0] rounded-2xl overflow-hidden">
                 {/* 画像 */}
                 <div className="aspect-[4/3] bg-gray-200 relative">
-                  <img
-                    src={item.image.src}
+                  <Image
+                    src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 320px"
+                    className="object-cover"
                   />
                 </div>
                 {/* コンテンツ */}
                 <div className="p-8">
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="text-[#0064c8] font-bold leading-none" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '18px' }}>
+                    <span className="text-[#0064c8] font-bold leading-none" style={{ fontFamily: 'var(--font-roboto), sans-serif', fontSize: '18px' }}>
                       {item.number}
                     </span>
-                    <h3 className="font-bold leading-none m-0" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>
+                    <h3 className="font-bold leading-none m-0" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>
                       {item.title}
                     </h3>
                   </div>
-                  <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', lineHeight: '24px' }}>
+                  <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px', lineHeight: '24px' }}>
                     {item.description}
                   </p>
                 </div>
@@ -194,10 +200,10 @@ export default function CompanyVisit() {
               参加者の声
             </h2>
             <div className="flex items-baseline justify-center gap-2 mb-2">
-              <span className="font-bold text-[#0064c8]" style={{ fontFamily: 'Roboto, sans-serif', fontSize: 'clamp(44px, 5vw, 72px)' }}>95</span>
-              <span className="font-bold text-[#0064c8]" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '36px' }}>%</span>
+              <span className="font-bold text-[#0064c8]" style={{ fontFamily: 'var(--font-roboto), sans-serif', fontSize: 'clamp(44px, 5vw, 72px)' }}>95</span>
+              <span className="font-bold text-[#0064c8]" style={{ fontFamily: 'var(--font-roboto), sans-serif', fontSize: '36px' }}>%</span>
             </div>
-            <p className="font-medium" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+            <p className="font-medium" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
               過去3年間の参加者満足度
             </p>
           </div>
@@ -218,10 +224,10 @@ export default function CompanyVisit() {
               }
             ].map((voice, index) => (
               <div key={index} className="bg-white rounded-2xl p-6 border border-[#e0e0e0]">
-                <p className="mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', lineHeight: '24px' }}>
+                <p className="mb-4" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px', lineHeight: '24px' }}>
                   {voice.comment}
                 </p>
-                <p className="font-bold text-sm" style={{ fontFamily: 'Noto Sans JP, sans-serif', color: '#0064c8' }}>
+                <p className="font-bold text-sm" style={{ fontFamily: 'var(--font-noto), sans-serif', color: '#0064c8' }}>
                   {voice.name}
                 </p>
               </div>
@@ -233,7 +239,7 @@ export default function CompanyVisit() {
             <Link
               href="/contact?type=company-visit"
               className="border-2 border-[#0064c8] bg-white text-[#0064c8] rounded-full px-10 py-3 font-bold inline-flex items-center gap-3 hover:bg-[#0064c8] hover:text-white transition-colors"
-              style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
+              style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
             >
               会社見学に申し込む
               <svg className="w-2 h-3" fill="none" viewBox="0 0 7 11.8462">
@@ -289,7 +295,7 @@ export default function CompanyVisit() {
                     おすすめ
                   </div>
                 )}
-                <h3 className="font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>
+                <h3 className="font-bold mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>
                   {style.title}
                 </h3>
                 <div className="space-y-2 mb-4">
@@ -297,17 +303,17 @@ export default function CompanyVisit() {
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="#0064c8" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>{style.time}</span>
+                    <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>{style.time}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="#0064c8" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>{style.format}</span>
+                    <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>{style.format}</span>
                   </div>
                 </div>
-                <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', lineHeight: '24px' }}>
+                <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px', lineHeight: '24px' }}>
                   {style.description}
                 </p>
               </div>
@@ -341,15 +347,15 @@ export default function CompanyVisit() {
             ].map((item, index) => (
               <div key={index} className="flex gap-6 items-start">
                 <div className="shrink-0 w-[140px]">
-                  <span className="font-bold text-[#0064c8]" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '16px' }}>
+                  <span className="font-bold text-[#0064c8]" style={{ fontFamily: 'var(--font-roboto), sans-serif', fontSize: '16px' }}>
                     {item.time}
                   </span>
                 </div>
                 <div className="flex-1 bg-gray-50 rounded-lg p-4">
-                <h3 className="font-bold mb-1" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>
+                <h3 className="font-bold mb-1" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>
                     {item.title}
                   </h3>
-                  <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', lineHeight: '24px' }}>
+                  <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px', lineHeight: '24px' }}>
                     {item.description}
                   </p>
                 </div>
@@ -358,7 +364,7 @@ export default function CompanyVisit() {
           </div>
 
           <div className="mt-10 max-w-[800px] mx-auto bg-[#0064c8]/10 border-l-4 border-[#0064c8] rounded-lg p-6">
-            <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', lineHeight: '24px' }}>
+            <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px', lineHeight: '24px' }}>
               ※ タイムスケジュールは目安です。ご希望に応じて柔軟に調整いたします。
             </p>
           </div>
@@ -368,7 +374,7 @@ export default function CompanyVisit() {
             <Link
               href="/contact?type=company-visit"
               className="bg-[#0064c8] text-white rounded-full px-12 py-4 font-bold inline-flex items-center gap-3 hover:opacity-90 transition-opacity"
-              style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
+              style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
             >
               会社見学に申し込む
               <svg className="w-2 h-3" fill="none" viewBox="0 0 7 11.8462">
@@ -398,7 +404,7 @@ export default function CompanyVisit() {
           <div className="grid grid-cols-2 gap-12 max-w-[900px] mx-auto max-[539px]:grid-cols-1">
             <div className="bg-white rounded-2xl p-8 border-2 border-[#e0e0e0]">
               <div className="text-center mb-4">
-                <span className="inline-block bg-gray-300 text-white px-4 py-2 rounded-full font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>
+                <span className="inline-block bg-gray-300 text-white px-4 py-2 rounded-full font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>
                   見学前
                 </span>
               </div>
@@ -412,7 +418,7 @@ export default function CompanyVisit() {
                     <svg className="w-5 h-5 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="#999" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
-                    <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', lineHeight: '24px', color: '#666' }}>
+                    <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px', lineHeight: '24px', color: '#666' }}>
                       {text}
                     </span>
                   </li>
@@ -422,7 +428,7 @@ export default function CompanyVisit() {
 
             <div className="bg-white rounded-2xl p-8 border-2 border-[#0064c8]">
               <div className="text-center mb-4">
-                <span className="inline-block bg-[#0064c8] text-white px-4 py-2 rounded-full font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>
+                <span className="inline-block bg-[#0064c8] text-white px-4 py-2 rounded-full font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>
                   見学後
                 </span>
               </div>
@@ -436,7 +442,7 @@ export default function CompanyVisit() {
                     <svg className="w-5 h-5 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="#0064c8" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', lineHeight: '24px', color: '#313131' }}>
+                    <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px', lineHeight: '24px', color: '#313131' }}>
                       {text}
                     </span>
                   </li>
@@ -490,11 +496,11 @@ export default function CompanyVisit() {
               }
             ].map((faq, index) => (
               <div key={index} className="border border-[#e0e0e0] rounded-lg p-6">
-                <h3 className="font-bold mb-3 flex items-start gap-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>
+                <h3 className="font-bold mb-3 flex items-start gap-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>
                   <span className="bg-[#0064c8] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs shrink-0 mt-0.5">Q</span>
                   {faq.question}
                 </h3>
-                <p className="pl-9" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', lineHeight: '24px', color: '#555' }}>
+                <p className="pl-9" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px', lineHeight: '24px', color: '#555' }}>
                   {faq.answer}
                 </p>
               </div>
@@ -514,18 +520,18 @@ export default function CompanyVisit() {
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="text-center text-white">
-            <h2 className="font-bold mb-6 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px', lineHeight: '1.4' }}>
+            <h2 className="font-bold mb-6 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px', lineHeight: '1.4' }}>
               入社後の不安を、<br />
               見学で解消しませんか？
             </h2>
-            <p className="mb-10 text-lg" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px', lineHeight: '32px' }}>
+            <p className="mb-10 text-lg" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '18px', lineHeight: '32px' }}>
               まずは気軽にお申し込みください。<br />
               オフィス見学やカジュアルトークからでも大歓迎です。
             </p>
             <Link
               href="/contact?type=company-visit"
               className="bg-white text-[#0064c8] rounded-full px-16 py-5 font-bold inline-flex items-center gap-3 hover:bg-gray-100 transition-colors"
-              style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}
+              style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}
             >
               会社見学に申し込む
               <svg className="w-2 h-3" fill="none" viewBox="0 0 7 11.8462">

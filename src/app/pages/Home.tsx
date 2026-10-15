@@ -22,6 +22,7 @@ import environment6 from "../../assets/environment-6.webp";
 import environment7 from "../../assets/environment-7.webp";
 import { contentItems, contentCategories, getCategoryColor } from "../data/contents";
 import Link from "next/link";
+import Image from "next/image";
 
 // FV Slideshow images
 const slideshowImages = [fvImage1, fvImage2, fvImage3];
@@ -184,7 +185,7 @@ export default function Home() {
 
           {/* FV Title Area */}
           <div className="flex-1 py-[85px] flex justify-center max-[1039px]:justify-start max-[1039px]:pl-[80px] max-[1039px]:pr-[20px] max-[1039px]:py-[50px] max-[1039px]:border-b max-[1039px]:border-black/15 max-[539px]:pl-[40px] max-[539px]:pr-[20px] max-[539px]:py-[50px] max-[539px]:border-b max-[539px]:border-black/15">
-            <h1 className="font-bold tracking-[2.34px] max-[1039px]:!text-[48px] max-[1039px]:!leading-[1.4] max-[539px]:!text-[36px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '78px', lineHeight: '120px' }}>
+            <h1 className="font-bold tracking-[2.34px] max-[1039px]:!text-[48px] max-[1039px]:!leading-[1.4] max-[539px]:!text-[36px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '78px', lineHeight: '120px' }}>
               <span className="text-[#0074b9]">紙×デジタル</span>
               <br />
               情報発信を
@@ -197,11 +198,14 @@ export default function Home() {
         {/* FV Image Slideshow */}
         <div className="w-[98.95%] ml-auto relative z-10" style={{ aspectRatio: '1900/1050', minHeight: '400px' }}>
           {slideshowImages.map((image, index) => (
-            <img
+            <Image
               key={index}
-              src={image.src}
+              src={image}
               alt={`オフィスで働く社員たち ${index + 1}`}
-              className={`w-full h-full object-cover rounded-tl-[15px] rounded-bl-[15px] slideshow-image ${index === currentSlide ? 'slideshow-visible' : 'slideshow-hidden'} ${index === 0 ? '' : 'absolute top-0 left-0'}`}
+              fill
+              priority={index === 0}
+              sizes="100vw"
+              className={`object-cover rounded-tl-[15px] rounded-bl-[15px] slideshow-image ${index === currentSlide ? 'slideshow-visible' : 'slideshow-hidden'}`}
             />
           ))}
         </div>
@@ -219,14 +223,14 @@ export default function Home() {
           <div className="flex justify-between max-[1039px]:flex-col max-[1039px]:gap-12">
             <div className="w-[54.58%] max-[1039px]:w-full">
               <div className="mb-8">
-                <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>お知らせ</h2>
+                <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>お知らせ</h2>
                 <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
               </div>
               <div className="space-y-4">
                 {[
                   { date: '2026.07.03', text: '福井労働局主催「高校生サマー求人企業説明会」に参加いたします', href: 'https://jsite.mhlw.go.jp/fukui-roudoukyoku/hw/gakusei_tokusetsusite_00010.html' }
                 ].map((item, index) => (
-                  <a key={index} href={item.href} target="_blank" rel="noopener noreferrer" className="flex gap-8 max-[539px]:flex-col max-[539px]:gap-1 hover:opacity-70" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                  <a key={index} href={item.href} target="_blank" rel="noopener noreferrer" className="flex gap-8 max-[539px]:flex-col max-[539px]:gap-1 hover:opacity-70" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                     <span className="font-normal whitespace-nowrap">{item.date}</span>
                     <span className="font-medium">{item.text}</span>
                   </a>
@@ -235,7 +239,7 @@ export default function Home() {
             </div>
             <div className="w-[34.33%] max-[1039px]:w-full">
               <div className="mb-8">
-                <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>採用情報</h2>
+                <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>採用情報</h2>
                 <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
               </div>
               <div className="space-y-4">
@@ -255,7 +259,7 @@ export default function Home() {
                         : 'border-[#707070] bg-white hover:bg-gray-50'
                     }`}
                   >
-                    <span className="font-semibold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px' }}>{item.label}</span>
+                    <span className="font-semibold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '18px' }}>{item.label}</span>
                   </Link>
                 ))}
               </div>
@@ -275,19 +279,19 @@ export default function Home() {
         <div className="pl-[80px] pr-20 max-[539px]:pl-[40px] max-[539px]:pr-[40px]">
           <div className="flex justify-between mb-16 max-[1039px]:flex-col max-[1039px]:gap-10">
             <div>
-              <h2 className="font-bold max-[1039px]:!text-[36px] max-[1039px]:!leading-[1.5] max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '48px', lineHeight: '80px' }}>
+              <h2 className="font-bold max-[1039px]:!text-[36px] max-[1039px]:!leading-[1.5] max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '48px', lineHeight: '80px' }}>
                 "やってみたい"が、<br />動き出す場所。<br />挑戦を楽しみ、<br />成長を重ねる<br /><br />―その先にある未来へ。
               </h2>
             </div>
             <div>
-              <div className="mb-8" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
+              <div className="mb-8" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px' }}>
                 <p className="mb-6">私たちは、紙とデジタルの融合によって、<br />マーケティングの新しい可能性を切り拓いています。</p>
                 <p className="mb-6">部署の垣根を超えてアイデアが飛び交い、個々の挑戦が<br />チームの力になる、そんな風土がここにはあります。</p>
                 <p className="mb-6">「もっとこうしたら、面白くなる」<br />「これは誰かの心を動かせるはず」<br />そんな想いを持って動ける人にこそ、<br />この場所はぴったりです。</p>
                 <p>さあ、私たちと一緒に。<br />変化を恐れず、未来を描く仲間になりませんか？</p>
               </div>
               <Link href="/contents?category=company" className="inline-flex items-center gap-4 border border-[#707070] bg-white rounded-full px-8 py-3 hover:bg-gray-50 transition-colors">
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>エクシートとは</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>エクシートとは</span>
                 <svg className="w-2 h-3" fill="none" viewBox="0 0 7.32727 12.4">
                   <path d={svgPaths.p36961f00} fill="#2A2A2A" />
                 </svg>
@@ -301,8 +305,8 @@ export default function Home() {
             {[...Array(2)].map((_, setIndex) => (
               <div key={setIndex} className="flex items-center gap-6 max-[539px]:gap-3 shrink-0">
                 {companySlideImages.map((item, index) => (
-                  <div key={index} className={`shrink-0 rounded-2xl overflow-hidden ${item.widthClass}`}>
-                    <img src={item.img.src} alt={`社員の様子${index + 1}`} className="w-full aspect-square object-cover" />
+                  <div key={index} className={`relative shrink-0 rounded-2xl overflow-hidden aspect-square ${item.widthClass}`}>
+                    <Image src={item.img} alt={`社員の様子${index + 1}`} fill sizes="(max-width: 539px) 260px, (max-width: 1039px) 350px, 510px" className="object-cover" />
                   </div>
                 ))}
               </div>
@@ -322,8 +326,8 @@ export default function Home() {
         </div>
         <div className="pl-[80px] pr-20 max-[539px]:pl-[40px] max-[539px]:pr-[40px]">
           <div className="grid grid-cols-[400px_1fr] gap-16 max-[1039px]:grid-cols-1 max-[1039px]:gap-6">
-            <h2 className="font-bold max-[1039px]:!text-[48px] max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '72px', lineHeight: '1.2' }}>仲間を知る</h2>
-            <p className="max-w-[1025px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
+            <h2 className="font-bold max-[1039px]:!text-[48px] max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '72px', lineHeight: '1.2' }}>仲間を知る</h2>
+            <p className="max-w-[1025px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px' }}>
               当社では、「変化を楽しみ挑戦し続ける」「アイデアを形にする」という行動指針をもとに、職種や部署を超えて連携し合い、チームでの成果を追求しています。紙とデジタルの融合を軸に、それぞれが専門性を活かしながら新しい価値を生み出しています。日々の仕事や関わりの中で生まれるリアルな声を、社員インタビューやクロストークを通じてご紹介します。
             </p>
           </div>
@@ -336,7 +340,7 @@ export default function Home() {
           <code className="text-[#313131]" style={{ fontFamily: 'Verdana, sans-serif', fontSize: 'var(--marker-font-size)' }}>{`<section roll="interview-contents">`}</code>
         </div>
         <div className="pl-[80px] pr-20 max-[539px]:pl-[40px] max-[539px]:pr-[40px]">
-          <h3 className="font-bold mb-12 max-[539px]:!text-[26px] max-[539px]:mb-8" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>インタビュー &<br />クロストーク</h3>
+          <h3 className="font-bold mb-12 max-[539px]:!text-[26px] max-[539px]:mb-8" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>インタビュー &<br />クロストーク</h3>
           <div className="grid grid-cols-5 gap-6 max-[1039px]:grid-cols-3 max-[539px]:grid-cols-1">
             {contentItems
               .filter(item => item.tags.includes('インタビュー'))
@@ -347,12 +351,12 @@ export default function Home() {
                 <div className="bg-[#505050] rounded-2xl aspect-square mb-4 relative overflow-hidden">
                   <ContentPhoto src={item.image} alt={item.title} />
                 </div>
-                <div className="mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px', lineHeight: '28px' }}>
+                <div className="mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '18px', lineHeight: '28px' }}>
                   <p className="line-clamp-2">{item.title}</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {item.tags.map((tag, index) => (
-                    <span key={index} className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>#{tag}</span>
+                    <span key={index} className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>#{tag}</span>
                   ))}
                 </div>
               </Link>
@@ -383,8 +387,8 @@ export default function Home() {
                     {[...Array(2)].map((_, setIndex) => (
                       <div key={setIndex} className="flex flex-col gap-4">
                         {environmentImagesLeft.map((image, index) => (
-                          <div key={index} className="rounded-2xl overflow-hidden w-full" style={{ aspectRatio: '400/560' }}>
-                            <img src={image.src} alt={`働く環境${index + 1}`} className="w-full h-full object-cover" />
+                          <div key={index} className="relative rounded-2xl overflow-hidden w-full" style={{ aspectRatio: '400/560' }}>
+                            <Image src={image} alt={`働く環境${index + 1}`} fill sizes="(max-width: 539px) 150px, (max-width: 1039px) 220px, 400px" className="object-cover" />
                           </div>
                         ))}
                       </div>
@@ -396,8 +400,8 @@ export default function Home() {
                     {[...Array(2)].map((_, setIndex) => (
                       <div key={setIndex} className="flex flex-col gap-4">
                         {environmentImagesRight.map((image, index) => (
-                          <div key={index} className="rounded-2xl overflow-hidden w-full" style={{ aspectRatio: '400/560' }}>
-                            <img src={image.src} alt={`働く環境${index + 4}`} className="w-full h-full object-cover" />
+                          <div key={index} className="relative rounded-2xl overflow-hidden w-full" style={{ aspectRatio: '400/560' }}>
+                            <Image src={image} alt={`働く環境${index + 4}`} fill sizes="(max-width: 539px) 150px, (max-width: 1039px) 220px, 400px" className="object-cover" />
                           </div>
                         ))}
                       </div>
@@ -412,8 +416,8 @@ export default function Home() {
                     {[...Array(2)].map((_, setIndex) => (
                       <div key={setIndex} className="flex gap-4 shrink-0 pr-4">
                         {environmentImagesLeft.map((image, index) => (
-                          <div key={index} className="shrink-0 rounded-2xl overflow-hidden w-[220px] max-[539px]:w-[150px]" style={{ aspectRatio: '400/560' }}>
-                            <img src={image.src} alt={`働く環境${index + 1}`} className="w-full h-full object-cover" />
+                          <div key={index} className="relative shrink-0 rounded-2xl overflow-hidden w-[220px] max-[539px]:w-[150px]" style={{ aspectRatio: '400/560' }}>
+                            <Image src={image} alt={`働く環境${index + 1}`} fill sizes="(max-width: 539px) 150px, (max-width: 1039px) 220px, 400px" className="object-cover" />
                           </div>
                         ))}
                       </div>
@@ -425,8 +429,8 @@ export default function Home() {
                     {[...Array(2)].map((_, setIndex) => (
                       <div key={setIndex} className="flex gap-4 shrink-0 pr-4">
                         {environmentImagesRight.map((image, index) => (
-                          <div key={index} className="shrink-0 rounded-2xl overflow-hidden w-[220px] max-[539px]:w-[150px]" style={{ aspectRatio: '400/560' }}>
-                            <img src={image.src} alt={`働く環境${index + 4}`} className="w-full h-full object-cover" />
+                          <div key={index} className="relative shrink-0 rounded-2xl overflow-hidden w-[220px] max-[539px]:w-[150px]" style={{ aspectRatio: '400/560' }}>
+                            <Image src={image} alt={`働く環境${index + 4}`} fill sizes="(max-width: 539px) 150px, (max-width: 1039px) 220px, 400px" className="object-cover" />
                           </div>
                         ))}
                       </div>
@@ -436,12 +440,12 @@ export default function Home() {
               </div>
             </div>
             <div className="w-[630px] text-white flex flex-col justify-center min-w-0 max-[1039px]:w-full">
-              <h2 className="font-bold mb-8 max-[1039px]:!text-[48px] max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: 'clamp(48px, 4.5vw, 72px)', lineHeight: '1.2' }}>環境を知る</h2>
-              <p className="mb-12" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
+              <h2 className="font-bold mb-8 max-[1039px]:!text-[48px] max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: 'clamp(48px, 4.5vw, 72px)', lineHeight: '1.2' }}>環境を知る</h2>
+              <p className="mb-12" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px' }}>
                 当社では、「挑戦を楽しみながら、安心して働ける環境をつくる」という考えのもと、働きやすく成長しやすい職場づくりに取り組んでいます。ここでは、当社のカルチャーや福利厚生、人事制度など、日々の仕事を支える環境についてご紹介します。
               </p>
               <Link href="/contents?category=environment" className="inline-flex items-center gap-4 border border-white bg-white text-[#313131] rounded-full px-8 py-3 w-fit hover:bg-gray-100 transition-colors">
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>働く環境をのぞく</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>働く環境をのぞく</span>
                 <svg className="w-2 h-3" fill="none" viewBox="0 0 7.32727 12.4">
                   <path d={svgPaths.p36961f00} fill="#2A2A2A" />
                 </svg>
@@ -493,7 +497,7 @@ export default function Home() {
                       }}
                     >
                       <CategoryIcon id={category.id} className="w-[18px] h-[18px] shrink-0 max-[1200px]:w-4 max-[1200px]:h-4" />
-                      <span className="max-[1200px]:!text-[14px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>{category.label}</span>
+                      <span className="max-[1200px]:!text-[14px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>{category.label}</span>
                     </button>
                   ))}
                 </div>
@@ -511,7 +515,7 @@ export default function Home() {
                       key={index}
                       href={`/contents?tag=${tag}`}
                       className="border border-[#707070] rounded-full px-3 py-1 hover:bg-[#333] hover:text-white hover:border-[#333] transition-colors"
-                      style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}
+                      style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}
                     >
                       #{tag}
                     </Link>
@@ -520,7 +524,7 @@ export default function Home() {
               </div>
             </div>
             <div className="grow shrink basis-[843px] min-[1201px]:min-w-[700px] max-[1200px]:basis-auto max-[1200px]:w-full">
-              <h2 className="font-bold mb-10 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>コンテンツ</h2>
+              <h2 className="font-bold mb-10 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>コンテンツ</h2>
               {(() => {
                 const filtered = contentItems
                   .filter(item => selectedCategory === 'all' || item.category === selectedCategory)
@@ -529,7 +533,7 @@ export default function Home() {
                 // 投稿が0件の場合は準備中メッセージを表示
                 if (filtered.length === 0) {
                   return (
-                    <div className="w-full max-w-[1150px] py-24 text-center text-[#707070]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px' }}>
+                    <div className="w-full max-w-[1150px] py-24 text-center text-[#707070]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '18px' }}>
                       現在準備中です。
                     </div>
                   );
@@ -547,18 +551,18 @@ export default function Home() {
                         {/* カテゴリ */}
                         <div className="mb-3 flex items-center gap-2">
                           <div className="w-3 h-3 rounded-full" style={{ backgroundColor: getCategoryColor(item.category) }}></div>
-                          <span className="text-sm font-medium" style={{ fontFamily: 'Noto Sans JP, sans-serif', color: '#313131' }}>
+                          <span className="text-sm font-medium" style={{ fontFamily: 'var(--font-noto), sans-serif', color: '#313131' }}>
                             {item.categoryLabel}
                           </span>
                         </div>
                         {/* タイトル */}
-                        <div className="mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px', lineHeight: '28px' }}>
+                        <div className="mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '18px', lineHeight: '28px' }}>
                           <p className="line-clamp-2">{item.title}</p>
                         </div>
                         {/* タグ */}
                         <div className="flex flex-wrap gap-2">
                           {item.tags.slice(0, 2).map((tag, index) => (
-                            <span key={index} className="border border-[#707070] text-[#707070] text-xs px-3 py-1 rounded-full" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>#{tag}</span>
+                            <span key={index} className="border border-[#707070] text-[#707070] text-xs px-3 py-1 rounded-full" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>#{tag}</span>
                           ))}
                         </div>
                       </Link>
@@ -568,7 +572,7 @@ export default function Home() {
                     {filtered.length > 4 && (
                       <div className={`flex justify-center ${filtered.length <= 6 ? 'min-[1201px]:hidden' : ''}`}>
                         <Link href="/contents" className="inline-flex items-center gap-4 border border-[#707070] bg-white rounded-full px-8 py-3 hover:bg-gray-50 transition-colors">
-                          <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>もっと見る</span>
+                          <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>もっと見る</span>
                           <svg className="w-2 h-3" fill="none" viewBox="0 0 7.32727 12.4">
                             <path d={svgPaths.p36961f00} fill="#2A2A2A" />
                           </svg>

@@ -57,7 +57,7 @@ export default function Graduate() {
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 11 11">
                     <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                   </svg>
-                  <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>{item.label}</span>
+                  <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>{item.label}</span>
                 </a>
               ))}
             </div>
@@ -68,7 +68,7 @@ export default function Graduate() {
             <h1 className="text-h1 max-[1039px]:!text-[40px] max-[539px]:!text-[32px] tracking-[1.92px] mb-8">
               新卒採用
             </h1>
-            <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
+            <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px' }}>
               UIターンも歓迎。地域で挑戦しながら成長できる環境です。<br />
               未来を創る仲間として、一緒に学び続けませんか。
             </p>
@@ -87,7 +87,7 @@ export default function Graduate() {
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>仕事環境</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>仕事環境</h2>
             <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
@@ -98,15 +98,15 @@ export default function Graduate() {
               { title: '学び続ける文化', description: '研修・メンター制度で着実にスキルを伸ばせます' },
             ].map((item, index) => (
               <div key={index} className="border border-[#707070] rounded-2xl p-8">
-                <h3 className="font-bold mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>{item.title}</h3>
-                <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item.description}</p>
+                <h3 className="font-bold mb-4" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>{item.title}</h3>
+                <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item.description}</p>
               </div>
             ))}
           </div>
 
           <div className="bg-gray-50 rounded-2xl p-10">
-            <h3 className="font-bold mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>成長を支える仕組み</h3>
-            <p className="mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
+            <h3 className="font-bold mb-6" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>成長を支える仕組み</h3>
+            <p className="mb-6" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px' }}>
               新卒の皆さんが、地域で安心してスタートを切れるよう支援体制を整えています。<br />
               基礎力から実務まで、段階的に成長できる環境です。
             </p>
@@ -115,25 +115,25 @@ export default function Graduate() {
                 <svg className="w-3 h-3 mt-1.5 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>入社前研修（内定者向けオンライン講座）</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>入社前研修（内定者向けオンライン講座）</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg className="w-3 h-3 mt-1.5 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>新入社員研修（ビジネスマナー・業界知識・専門スキル）</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>新入社員研修（ビジネスマナー・業界知識・専門スキル）</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg className="w-3 h-3 mt-1.5 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>定期的なフォローアップ研修（1年目・2年目・3年目）</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>定期的なフォローアップ研修（1年目・2年目・3年目）</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg className="w-3 h-3 mt-1.5 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>資格取得支援制度</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>資格取得支援制度</span>
               </li>
             </ul>
           </div>
@@ -151,12 +151,12 @@ export default function Graduate() {
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>募集要項</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>募集要項</h2>
             <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
           <div className="border border-[#707070] rounded-2xl overflow-hidden">
-            <table className="w-full" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+            <table className="w-full" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
               <tbody>
                 {[
                   { label: '募集対象', value: '2027年3月卒業見込みの方（大学院・大学・短大・専門学校）' },
@@ -190,11 +190,11 @@ export default function Graduate() {
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>試験内容とフロー図</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>試験内容とフロー図</h2>
             <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
-          <p className="mb-10" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '30px' }}>
+          <p className="mb-10" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '30px' }}>
             大学のキャリアセンターや行政のUIターン施策とも連携し、情報提供の機会を広げています。
           </p>
 
@@ -209,9 +209,9 @@ export default function Graduate() {
             ].map((item, index, arr) => (
               <div key={index} className="flex items-center">
                 <div className="text-center">
-                  <span className="inline-block bg-[#4346BE] text-white text-sm px-4 py-1 rounded-full mb-3" style={{ fontFamily: 'Roboto, sans-serif' }}>{item.step}</span>
-                  <h3 className="font-bold mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>{item.title}</h3>
-                  <p className="text-sm text-gray-600 whitespace-pre-line" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>{item.description}</p>
+                  <span className="inline-block bg-[#4346BE] text-white text-sm px-4 py-1 rounded-full mb-3" style={{ fontFamily: 'var(--font-roboto), sans-serif' }}>{item.step}</span>
+                  <h3 className="font-bold mb-2" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>{item.title}</h3>
+                  <p className="text-sm text-gray-600 whitespace-pre-line" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>{item.description}</p>
                 </div>
                 {index < arr.length - 1 && (
                   <svg className="w-5 h-5 mx-3 text-[#4346BE] max-[1039px]:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -223,25 +223,25 @@ export default function Graduate() {
           </div>
 
           <div className="bg-gray-50 rounded-2xl p-8">
-            <h3 className="font-bold mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>選考のポイント</h3>
+            <h3 className="font-bold mb-4" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>選考のポイント</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <svg className="w-3 h-3 mt-1.5 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>学生時代に力を入れたこと、挑戦したことをお聞かせください</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>学生時代に力を入れたこと、挑戦したことをお聞かせください</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg className="w-3 h-3 mt-1.5 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>選考期間は約1ヶ月程度です</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>選考期間は約1ヶ月程度です</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg className="w-3 h-3 mt-1.5 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>会社説明会は随時開催しています。お気軽にご参加ください</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>会社説明会は随時開催しています。お気軽にご参加ください</span>
               </li>
             </ul>
           </div>
@@ -259,7 +259,7 @@ export default function Graduate() {
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>現在募集中の求人</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>現在募集中の求人</h2>
             <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
@@ -269,29 +269,29 @@ export default function Graduate() {
                 {graduateJobs.map((job) => (
                   <Link key={job.id} href={`/graduate/${job.id}`} className="block border border-[#707070] rounded-2xl p-8 hover:bg-gray-50 transition-colors">
                     <div className="flex items-start justify-between mb-4">
-                      <h3 className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>{job.title}</h3>
+                      <h3 className="font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>{job.title}</h3>
                     </div>
                     <div className="mb-4">
-                      <span className="bg-[#4346BE] text-white text-sm px-3 py-1 rounded-full" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>27卒</span>
+                      <span className="bg-[#4346BE] text-white text-sm px-3 py-1 rounded-full" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>27卒</span>
                     </div>
                     <div className="flex gap-3 mb-4">
-                      <span className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>{job.department}</span>
-                      <span className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>{job.type}</span>
+                      <span className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>{job.department}</span>
+                      <span className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>{job.type}</span>
                     </div>
-                    <p className="text-gray-600" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>{job.description}</p>
+                    <p className="text-gray-600" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>{job.description}</p>
                   </Link>
                 ))}
               </div>
 
               <div className="flex justify-center gap-6 max-[539px]:flex-col max-[539px]:items-stretch">
                 <a href="#" className="inline-flex items-center gap-4 bg-[#4346BE] text-white rounded-full px-10 py-4 hover:bg-[#3335a0] transition-colors">
-                  <span className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>27卒エントリーする</span>
+                  <span className="font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>27卒エントリーする</span>
                   <svg className="w-2 h-3" fill="none" viewBox="0 0 7 11.8462">
                     <path d={svgPaths.p190b2b48} fill="white" />
                   </svg>
                 </a>
                 <Link href="/company-visit" className="inline-flex items-center gap-4 border border-[#707070] bg-white rounded-full px-10 py-4 hover:bg-gray-50 transition-colors">
-                  <span className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>会社見学に参加する</span>
+                  <span className="font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>会社見学に参加する</span>
                   <svg className="w-2 h-3" fill="none" viewBox="0 0 7.32727 12.4">
                     <path d={svgPaths.p36961f00} fill="#2A2A2A" />
                   </svg>
@@ -301,15 +301,15 @@ export default function Graduate() {
           ) : (
             <div className="bg-gray-50 rounded-2xl p-12 mb-12">
               <div className="text-center max-w-[600px] mx-auto">
-                <h3 className="font-bold mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>
+                <h3 className="font-bold mb-6" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>
                   現在、新卒採用の募集は行っておりません
                 </h3>
-                <p className="mb-8" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
+                <p className="mb-8" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px' }}>
                   新卒採用にご興味をお持ちの方は、お気軽にお問い合わせください。<br />
                   会社見学やカジュアル面談のご希望も承っております。
                 </p>
                 <Link href="/contact?type=graduate" className="inline-flex items-center gap-4 bg-[#4346BE] text-white rounded-full px-10 py-4 hover:bg-[#3335a0] transition-colors">
-                  <span className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>お問い合わせはこちら</span>
+                  <span className="font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>お問い合わせはこちら</span>
                   <svg className="w-2 h-3" fill="none" viewBox="0 0 7 11.8462">
                     <path d={svgPaths.p190b2b48} fill="white" />
                   </svg>

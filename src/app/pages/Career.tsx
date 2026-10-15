@@ -62,7 +62,7 @@ export default function Career() {
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 11 11">
                     <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                   </svg>
-                  <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>{item.label}</span>
+                  <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>{item.label}</span>
                 </a>
               ))}
             </div>
@@ -73,7 +73,7 @@ export default function Career() {
             <h1 className="text-h1 max-[1039px]:!text-[40px] max-[539px]:!text-[32px] tracking-[1.92px] mb-8">
               キャリア採用
             </h1>
-            <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
+            <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px' }}>
               ルーティンではなく、新しい価値を生み出す仕事に挑戦しませんか。<br />
               BtoBの現場で課題解決に向き合い、学び続ける仲間を求めています。
             </p>
@@ -92,7 +92,7 @@ export default function Career() {
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>仕事環境</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>仕事環境</h2>
             <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
@@ -103,15 +103,15 @@ export default function Career() {
               { title: '学習支援が充実', description: 'Udemy受け放題や研修・セミナー参加支援で成長を後押し' },
             ].map((item, index) => (
               <div key={index} className="border border-[#707070] rounded-2xl p-8">
-                <h3 className="font-bold mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>{item.title}</h3>
-                <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item.description}</p>
+                <h3 className="font-bold mb-4" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>{item.title}</h3>
+                <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item.description}</p>
               </div>
             ))}
           </div>
 
           <div className="bg-gray-50 rounded-2xl p-10">
-            <h3 className="font-bold mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>キャリアパス</h3>
-            <p className="mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
+            <h3 className="font-bold mb-6" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>キャリアパス</h3>
+            <p className="mb-6" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px' }}>
               入社後は、経験を活かして即戦力として成果を出せる環境を用意しています。<br />
               新規事業や改善提案にも積極的に関わり、変化を楽しめる方が成長できるフェーズです。
             </p>
@@ -120,19 +120,19 @@ export default function Career() {
                 <svg className="w-3 h-3 mt-1.5 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>定期的な1on1面談によるキャリア相談</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>定期的な1on1面談によるキャリア相談</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg className="w-3 h-3 mt-1.5 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>社内公募制度による部署異動の機会</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>社内公募制度による部署異動の機会</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg className="w-3 h-3 mt-1.5 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>外部研修・資格取得支援制度</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>外部研修・資格取得支援制度</span>
               </li>
             </ul>
           </div>
@@ -150,12 +150,12 @@ export default function Career() {
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>募集要項</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>募集要項</h2>
             <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
           <div className="border border-[#707070] rounded-2xl overflow-hidden">
-            <table className="w-full" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+            <table className="w-full" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
               <tbody>
                 {[
                   { label: '雇用形態', value: '正社員' },
@@ -188,11 +188,11 @@ export default function Career() {
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>試験内容とフロー図</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>試験内容とフロー図</h2>
             <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
-          <p className="mb-10" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '30px' }}>
+          <p className="mb-10" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '30px' }}>
             Indeedからのご応募は原則24時間以内にご返信します。スピード感のある選考で進めます。
           </p>
 
@@ -206,9 +206,9 @@ export default function Career() {
             ].map((item, index, arr) => (
               <div key={index} className="flex items-center">
                 <div className="text-center">
-                  <span className="inline-block bg-[#0064c8] text-white text-sm px-4 py-1 rounded-full mb-3" style={{ fontFamily: 'Roboto, sans-serif' }}>{item.step}</span>
-                  <h3 className="font-bold mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>{item.title}</h3>
-                  <p className="text-sm text-gray-600 whitespace-pre-line" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>{item.description}</p>
+                  <span className="inline-block bg-[#0064c8] text-white text-sm px-4 py-1 rounded-full mb-3" style={{ fontFamily: 'var(--font-roboto), sans-serif' }}>{item.step}</span>
+                  <h3 className="font-bold mb-2" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>{item.title}</h3>
+                  <p className="text-sm text-gray-600 whitespace-pre-line" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>{item.description}</p>
                 </div>
                 {index < arr.length - 1 && (
                   <svg className="w-6 h-6 mx-4 text-[#0064c8] max-[1039px]:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -220,25 +220,25 @@ export default function Career() {
           </div>
 
           <div className="bg-gray-50 rounded-2xl p-8">
-            <h3 className="font-bold mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>選考のポイント</h3>
+            <h3 className="font-bold mb-4" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>選考のポイント</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <svg className="w-3 h-3 mt-1.5 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>これまでのご経験と、当社での活躍イメージをお聞かせください</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>これまでのご経験と、当社での活躍イメージをお聞かせください</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg className="w-3 h-3 mt-1.5 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>書類選考から内定まで約2〜3週間程度です</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>書類選考から内定まで約2〜3週間程度です</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg className="w-3 h-3 mt-1.5 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>一次面接はオンラインで実施、二次面接以降は対面を予定しています</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>一次面接はオンラインで実施、二次面接以降は対面を予定しています</span>
               </li>
             </ul>
           </div>
@@ -256,7 +256,7 @@ export default function Career() {
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>現在募集中の求人</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>現在募集中の求人</h2>
             <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
@@ -264,21 +264,21 @@ export default function Career() {
             {displayedJobs.map((job) => (
               <Link key={job.id} href={`/career/${job.id}`} className="block border border-[#707070] rounded-2xl p-8 hover:bg-gray-50 transition-colors">
                 <div className="flex items-start justify-between mb-4">
-                  <h3 className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>{job.title}</h3>
-                  <span className="bg-[#0064c8] text-white text-sm px-3 py-1 rounded-full" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>キャリア</span>
+                  <h3 className="font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>{job.title}</h3>
+                  <span className="bg-[#0064c8] text-white text-sm px-3 py-1 rounded-full" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>キャリア</span>
                 </div>
                 <div className="flex gap-4 mb-4">
-                  <span className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>{job.department}</span>
-                  <span className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>{job.type}</span>
+                  <span className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>{job.department}</span>
+                  <span className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>{job.type}</span>
                 </div>
-                <p className="text-gray-600" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>{job.description}</p>
+                <p className="text-gray-600" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>{job.description}</p>
               </Link>
             ))}
           </div>
 
           <div className="flex justify-center">
             <a href="/contact?type=career" className="inline-flex items-center gap-4 bg-[#0064c8] text-white rounded-full px-10 py-4 hover:bg-[#0054a8] transition-colors">
-              <span className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>キャリア採用にエントリーする</span>
+              <span className="font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>キャリア採用にエントリーする</span>
               <svg className="w-2 h-3" fill="none" viewBox="0 0 7 11.8462">
                 <path d={svgPaths.p190b2b48} fill="white" />
               </svg>

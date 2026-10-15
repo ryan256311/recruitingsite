@@ -22,7 +22,7 @@ export default function NewsDetail({ news }: NewsDetailProps) {
 
         <div className="max-w-[1180px] mx-auto px-8 pt-8">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 mb-8" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>
+          <nav className="flex items-center gap-2 mb-8" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>
             <Link href="/" className="text-[#707070] hover:text-[#313131]">TOP</Link>
             <span className="text-[#707070]">/</span>
             <Link href="/news" className="text-[#707070] hover:text-[#313131]">お知らせ</Link>
@@ -34,7 +34,7 @@ export default function NewsDetail({ news }: NewsDetailProps) {
           <div className="flex items-center gap-4 mb-6">
             <span
               className="text-[#707070]"
-              style={{ fontFamily: 'Roboto, sans-serif', fontSize: '14px' }}
+              style={{ fontFamily: 'var(--font-roboto), sans-serif', fontSize: '14px' }}
             >
               {news.date}
             </span>
@@ -43,14 +43,14 @@ export default function NewsDetail({ news }: NewsDetailProps) {
                 news.category === 'graduate' ? 'bg-[#4346BE]' :
                 news.category === 'news' ? 'bg-[#0064c8]' : 'bg-[#707070]'
               }`}
-              style={{ fontFamily: 'Noto Sans JP, sans-serif' }}
+              style={{ fontFamily: 'var(--font-noto), sans-serif' }}
             >
               {news.categoryLabel}
             </span>
           </div>
 
           {/* Title */}
-          <h1 className="font-bold tracking-[1.92px] mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: 'clamp(32px, 5vw, 64px)', lineHeight: '1.3' }}>
+          <h1 className="font-bold tracking-[1.92px] mb-4" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: 'clamp(32px, 5vw, 64px)', lineHeight: '1.3' }}>
             {news.title}
           </h1>
         </div>
@@ -68,7 +68,7 @@ export default function NewsDetail({ news }: NewsDetailProps) {
         <div className="max-w-[800px] mx-auto px-8">
           <div
             className="prose prose-lg max-w-none"
-            style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '2' }}
+            style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '2' }}
           >
             {news.content.split('\n').map((paragraph, index) => (
               paragraph.trim() ? (
@@ -99,7 +99,7 @@ export default function NewsDetail({ news }: NewsDetailProps) {
               <svg className="w-2 h-3 rotate-180" fill="none" viewBox="0 0 7.32727 12.4">
                 <path d={svgPaths.p36961f00} fill="#2A2A2A" />
               </svg>
-              <span className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+              <span className="font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                 お知らせ一覧へ戻る
               </span>
             </Link>

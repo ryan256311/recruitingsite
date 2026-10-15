@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import svgPaths from "../../imports/svg-corg4qlf3y";
 import { Job } from "../data/jobs";
 import { ContentItem, getCategoryColor } from "../data/contents";
@@ -80,7 +81,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 11 11">
                     <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                   </svg>
-                  <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>{item.label}</span>
+                  <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>{item.label}</span>
                 </a>
               ))}
             </div>
@@ -91,7 +92,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
             {/* Text Content */}
             <div className="flex-1">
               {/* Breadcrumb */}
-              <nav className="mb-8" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>
+              <nav className="mb-8" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>
                 <ol className="flex items-center gap-2 text-gray-600">
                   <li><Link href="/" className="hover:text-[#0064c8]">TOP</Link></li>
                   <li>/</li>
@@ -106,23 +107,23 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
                 <h1 className="text-h1 tracking-[1.92px] max-[1039px]:!text-[40px] max-[539px]:!text-[32px]">
                   {job.title}
                 </h1>
-                <span className={`${badgeColor} text-white text-sm px-4 py-2 rounded-full mt-3`} style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+                <span className={`${badgeColor} text-white text-sm px-4 py-2 rounded-full mt-3`} style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
                   {badgeLabel}
                 </span>
               </div>
 
               {/* Tags */}
               <div className="flex gap-3 mb-8">
-                <span className="border border-[#707070] rounded-full px-4 py-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>
+                <span className="border border-[#707070] rounded-full px-4 py-2" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>
                   {job.department}
                 </span>
-                <span className="border border-[#707070] rounded-full px-4 py-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>
+                <span className="border border-[#707070] rounded-full px-4 py-2" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>
                   {job.type}
                 </span>
               </div>
 
               {/* Description */}
-              <p className="text-lg mb-10" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px', lineHeight: '32px' }}>
+              <p className="text-lg mb-10" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '18px', lineHeight: '32px' }}>
                 {job.description}
               </p>
 
@@ -130,7 +131,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
               <Link
                 href={`/contact?type=${type}&job=${encodeURIComponent(job.title)}`}
                 className={`${badgeColor} text-white rounded-full px-10 py-4 font-bold inline-flex items-center gap-3 hover:opacity-90 transition-opacity`}
-                style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
+                style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
               >
                 このポジションに応募する
                 <svg className="w-2 h-3" fill="none" viewBox="0 0 7 11.8462">
@@ -140,12 +141,13 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
             </div>
 
             {/* Job Image */}
-            <div className="w-[40%] shrink-0 max-[1039px]:w-full" style={{ aspectRatio: '1 / .65' }}>
-              <img
-                src={jobImage.src}
+            <div className="relative w-[40%] shrink-0 overflow-hidden rounded-2xl max-[1039px]:w-full" style={{ aspectRatio: '1 / .65' }}>
+              <Image
+                src={jobImage}
                 alt={`${job.title}の仕事風景`}
-                className="object-cover rounded-2xl"
-                style={{ width: '100%', height: '100%' }}
+                fill
+                sizes="(max-width: 1039px) 100vw, 40vw"
+                className="object-cover"
               />
             </div>
           </div>
@@ -163,11 +165,11 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>募集背景</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>募集背景</h2>
             <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
-          <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
+          <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px' }}>
             {job.background}
           </p>
         </div>
@@ -184,13 +186,13 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>部署について</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>部署について</h2>
             <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
           <div className="bg-gray-50 rounded-2xl p-8">
-            <h3 className="font-bold mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>{job.department}</h3>
-            <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
+            <h3 className="font-bold mb-4" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>{job.department}</h3>
+            <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px' }}>
               {job.departmentDescription}
             </p>
           </div>
@@ -208,7 +210,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>仕事内容</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>仕事内容</h2>
             <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
@@ -218,7 +220,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
                 <svg className="w-3 h-3 mt-2 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item}</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item}</span>
               </li>
             ))}
           </ul>
@@ -236,7 +238,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>応募資格</h2>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>応募資格</h2>
             <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
@@ -246,7 +248,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
                 <svg className="w-3 h-3 mt-2 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item}</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item}</span>
               </li>
             ))}
           </ul>
@@ -258,7 +260,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
         <section id="welcome-skills" className="relative py-20 border-b border-black/15">
           <div className="max-w-[1180px] mx-auto px-8">
             <div className="mb-8">
-              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>歓迎するスキル・マインド</h2>
+              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>歓迎するスキル・マインド</h2>
               <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
             </div>
 
@@ -268,7 +270,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
                   <svg className="w-3 h-3 mt-2 shrink-0" fill="none" viewBox="0 0 11 11">
                     <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                   </svg>
-                  <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item}</span>
+                  <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item}</span>
                 </li>
               ))}
             </ul>
@@ -281,21 +283,21 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
         <section id="dev-environment" className="relative py-20 border-b border-black/15">
           <div className="max-w-[1180px] mx-auto px-8">
             <div className="mb-8">
-              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>開発環境・スタイル</h2>
+              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>開発環境・スタイル</h2>
               <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
             </div>
 
             <div className="space-y-8">
               {job.devEnvironment.tech.length > 0 && (
                 <div>
-                  <h3 className="font-bold mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>技術環境</h3>
+                  <h3 className="font-bold mb-4" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>技術環境</h3>
                   <ul className="space-y-2">
                     {job.devEnvironment.tech.map((item, index) => (
                       <li key={index} className="flex items-start gap-4">
                         <svg className="w-3 h-3 mt-2 shrink-0" fill="none" viewBox="0 0 11 11">
                           <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                         </svg>
-                        <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item}</span>
+                        <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -304,14 +306,14 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
               {job.devEnvironment.versionControl.length > 0 && (
                 <div>
-                  <h3 className="font-bold mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>バージョン管理</h3>
+                  <h3 className="font-bold mb-4" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>バージョン管理</h3>
                   <ul className="space-y-2">
                     {job.devEnvironment.versionControl.map((item, index) => (
                       <li key={index} className="flex items-start gap-4">
                         <svg className="w-3 h-3 mt-2 shrink-0" fill="none" viewBox="0 0 11 11">
                           <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                         </svg>
-                        <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item}</span>
+                        <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -320,10 +322,10 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
               {job.devEnvironment.designTools.length > 0 && (
                 <div>
-                  <h3 className="font-bold mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>デザインツール</h3>
+                  <h3 className="font-bold mb-4" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>デザインツール</h3>
                   <div className="flex flex-wrap gap-2">
                     {job.devEnvironment.designTools.map((tool, index) => (
-                      <span key={index} className="border border-[#707070] rounded-full px-4 py-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>
+                      <span key={index} className="border border-[#707070] rounded-full px-4 py-2" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>
                         {tool}
                       </span>
                     ))}
@@ -333,14 +335,14 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
               {job.devEnvironment.workStyle.length > 0 && (
                 <div>
-                  <h3 className="font-bold mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>制作スタイル</h3>
+                  <h3 className="font-bold mb-4" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>制作スタイル</h3>
                   <ul className="space-y-2">
                     {job.devEnvironment.workStyle.map((item, index) => (
                       <li key={index} className="flex items-start gap-4">
                         <svg className="w-3 h-3 mt-2 shrink-0" fill="none" viewBox="0 0 11 11">
                           <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                         </svg>
-                        <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item}</span>
+                        <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '28px' }}>{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -356,14 +358,14 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
         <section id="appeal-points" className="relative py-20 border-b border-black/15">
           <div className="max-w-[1180px] mx-auto px-8">
             <div className="mb-8">
-              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>アピールポイント</h2>
+              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>アピールポイント</h2>
               <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
             </div>
 
             <div className="space-y-6">
               {job.appealPoints.map((point, index) => (
                 <div key={index} className="bg-gray-50 rounded-2xl p-6">
-                  <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>{point}</p>
+                  <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px' }}>{point}</p>
                 </div>
               ))}
             </div>
@@ -386,14 +388,14 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="mb-8">
-            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: "Noto Sans JP, sans-serif", fontSize: "36px" }}>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: "var(--font-noto), sans-serif", fontSize: "36px" }}>
               募集要項
             </h2>
             <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]" />
           </div>
 
           <div className="border border-[#707070] rounded-2xl overflow-hidden">
-            <table className="w-full" style={{ fontFamily: "Noto Sans JP, sans-serif", fontSize: "16px" }}>
+            <table className="w-full" style={{ fontFamily: "var(--font-noto), sans-serif", fontSize: "16px" }}>
               <tbody>
                 {[
                   { label: "雇用形態", value: job.employmentType },
@@ -418,22 +420,22 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
             <div className="mt-8 space-y-6">
               {job.workHours && (
                 <div className="bg-gray-50 rounded-2xl p-6">
-                  <h3 className="font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>勤務時間・残業</h3>
-                  <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px', whiteSpace: 'pre-line' }}>{job.workHours}</p>
+                  <h3 className="font-bold mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>勤務時間・残業</h3>
+                  <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px', whiteSpace: 'pre-line' }}>{job.workHours}</p>
                 </div>
               )}
 
               {job.holidays && (
                 <div className="bg-gray-50 rounded-2xl p-6">
-                  <h3 className="font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>休日・休暇</h3>
-                  <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px', whiteSpace: 'pre-line' }}>{job.holidays}</p>
+                  <h3 className="font-bold mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>休日・休暇</h3>
+                  <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px', whiteSpace: 'pre-line' }}>{job.holidays}</p>
                 </div>
               )}
 
               {job.trialPeriod && (
                 <div className="bg-gray-50 rounded-2xl p-6">
-                  <h3 className="font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>試用期間</h3>
-                  <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px', whiteSpace: 'pre-line' }}>{job.trialPeriod}</p>
+                  <h3 className="font-bold mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>試用期間</h3>
+                  <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px', whiteSpace: 'pre-line' }}>{job.trialPeriod}</p>
                 </div>
               )}
             </div>
@@ -446,7 +448,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
         <section id="benefits" className="relative py-20 border-b border-black/15">
           <div className="max-w-[1180px] mx-auto px-8">
             <div className="mb-8">
-              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>待遇・福利厚生</h2>
+              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>待遇・福利厚生</h2>
               <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
             </div>
 
@@ -456,7 +458,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
                   <svg className="w-3 h-3 mt-2 shrink-0" fill="none" viewBox="0 0 11 11">
                     <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                   </svg>
-                  <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '28px' }}>{benefit}</span>
+                  <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '28px' }}>{benefit}</span>
                 </div>
               ))}
             </div>
@@ -469,7 +471,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
         <section id="selection" className="relative py-20 border-b border-black/15">
           <div className="max-w-[1180px] mx-auto px-8">
             <div className="mb-8">
-              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>選考フロー</h2>
+              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>選考フロー</h2>
               <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
             </div>
 
@@ -477,10 +479,10 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
               {job.selectionProcess.map((step, index, arr) => (
                 <div key={index} className="flex items-center">
                   <div className="text-center">
-                    <div className="bg-[#4346BE] text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mb-3 mx-auto" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '18px' }}>
+                    <div className="bg-[#4346BE] text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mb-3 mx-auto" style={{ fontFamily: 'var(--font-roboto), sans-serif', fontSize: '18px' }}>
                       {index + 1}
                     </div>
-                    <p className="text-sm" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', lineHeight: '24px' }}>{step.replace(/STEP\d+：/, '')}</p>
+                    <p className="text-sm" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px', lineHeight: '24px' }}>{step.replace(/STEP\d+：/, '')}</p>
                   </div>
                   {index < arr.length - 1 && (
                     <svg className="w-6 h-6 mx-4 text-[#4346BE] max-[1039px]:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -492,7 +494,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
             </div>
 
             <div className="mt-8 bg-gray-50 rounded-2xl p-6">
-              <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', lineHeight: '28px' }}>
+              <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px', lineHeight: '28px' }}>
                 ※ 面接時は履歴書・職務経歴書をご持参ください。<br />
                 ※ 面接日・勤務開始日は相談可能です。
               </p>
@@ -512,10 +514,10 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="flex flex-col items-center text-center">
-            <h2 className="font-bold mb-6 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>
+            <h2 className="font-bold mb-6 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>
               この求人に応募する
             </h2>
-            <p className="mb-10 text-gray-600" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '28px' }}>
+            <p className="mb-10 text-gray-600" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '28px' }}>
               ご興味をお持ちいただけましたら、ぜひご応募ください。<br />
               ご応募お待ちしております。
             </p>
@@ -523,7 +525,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
               <Link
                 href={`/contact?type=${type}&job=${encodeURIComponent(job.title)}`}
                 className={`${badgeColor} text-white rounded-full px-12 py-4 font-bold flex items-center gap-3 hover:opacity-90 transition-opacity`}
-                style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
+                style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
               >
                 この求人に応募する
                 <svg className="w-2 h-3" fill="none" viewBox="0 0 7 11.8462">
@@ -533,7 +535,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
               <Link
                 href={backLink}
                 className="border border-[#707070] bg-white rounded-full px-12 py-4 font-bold flex items-center gap-3 hover:bg-gray-50 transition-colors"
-                style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
+                style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
               >
                 求人一覧に戻る
                 <svg className="w-2 h-3" fill="none" viewBox="0 0 7.32727 12.4">
@@ -557,7 +559,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
 
           <div className="max-w-[1180px] mx-auto px-8">
             <div className="mb-8">
-              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>関連コンテンツ</h2>
+              <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>関連コンテンツ</h2>
               <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
             </div>
 
@@ -580,13 +582,13 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
                   <div className="p-4">
                     <div className="mb-3 flex items-center gap-2">
                       <div className="w-3 h-3 rounded-full" style={{ backgroundColor: getCategoryColor(item.category) }}></div>
-                      <span className="text-sm font-medium" style={{ fontFamily: 'Noto Sans JP, sans-serif', color: '#313131' }}>
+                      <span className="text-sm font-medium" style={{ fontFamily: 'var(--font-noto), sans-serif', color: '#313131' }}>
                         {item.categoryLabel}
                       </span>
                     </div>
                     <h3
                       className="font-bold line-clamp-2"
-                      style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px', lineHeight: '1.5' }}
+                      style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px', lineHeight: '1.5' }}
                     >
                       {item.title}
                     </h3>
@@ -599,7 +601,7 @@ export default function JobDetail({ job, type, relatedContents = [] }: JobDetail
               <Link
                 href="/contents"
                 className="inline-flex items-center gap-3 text-[#4346BE] hover:opacity-70 transition-opacity"
-                style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}
+                style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}
               >
                 コンテンツ一覧を見る
                 <svg className="w-2 h-3" fill="none" viewBox="0 0 7.32727 12.4">

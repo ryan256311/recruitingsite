@@ -87,10 +87,10 @@ export default function JobsList() {
         </div>
 
         <div className="pl-[80px] pr-20 pt-8 max-[539px]:pl-[40px] max-[539px]:pr-[40px]">
-          <h1 className="font-bold tracking-[1.92px] mb-4" style={{ fontFamily: 'Roboto, sans-serif', fontSize: 'clamp(36px, 5vw, 64px)', lineHeight: '1.2' }}>
+          <h1 className="font-bold tracking-[1.92px] mb-4" style={{ fontFamily: 'var(--font-roboto), sans-serif', fontSize: 'clamp(36px, 5vw, 64px)', lineHeight: '1.2' }}>
             Jobs
           </h1>
-          <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
+          <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px' }}>
             只今募集中の求人をご紹介します。
           </p>
         </div>
@@ -134,7 +134,7 @@ export default function JobsList() {
                       </svg>
                       <span
                         className={selectedType === filter.id ? 'font-bold' : ''}
-                        style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
+                        style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
                       >
                         {filter.label}
                       </span>
@@ -168,7 +168,7 @@ export default function JobsList() {
                       </svg>
                       <span
                         className={selectedOccupation === occupation ? 'font-bold' : ''}
-                        style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
+                        style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
                       >
                         {occupationLabels[occupation] || occupation}
                       </span>
@@ -202,7 +202,7 @@ export default function JobsList() {
                       </svg>
                       <span
                         className={selectedEmploymentType === employment.id ? 'font-bold' : ''}
-                        style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
+                        style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
                       >
                         {employment.label}
                       </span>
@@ -227,7 +227,7 @@ export default function JobsList() {
                     <svg className="w-3 h-3" fill="none" viewBox="0 0 11 11">
                       <path clipRule="evenodd" d={svgPaths.pf417300} fill="#707070" fillRule="evenodd" />
                     </svg>
-                    <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>キャリア採用について</span>
+                    <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>キャリア採用について</span>
                   </Link>
                   <Link
                     href="/graduate"
@@ -236,7 +236,7 @@ export default function JobsList() {
                     <svg className="w-3 h-3" fill="none" viewBox="0 0 11 11">
                       <path clipRule="evenodd" d={svgPaths.pf417300} fill="#707070" fillRule="evenodd" />
                     </svg>
-                    <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>新卒採用について</span>
+                    <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>新卒採用について</span>
                   </Link>
                 </div>
               </div>
@@ -244,7 +244,7 @@ export default function JobsList() {
 
             {/* Jobs Grid */}
             <div className="flex-1" style={{ maxWidth: '1150px' }}>
-              <h2 className="font-bold mb-10 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>
+              <h2 className="font-bold mb-10 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>
                 募集中の求人
                 <span className="ml-4 text-[#707070] font-normal" style={{ fontSize: '18px' }}>
                   （{filteredJobs.length}件）
@@ -259,31 +259,31 @@ export default function JobsList() {
                     className="block border border-[#707070] rounded-2xl p-8 hover:bg-gray-50 transition-colors"
                   >
                     <div className="flex items-start justify-between mb-4">
-                      <h3 className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>
+                      <h3 className="font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>
                         {job.title}
                       </h3>
                       <span
                         className={`text-white text-sm px-3 py-1 rounded-full ${
                           job.jobType === 'career' ? 'bg-[#0064c8]' : 'bg-[#4346BE]'
                         }`}
-                        style={{ fontFamily: 'Noto Sans JP, sans-serif' }}
+                        style={{ fontFamily: 'var(--font-noto), sans-serif' }}
                       >
                         {job.jobType === 'career' ? 'キャリア' : '新卒'}
                       </span>
                     </div>
                     <div className="flex gap-4 mb-4">
-                      <span className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+                      <span className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
                         {job.department}
                       </span>
-                      <span className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+                      <span className="border border-[#707070] rounded-full px-3 py-1 text-sm" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
                         {job.type}
                       </span>
                     </div>
-                    <p className="text-gray-600" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                    <p className="text-gray-600" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                       {job.description}
                     </p>
                     <div className="mt-6 pt-4 border-t border-[#e0e0e0]">
-                      <div className="flex items-center gap-2 text-sm text-[#707070]" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+                      <div className="flex items-center gap-2 text-sm text-[#707070]" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -296,7 +296,7 @@ export default function JobsList() {
               </div>
 
               {filteredJobs.length === 0 && (
-                <p className="text-center py-12 text-[#707070]" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+                <p className="text-center py-12 text-[#707070]" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
                   該当する求人はありません。
                 </p>
               )}

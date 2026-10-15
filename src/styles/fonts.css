@@ -1,7 +1,9 @@
-/* Noto Sans JP */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap');
+/* フォントは next/font/google で自己ホスト(src/app/layout.tsx)。
+   Noto Sans JP → var(--font-noto) / Roboto → var(--font-roboto)。
+   外部Google Fontsへの @import は撤廃(レンダリングブロック解消)。
+   Verdana はOS標準フォントのため読み込み不要。 */
 
-/* Roboto */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-
-/* Verdana is a system font, no import needed */
+/* ページ全体のベースフォント(個別のfontFamily指定が無い要素向け) */
+body {
+  font-family: var(--font-noto), sans-serif;
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 interface ContentPhotoProps {
   src: string;
@@ -20,10 +21,12 @@ export default function ContentPhoto({ src, alt }: ContentPhotoProps) {
   }
 
   return (
-    <img
+    <Image
       src={src}
       alt={alt}
-      className="absolute inset-0 w-full h-full object-cover"
+      fill
+      sizes="(max-width: 539px) 100vw, (max-width: 1039px) 33vw, 240px"
+      className="object-cover"
       onError={() => setDidError(true)}
     />
   );

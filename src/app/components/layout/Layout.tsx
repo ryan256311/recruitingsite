@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import svgPaths from "../../../imports/svg-corg4qlf3y";
 import imgInstagramGlyphBlack from "../../../assets/f171275cdf27d311fd0a3b1f6ef7b82227a50ce2.webp";
@@ -85,7 +86,7 @@ export default function Layout({ children }: LayoutProps) {
             </div>
             <span
               className={`font-medium tracking-[0.54px] transition-all duration-[450ms] max-[539px]:!text-[10px] min-[540px]:max-[1039px]:!text-[12px] ${isScrolled ? 'text-[16px]' : 'text-[18px]'}`}
-              style={{ fontFamily: 'Roboto, sans-serif' }}
+              style={{ fontFamily: 'var(--font-roboto), sans-serif' }}
             >
               Recruitment Site
             </span>
@@ -95,10 +96,10 @@ export default function Layout({ children }: LayoutProps) {
           <nav className="flex items-center gap-[2.4vw]">
             {/* Desktop navigation - hidden below 1039px */}
             <div className="hidden min-[1040px]:flex items-center gap-[1.36vw]">
-              <Link href="/graduate" className="font-bold tracking-[0.42px] whitespace-nowrap" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>新卒採用</Link>
-              <Link href="/career" className="font-bold tracking-[0.42px] whitespace-nowrap" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>キャリア採用</Link>
+              <Link href="/graduate" className="font-bold tracking-[0.42px] whitespace-nowrap" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>新卒採用</Link>
+              <Link href="/career" className="font-bold tracking-[0.42px] whitespace-nowrap" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>キャリア採用</Link>
             </div>
-            <Link href="/company-visit" className="bg-[#0064c8] text-white py-3 rounded-full font-bold flex items-center justify-center gap-2 whitespace-nowrap w-[210px] max-[1039px]:w-auto max-[1039px]:px-[14px] max-[1039px]:h-[38px] max-[1039px]:py-0 max-[1039px]:rounded-[8px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '12px' }}>
+            <Link href="/company-visit" className="bg-[#0064c8] text-white py-3 rounded-full font-bold flex items-center justify-center gap-2 whitespace-nowrap w-[210px] max-[1039px]:w-auto max-[1039px]:px-[14px] max-[1039px]:h-[38px] max-[1039px]:py-0 max-[1039px]:rounded-[8px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '12px' }}>
               <span className="hidden min-[1040px]:inline">会社見学会にエントリー</span>
               <span className="min-[1040px]:hidden">ENTRY</span>
               <svg className="w-2 h-3 hidden min-[1040px]:block" fill="none" viewBox="0 0 7 11.8462">
@@ -126,7 +127,7 @@ export default function Layout({ children }: LayoutProps) {
                     href={item.href}
                     className={`font-bold tracking-[0.42px] py-2 transition-all duration-300 ${isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
                     style={{
-                      fontFamily: 'Noto Sans JP, sans-serif',
+                      fontFamily: 'var(--font-noto), sans-serif',
                       fontSize: '14px',
                       transitionDelay: isMobileMenuOpen ? item.delay : '0ms'
                     }}
@@ -139,7 +140,7 @@ export default function Layout({ children }: LayoutProps) {
                     href={item.href}
                     className={`font-bold tracking-[0.42px] py-2 transition-all duration-300 ${isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
                     style={{
-                      fontFamily: 'Noto Sans JP, sans-serif',
+                      fontFamily: 'var(--font-noto), sans-serif',
                       fontSize: '14px',
                       transitionDelay: isMobileMenuOpen ? item.delay : '0ms'
                     }}
@@ -175,8 +176,8 @@ export default function Layout({ children }: LayoutProps) {
                   { img: footerSlide4, widthClass: "w-[510px] max-[1039px]:w-[350px] max-[539px]:w-[255px]" },
                   { img: footerSlide5, widthClass: "w-[440px] max-[1039px]:w-[300px] max-[539px]:w-[220px]" },
                 ].map((item, index) => (
-                  <div key={index} className={`shrink-0 rounded-2xl overflow-hidden ${item.widthClass}`}>
-                    <img src={item.img.src} alt={`採用イメージ${index + 1}`} className="w-full aspect-square object-cover" />
+                  <div key={index} className={`relative shrink-0 rounded-2xl overflow-hidden aspect-square ${item.widthClass}`}>
+                    <Image src={item.img} alt={`採用イメージ${index + 1}`} fill sizes="(max-width: 539px) 260px, (max-width: 1039px) 350px, 510px" className="object-cover" />
                   </div>
                 ))}
               </div>
@@ -186,15 +187,15 @@ export default function Layout({ children }: LayoutProps) {
         <div className="border-t border-black/15 mt-[20px]"></div>
         <div className="py-24 max-[539px]:py-16">
           <div className="pl-[80px] pr-20 max-[539px]:pl-[40px] max-[539px]:pr-[40px] flex justify-between max-[1039px]:flex-col max-[1039px]:gap-8">
-            <h2 className="font-bold max-[1039px]:!text-[48px] max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '72px', lineHeight: '1.2' }}>採用について</h2>
+            <h2 className="font-bold max-[1039px]:!text-[48px] max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '72px', lineHeight: '1.2' }}>採用について</h2>
             <div className="w-[630px] max-[1039px]:w-full">
-              <div className="mb-8" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
+              <div className="mb-8" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px' }}>
                 <p className="mb-4">当社では、「変化を楽しみ挑戦し続ける」「アイデアを形にする」という行動指針をもとに、職種や部署を超えて連携し合い、チームでの成果を追求しています。</p>
                 <p className="mb-4">さあ、私たちと一緒に。変化を恐れず、未来を描く仲間になりませんか？</p>
                 <p>あなたのエントリーをお待ちしております。</p>
               </div>
               <Link href="/jobs" className="inline-flex items-center gap-4 border border-[#707070] bg-white rounded-full px-8 py-3 hover:bg-gray-50 transition-colors">
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>募集要項</span>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>募集要項</span>
                 <svg className="w-2 h-3" fill="none" viewBox="0 0 7.32727 12.4">
                   <path d={svgPaths.p36961f00} fill="#2A2A2A" />
                 </svg>
@@ -215,22 +216,22 @@ export default function Layout({ children }: LayoutProps) {
         <div className="pl-[80px] pr-20 max-[539px]:pl-[40px] max-[539px]:pr-[40px]">
           <div className="grid grid-cols-2 gap-24 max-[1039px]:grid-cols-1 max-[1039px]:gap-12">
             <div>
-              <h2 className="font-bold mb-4 max-[1039px]:!text-[48px] max-[539px]:!text-[26px]" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '72px', lineHeight: '1.1' }}>Let ideas (X)plode.</h2>
-              <p className="font-bold mb-12 max-[539px]:!text-[18px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '24px' }}>変化を楽しみ挑戦し続けよう。</p>
+              <h2 className="font-bold mb-4 max-[1039px]:!text-[48px] max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-roboto), sans-serif', fontSize: '72px', lineHeight: '1.1' }}>Let ideas (X)plode.</h2>
+              <p className="font-bold mb-12 max-[539px]:!text-[18px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '24px' }}>変化を楽しみ挑戦し続けよう。</p>
               <div className="space-y-4 max-w-[400px]">
                 <Link href="/company-visit" className="block border border-[#0064c8] bg-[#0064c8] text-white rounded-md p-5 hover:bg-[#0057b0] transition-colors">
-                  <span className="font-semibold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>会社見学</span>
+                  <span className="font-semibold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>会社見学</span>
                 </Link>
                 <Link href="/contact?type=career" className="block border border-[#313131] bg-[#313131] text-white rounded-md p-5 hover:bg-[#4a4a4a] transition-colors">
-                  <span className="font-semibold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>キャリア採用エントリー</span>
+                  <span className="font-semibold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>キャリア採用エントリー</span>
                 </Link>
                 <Link href="/contact?type=graduate" className="block border border-[#707070] bg-white rounded-md p-5 hover:bg-gray-50 transition-colors">
-                  <span className="font-semibold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>27卒エントリー</span>
+                  <span className="font-semibold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>27卒エントリー</span>
                 </Link>
               </div>
               <div className="mt-8">
                 <a href="https://www.instagram.com/exceet_official?igsh=bnViejFlanh4N3U1&utm_source=qr" target="_blank" rel="noopener noreferrer" className="inline-block">
-                  <img src={imgInstagramGlyphBlack.src} alt="Instagram" className="w-6 h-6" />
+                  <Image src={imgInstagramGlyphBlack} alt="Instagram" width={24} height={24} className="w-6 h-6" />
                 </a>
               </div>
             </div>
@@ -255,14 +256,14 @@ export default function Layout({ children }: LayoutProps) {
                       <svg className="w-3 h-3" fill="none" viewBox="0 0 14 14">
                         <path clipRule="evenodd" d={svgPaths.p17cd8580} fill="#4346BE" fillRule="evenodd" />
                       </svg>
-                      <span className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>{item.label}</span>
+                      <span className="font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>{item.label}</span>
                     </a>
                   ) : (
                     <Link key={index} href={item.href} className="flex items-center gap-3 hover:opacity-70 transition-opacity">
                       <svg className="w-3 h-3" fill="none" viewBox="0 0 14 14">
                         <path clipRule="evenodd" d={svgPaths.p17cd8580} fill="#4346BE" fillRule="evenodd" />
                       </svg>
-                      <span className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>{item.label}</span>
+                      <span className="font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>{item.label}</span>
                     </Link>
                   )
                 ))}
@@ -300,7 +301,7 @@ export default function Layout({ children }: LayoutProps) {
                   <path d={svgPaths.p1460fb80} fill="#212121" />
                 </svg>
               </div>
-              <span className="font-medium tracking-[0.54px]" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '16px', color: '#272727' }}>Recruitment Site</span>
+              <span className="font-medium tracking-[0.54px]" style={{ fontFamily: 'var(--font-roboto), sans-serif', fontSize: '16px', color: '#272727' }}>Recruitment Site</span>
             </div>
             <div className="flex items-center gap-6 max-[539px]:flex-col max-[539px]:items-start max-[539px]:gap-2">
               <a
@@ -308,11 +309,11 @@ export default function Layout({ children }: LayoutProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-normal tracking-[0.36px] hover:opacity-70 transition-opacity"
-                style={{ fontFamily: 'Roboto, sans-serif', fontSize: '12px', color: '#333' }}
+                style={{ fontFamily: 'var(--font-roboto), sans-serif', fontSize: '12px', color: '#333' }}
               >
                 プライバシーポリシー
               </a>
-              <p className="font-normal tracking-[0.36px]" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '12px', color: '#333' }}>©株式会社エクシート All Rights</p>
+              <p className="font-normal tracking-[0.36px]" style={{ fontFamily: 'var(--font-roboto), sans-serif', fontSize: '12px', color: '#333' }}>©株式会社エクシート All Rights</p>
             </div>
           </div>
         </div>

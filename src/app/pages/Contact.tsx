@@ -234,10 +234,10 @@ export default function Contact() {
               <svg className="w-16 h-16 mx-auto mb-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <h2 className="font-bold text-2xl mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+              <h2 className="font-bold text-2xl mb-4" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
                 送信完了
               </h2>
-              <p className="text-[#707070] mb-8" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '1.8' }}>
+              <p className="text-[#707070] mb-8" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '1.8' }}>
                 お問い合わせありがとうございます。<br />
                 内容を確認の上、3営業日以内にご連絡いたします。<br />
                 確認メールを送信しましたので、ご確認ください。
@@ -245,7 +245,7 @@ export default function Contact() {
               <a
                 href="/"
                 className="inline-flex items-center gap-2 text-[#4346BE] hover:opacity-70 transition-opacity"
-                style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
+                style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
               >
                 <span>トップページに戻る</span>
                 <svg className="w-2 h-3" fill="none" viewBox="0 0 7 11.8462">
@@ -274,7 +274,7 @@ export default function Contact() {
           <h1 className="text-h1 font-roboto tracking-[1.92px] mb-4">
             Contact
           </h1>
-          <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
+          <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px' }}>
             採用に関するお問い合わせはこちらからお願いいたします。
           </p>
         </div>
@@ -291,7 +291,7 @@ export default function Contact() {
 
         <div className="max-w-[900px] mx-auto px-8">
           <div className="mb-12">
-            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>
+            <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>
               お問い合わせフォーム
             </h2>
             <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
@@ -299,7 +299,7 @@ export default function Contact() {
 
           {/* お問い合わせ前の注意事項 */}
           <div className="bg-gray-50 rounded-2xl p-8 mb-12">
-            <h3 className="font-bold mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>
+            <h3 className="font-bold mb-4" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>
               お問い合わせの前に
             </h3>
             <ul className="space-y-3">
@@ -307,7 +307,7 @@ export default function Contact() {
                 <svg className="w-3 h-3 mt-1.5 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                   採用に関するご質問、選考へのご応募、会社見学のご希望など、お気軽にお問い合わせください。
                 </span>
               </li>
@@ -315,7 +315,7 @@ export default function Contact() {
                 <svg className="w-3 h-3 mt-1.5 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                   通常、3営業日以内にご返信いたします。
                 </span>
               </li>
@@ -323,7 +323,7 @@ export default function Contact() {
                 <svg className="w-3 h-3 mt-1.5 shrink-0" fill="none" viewBox="0 0 11 11">
                   <path clipRule="evenodd" d={svgPaths.pf417300} fill="#4346BE" fillRule="evenodd" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                   <span className="text-red-600">*</span> は必須項目です。
                 </span>
               </li>
@@ -333,7 +333,7 @@ export default function Contact() {
           {/* Error message */}
           {submitStatus === 'error' && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-8">
-              <p className="text-red-600" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>
+              <p className="text-red-600" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>
                 {errorMessage || 'エラーが発生しました。もう一度お試しください。'}
               </p>
             </div>
@@ -344,7 +344,7 @@ export default function Contact() {
             <div className="space-y-8">
               {/* お問い合わせ種別 */}
               <div>
-                <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                <label className="block font-bold mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                   お問い合わせ種別 <span className="text-red-600">*</span>
                 </label>
                 <div className="flex flex-wrap gap-4">
@@ -356,7 +356,7 @@ export default function Contact() {
                         {...register('inquiryType', { required: 'お問い合わせ種別を選択してください' })}
                         className="w-4 h-4 accent-[#4346BE]"
                       />
-                      <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>{item}</span>
+                      <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>{item}</span>
                     </label>
                   ))}
                 </div>
@@ -367,7 +367,7 @@ export default function Contact() {
 
               {/* 採用区分 */}
               <div>
-                <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                <label className="block font-bold mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                   採用区分 <span className="text-red-600">*</span>
                 </label>
                 <div className="flex flex-wrap gap-4">
@@ -379,7 +379,7 @@ export default function Contact() {
                         {...register('recruitmentType', { required: '採用区分を選択してください' })}
                         className="w-4 h-4 accent-[#4346BE]"
                       />
-                      <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>{item}</span>
+                      <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>{item}</span>
                     </label>
                   ))}
                 </div>
@@ -390,10 +390,10 @@ export default function Contact() {
 
               {/* 応募職種 */}
               <div>
-                <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                <label className="block font-bold mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                   応募職種 <span className="text-red-600">*</span>
                 </label>
-                <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+                <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
                   ※複数選択可
                 </p>
                 <div className="flex flex-wrap gap-4">
@@ -405,7 +405,7 @@ export default function Contact() {
                         onChange={() => handleJobToggle(job)}
                         className="w-4 h-4 accent-[#4346BE]"
                       />
-                      <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>{job}</span>
+                      <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>{job}</span>
                     </label>
                   ))}
                 </div>
@@ -413,7 +413,7 @@ export default function Contact() {
 
               {/* お名前 */}
               <div>
-                <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                <label className="block font-bold mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                   お名前 <span className="text-red-600">*</span>
                 </label>
                 <input
@@ -421,7 +421,7 @@ export default function Contact() {
                   {...register('name', { required: 'お名前を入力してください' })}
                   className="w-full border border-[#707070] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#4346BE] focus:border-transparent"
                   placeholder="山田 太郎"
-                  style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
+                  style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
                 />
                 {errors.name && (
                   <p className="text-red-600 text-sm mt-2">{errors.name.message}</p>
@@ -430,7 +430,7 @@ export default function Contact() {
 
               {/* フリガナ */}
               <div>
-                <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                <label className="block font-bold mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                   フリガナ <span className="text-red-600">*</span>
                 </label>
                 <input
@@ -438,7 +438,7 @@ export default function Contact() {
                   {...register('furigana', { required: 'フリガナを入力してください' })}
                   className="w-full border border-[#707070] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#4346BE] focus:border-transparent"
                   placeholder="ヤマダ タロウ"
-                  style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
+                  style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
                 />
                 {errors.furigana && (
                   <p className="text-red-600 text-sm mt-2">{errors.furigana.message}</p>
@@ -447,7 +447,7 @@ export default function Contact() {
 
               {/* メールアドレス */}
               <div>
-                <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                <label className="block font-bold mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                   メールアドレス <span className="text-red-600">*</span>
                 </label>
                 <input
@@ -461,7 +461,7 @@ export default function Contact() {
                   })}
                   className="w-full border border-[#707070] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#4346BE] focus:border-transparent"
                   placeholder="example@email.com"
-                  style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
+                  style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
                 />
                 {errors.email && (
                   <p className="text-red-600 text-sm mt-2">{errors.email.message}</p>
@@ -470,7 +470,7 @@ export default function Contact() {
 
               {/* 電話番号 */}
               <div>
-                <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                <label className="block font-bold mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                   電話番号
                 </label>
                 <input
@@ -478,16 +478,16 @@ export default function Contact() {
                   {...register('phone')}
                   className="w-full border border-[#707070] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#4346BE] focus:border-transparent"
                   placeholder="03-1234-5678"
-                  style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
+                  style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
                 />
               </div>
 
               {/* 履歴書の添付 */}
               <div>
-                <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                <label className="block font-bold mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                   履歴書の添付 <span className="text-red-600">*</span>
                 </label>
-                <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+                <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
                   PDF、Word、JPG、PNG形式（5MB以下）
                 </p>
                 {resume ? (
@@ -495,7 +495,7 @@ export default function Contact() {
                     <svg className="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>{resume.name}</span>
+                    <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>{resume.name}</span>
                     <button
                       type="button"
                       onClick={() => setResume(null)}
@@ -519,13 +519,13 @@ export default function Contact() {
                         <svg className="w-10 h-10 mx-auto mb-3 text-[#707070]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                         </svg>
-                        <p className="mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', color: '#707070' }}>
+                        <p className="mb-2" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px', color: '#707070' }}>
                           ファイルをドラッグ＆ドロップ、または
                         </p>
                         <label className="inline-block">
                           <span
                             className="text-[#4346BE] underline cursor-pointer"
-                            style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}
+                            style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}
                           >
                             ファイルを選択
                           </span>
@@ -548,10 +548,10 @@ export default function Contact() {
               {/* 職務経歴書の添付（キャリア採用の場合） */}
               {recruitmentType === 'キャリア採用' && (
                 <div>
-                  <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                  <label className="block font-bold mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                     職務経歴書の添付
                   </label>
-                  <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+                  <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
                     PDF、Word、JPG、PNG形式（5MB以下）
                   </p>
                   {careerHistory ? (
@@ -559,7 +559,7 @@ export default function Contact() {
                       <svg className="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>{careerHistory.name}</span>
+                      <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>{careerHistory.name}</span>
                       <button
                         type="button"
                         onClick={() => setCareerHistory(null)}
@@ -583,13 +583,13 @@ export default function Contact() {
                           <svg className="w-10 h-10 mx-auto mb-3 text-[#707070]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                           </svg>
-                          <p className="mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', color: '#707070' }}>
+                          <p className="mb-2" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px', color: '#707070' }}>
                             ファイルをドラッグ＆ドロップ、または
                           </p>
                           <label className="inline-block">
                             <span
                               className="text-[#4346BE] underline cursor-pointer"
-                              style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}
+                              style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}
                             >
                               ファイルを選択
                             </span>
@@ -612,10 +612,10 @@ export default function Contact() {
 
               {/* ポートフォリオ（ファイル） */}
               <div>
-                <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                <label className="block font-bold mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                   ポートフォリオ（ファイル）
                 </label>
-                <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+                <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
                   PDF、Word、JPG、PNG形式（5MB以下）
                 </p>
                 {portfolio ? (
@@ -623,7 +623,7 @@ export default function Contact() {
                     <svg className="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>{portfolio.name}</span>
+                    <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>{portfolio.name}</span>
                     <button
                       type="button"
                       onClick={() => setPortfolio(null)}
@@ -647,13 +647,13 @@ export default function Contact() {
                         <svg className="w-10 h-10 mx-auto mb-3 text-[#707070]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                         </svg>
-                        <p className="mb-2" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px', color: '#707070' }}>
+                        <p className="mb-2" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px', color: '#707070' }}>
                           ファイルをドラッグ＆ドロップ、または
                         </p>
                         <label className="inline-block">
                           <span
                             className="text-[#4346BE] underline cursor-pointer"
-                            style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}
+                            style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}
                           >
                             ファイルを選択
                           </span>
@@ -675,10 +675,10 @@ export default function Contact() {
 
               {/* ポートフォリオ（URL） */}
               <div>
-                <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                <label className="block font-bold mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                   ポートフォリオ（URL）
                 </label>
-                <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+                <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
                   ポートフォリオサイト、GitHub、Behance等のURLを入力してください
                 </p>
                 <input
@@ -686,23 +686,23 @@ export default function Contact() {
                   {...register('portfolioUrl')}
                   className="w-full border border-[#707070] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#4346BE] focus:border-transparent"
                   placeholder="https://example.com/portfolio"
-                  style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
+                  style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
                 />
               </div>
 
               {/* その他 */}
               <div>
-                <label className="block font-bold mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                <label className="block font-bold mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                   その他
                 </label>
-                <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+                <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
                   ※自己PR、志望動機、その他アピールしたい情報など
                 </p>
                 <textarea
                   {...register('message')}
                   className="w-full border border-[#707070] rounded-lg px-4 py-3 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-[#4346BE] focus:border-transparent"
                   placeholder="自由にご記入ください"
-                  style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
+                  style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
                 />
               </div>
 
@@ -714,7 +714,7 @@ export default function Contact() {
                     {...register('privacyAgreed', { required: 'プライバシーポリシーへの同意が必要です' })}
                     className="w-5 h-5 mt-0.5 accent-[#4346BE]"
                   />
-                  <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                  <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                     <a href="https://exceet.co.jp/privacy/" target="_blank" rel="noopener noreferrer" className="text-[#4346BE] underline hover:opacity-70 transition-opacity">プライバシーポリシー</a>に同意する <span className="text-red-600">*</span>
                   </span>
                 </label>
@@ -738,11 +738,11 @@ export default function Contact() {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      <span className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>送信中...</span>
+                      <span className="font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>送信中...</span>
                     </>
                   ) : (
                     <>
-                      <span className="font-bold" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>送信する</span>
+                      <span className="font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>送信する</span>
                       <svg className="w-2 h-3" fill="none" viewBox="0 0 7 11.8462">
                         <path d={svgPaths.p190b2b48} fill="white" />
                       </svg>
@@ -755,7 +755,7 @@ export default function Contact() {
 
           {/* 他のお問い合わせ方法 */}
           <div className="mt-16 text-center">
-            <h3 className="font-bold mb-6" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '20px' }}>
+            <h3 className="font-bold mb-6" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>
               その他のお問い合わせ方法
             </h3>
             <div className="flex justify-center gap-8 max-[539px]:flex-col max-[539px]:items-center max-[539px]:gap-4">
@@ -763,7 +763,7 @@ export default function Contact() {
                 <svg className="w-6 h-6 text-[#4346BE]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                   recruit@exceet.co.jp
                 </span>
               </div>
@@ -771,7 +771,7 @@ export default function Contact() {
                 <svg className="w-6 h-6 text-[#4346BE]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                   0776-97-8466（採用担当直通）
                 </span>
               </div>

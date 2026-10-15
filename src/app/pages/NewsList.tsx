@@ -24,10 +24,10 @@ export default function NewsList() {
         </div>
 
         <div className="max-w-[1180px] mx-auto px-8 pt-8">
-          <h1 className="font-bold tracking-[1.92px] mb-4" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: 'clamp(36px, 5vw, 64px)', lineHeight: '1.2' }}>
+          <h1 className="font-bold tracking-[1.92px] mb-4" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: 'clamp(36px, 5vw, 64px)', lineHeight: '1.2' }}>
             お知らせ
           </h1>
-          <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
+          <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px' }}>
             採用に関するお知らせやイベント情報をお届けします。
           </p>
         </div>
@@ -71,7 +71,7 @@ export default function NewsList() {
                     </svg>
                     <span
                       className={selectedCategory === category.id ? 'font-bold' : ''}
-                      style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}
+                      style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}
                     >
                       {category.label}
                     </span>
@@ -93,7 +93,7 @@ export default function NewsList() {
                   >
                     <span
                       className="text-[#707070] shrink-0"
-                      style={{ fontFamily: 'Roboto, sans-serif', fontSize: '14px' }}
+                      style={{ fontFamily: 'var(--font-roboto), sans-serif', fontSize: '14px' }}
                     >
                       {item.date}
                     </span>
@@ -102,13 +102,13 @@ export default function NewsList() {
                         item.category === 'graduate' ? 'bg-[#4346BE]' :
                         item.category === 'news' ? 'bg-[#0064c8]' : 'bg-[#707070]'
                       }`}
-                      style={{ fontFamily: 'Noto Sans JP, sans-serif' }}
+                      style={{ fontFamily: 'var(--font-noto), sans-serif' }}
                     >
                       {item.categoryLabel}
                     </span>
                     <span
                       className="flex-1 hover:underline"
-                      style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}
+                      style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
                     >
                       {item.title}
                     </span>
@@ -117,7 +117,7 @@ export default function NewsList() {
               </div>
 
               {filteredNews.length === 0 && (
-                <p className="text-center py-12 text-[#707070]" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+                <p className="text-center py-12 text-[#707070]" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
                   該当するお知らせはありません。
                 </p>
               )}

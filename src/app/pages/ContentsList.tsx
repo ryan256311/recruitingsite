@@ -52,10 +52,10 @@ export default function ContentsList() {
         </div>
 
         <div className="pl-[80px] pr-20 pt-8 max-[539px]:pl-[40px] max-[539px]:pr-[40px]">
-          <h1 className="font-bold tracking-[1.92px] mb-4" style={{ fontFamily: 'Roboto, sans-serif', fontSize: 'clamp(36px, 5vw, 64px)', lineHeight: '1.2' }}>
+          <h1 className="font-bold tracking-[1.92px] mb-4" style={{ fontFamily: 'var(--font-roboto), sans-serif', fontSize: 'clamp(36px, 5vw, 64px)', lineHeight: '1.2' }}>
             Contents
           </h1>
-          <p style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px', lineHeight: '32px' }}>
+          <p style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '32px' }}>
             エクシートについて、さまざまな角度からご紹介します。
           </p>
         </div>
@@ -117,7 +117,7 @@ export default function ContentsList() {
                           fillRule="evenodd"
                         />
                       </svg>
-                      <span style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '16px' }}>
+                      <span style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
                         {category.label}
                       </span>
                     </button>
@@ -143,7 +143,7 @@ export default function ContentsList() {
                           ? 'bg-[#4346BE] text-white border-[#4346BE]'
                           : 'bg-white text-[#313131] border-[#707070] hover:bg-[#333] hover:text-white hover:border-[#333]'
                       }`}
-                      style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}
+                      style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}
                     >
                       #{tag}
                     </button>
@@ -154,7 +154,7 @@ export default function ContentsList() {
 
             {/* Contents Grid */}
             <div>
-              <h2 className="font-bold mb-10 max-[539px]:!text-[26px]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '36px' }}>コンテンツ</h2>
+              <h2 className="font-bold mb-10 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>コンテンツ</h2>
 
               <div className="flex flex-wrap gap-x-[20px] gap-y-[60px] mb-[70px]" style={{ maxWidth: '1150px', width: '100%' }}>
                 {paginatedContents.map((item) => (
@@ -175,12 +175,12 @@ export default function ContentsList() {
                     {/* Category */}
                     <div className="mb-3 flex items-center gap-2">
                       <div className="w-3 h-3 rounded-full" style={{ backgroundColor: getCategoryColor(item.category) }}></div>
-                      <span className="text-sm font-medium" style={{ fontFamily: 'Noto Sans JP, sans-serif', color: '#313131' }}>
+                      <span className="text-sm font-medium" style={{ fontFamily: 'var(--font-noto), sans-serif', color: '#313131' }}>
                         {item.categoryLabel}
                       </span>
                     </div>
                     {/* Title */}
-                    <div className="mb-3" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '18px', lineHeight: '28px' }}>
+                    <div className="mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '18px', lineHeight: '28px' }}>
                       <p className="line-clamp-2">{item.title}</p>
                     </div>
                     {/* Tags */}
@@ -189,7 +189,7 @@ export default function ContentsList() {
                         <span
                           key={tag}
                           className="border border-[#707070] text-[#707070] text-xs px-3 py-1 rounded-full"
-                          style={{ fontFamily: 'Noto Sans JP, sans-serif' }}
+                          style={{ fontFamily: 'var(--font-noto), sans-serif' }}
                         >
                           #{tag}
                         </span>
@@ -200,7 +200,7 @@ export default function ContentsList() {
               </div>
 
               {filteredContents.length === 0 && (
-                <p className="text-center py-12 text-[#707070]" style={{ fontFamily: 'Noto Sans JP, sans-serif' }}>
+                <p className="text-center py-12 text-[#707070]" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
                   該当するコンテンツはありません。
                 </p>
               )}
@@ -233,7 +233,7 @@ export default function ContentsList() {
                           ? 'bg-[#4346BE] text-white'
                           : 'border border-[#707070] text-[#313131] hover:bg-gray-100'
                       }`}
-                      style={{ fontFamily: 'Roboto, sans-serif', fontSize: '14px' }}
+                      style={{ fontFamily: 'var(--font-roboto), sans-serif', fontSize: '14px' }}
                     >
                       {page}
                     </button>
@@ -258,7 +258,7 @@ export default function ContentsList() {
 
               {/* 件数表示 */}
               {filteredContents.length > 0 && (
-                <p className="text-center mt-8 text-[#707070]" style={{ fontFamily: 'Noto Sans JP, sans-serif', fontSize: '14px' }}>
+                <p className="text-center mt-8 text-[#707070]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '14px' }}>
                   {filteredContents.length}件中 {startIndex + 1}〜{Math.min(startIndex + ITEMS_PER_PAGE, filteredContents.length)}件を表示
                 </p>
               )}

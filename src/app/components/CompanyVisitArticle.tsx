@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import svgPaths from "../../imports/svg-corg4qlf3y";
 import companyImage1 from "../../assets/company-1.webp";
 import cardImage1 from "../../assets/environment-1.webp";
@@ -145,7 +146,7 @@ function SectionHeading({ children, center = false }: { children: React.ReactNod
     <div className={`mb-12 ${center ? "text-center" : ""}`}>
       <h2
         className="font-bold tracking-[1.08px] mb-2"
-        style={{ fontFamily: "Noto Sans JP, sans-serif", fontSize: "32px" }}
+        style={{ fontFamily: "var(--font-noto), sans-serif", fontSize: "32px" }}
       >
         {children}
       </h2>
@@ -156,7 +157,7 @@ function SectionHeading({ children, center = false }: { children: React.ReactNod
 
 export default function CompanyVisitArticle() {
   return (
-    <div style={{ fontFamily: "Noto Sans JP, sans-serif" }}>
+    <div style={{ fontFamily: "var(--font-noto), sans-serif" }}>
       {/* ===== リード（キャッチ） ===== */}
       <section className="relative py-20 border-b border-black/15">
         <div className="max-w-[1000px] mx-auto px-8">
@@ -164,7 +165,7 @@ export default function CompanyVisitArticle() {
             <div className="flex-1">
               <h2
                 className="font-bold mb-6"
-                style={{ fontFamily: "Noto Sans JP, sans-serif", fontSize: "32px", lineHeight: 1.4 }}
+                style={{ fontFamily: "var(--font-noto), sans-serif", fontSize: "32px", lineHeight: 1.4 }}
               >
                 入社後の不安を、
                 <br />
@@ -175,12 +176,15 @@ export default function CompanyVisitArticle() {
               </p>
             </div>
             <div className="w-full md:w-[45%] shrink-0">
-              <img
-                src={companyImage1.src}
-                alt="会社見学の様子"
-                className="w-full rounded-2xl object-cover"
-                style={{ aspectRatio: "4/3" }}
-              />
+              <div className="relative w-full rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
+                <Image
+                  src={companyImage1}
+                  alt="会社見学の様子"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 45vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -319,11 +323,11 @@ export default function CompanyVisitArticle() {
             {BENEFITS.map((item, index) => (
               <div key={index} className="bg-white border border-[#e0e0e0] rounded-2xl overflow-hidden">
                 <div className="aspect-[4/3] bg-gray-200 relative">
-                  <img src={item.image.src} alt={item.title} className="w-full h-full object-cover" />
+                  <Image src={item.image} alt={item.title} fill sizes="(max-width: 768px) 100vw, 320px" className="object-cover" />
                 </div>
                 <div className="p-8">
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="font-bold leading-none" style={{ fontFamily: "Roboto, sans-serif", fontSize: "18px", color: ACCENT }}>
+                    <span className="font-bold leading-none" style={{ fontFamily: "var(--font-roboto), sans-serif", fontSize: "18px", color: ACCENT }}>
                       {item.number}
                     </span>
                     <h3 className="font-bold leading-none m-0" style={{ fontSize: "20px" }}>{item.title}</h3>
@@ -369,7 +373,7 @@ export default function CompanyVisitArticle() {
             <Link
               href="/contact?type=company-visit"
               className="bg-white rounded-full px-16 py-5 font-bold inline-flex items-center gap-3 hover:bg-gray-100 transition-colors"
-              style={{ fontFamily: "Noto Sans JP, sans-serif", fontSize: "20px", color: ACCENT }}
+              style={{ fontFamily: "var(--font-noto), sans-serif", fontSize: "20px", color: ACCENT }}
             >
               会社見学に申し込む
               <svg className="w-2 h-3" fill="none" viewBox="0 0 7 11.8462">
