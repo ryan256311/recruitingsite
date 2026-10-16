@@ -220,7 +220,7 @@ microCMSのフィールドIDは**20文字以内**という制限があり、`dep
 非エンジニアがWYSIWYGで書けることが要件なので、本文は microCMS の**リッチエディタ（HTML出力）**とする。これに伴い、
 
 1. 自作Markdownパーサ `renderContent` は **削除**する
-2. 受け取ったHTMLは `isomorphic-dompurify` で **サニタイズ**してから描画する（許可タグ: `h2` `h3` `p` `strong` `em` `ul` `ol` `li` `a` `br` `img` `blockquote`）
+2. 受け取ったHTMLは `sanitize-html` で **サニタイズ**してから描画する（当初は `isomorphic-dompurify` を使ったが、依存するjsdomがVercelのランタイムで `ERR_REQUIRE_ESM` を起こし、ページ再生成が失敗したため差し替えた。ビルドは通るので本番でしか露見しない）（許可タグ: `h2` `h3` `p` `strong` `em` `ul` `ol` `li` `a` `br` `img` `blockquote`）
 3. 見出し等の体裁は、ラッパー要素 `.cms-body` 配下のCSSで再現する（`src/styles/index.css` に `.cms-body h2 { ... }` を定義）
 
 **サニタイズを必須とする理由**: リッチエディタのHTMLをそのまま `dangerouslySetInnerHTML` に渡すと、CMS側に書き込める人が任意のスクリプトをサイト訪問者のブラウザで実行できる状態になる。担当者を信頼するかどうかとは別に、CMSアカウントが乗っ取られた場合の被害範囲を限定するために挟む。

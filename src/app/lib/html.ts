@@ -1,4 +1,9 @@
-import DOMPurify from "isomorphic-dompurify";
+// DOMを使わないパーサ方式のサニタイザを使う。
+// 以前は isomorphic-dompurify（内部でjsdom）を使っていたが、jsdomの依存が
+// Vercelのランタイムで ERR_REQUIRE_ESM を起こし、本文を持つページの再生成が
+// 失敗し続けた（ビルドと `next start` は通るため、本番でしか露見しない）。
+// DOMPurifyへ戻す場合は、サーバーレス環境で動くDOM実装が必要になる。
+import sanitizeHtml from "sanitize-html";
 
 const ALLOWED_TAGS = [
   "h2", "h3", "h4",
@@ -21,15 +26,12 @@ const ALLOWED_ATTR = ["href", "target", "rel", "src", "alt", "width", "height"];
 export function sanitizeCmsHtml(html: string): string {
   if (!html) return "";
 
-  const clean = DOMPurify.sanitize(html, {
-    ALLOWED_TAGS,
-    ALLOWED_ATTR,
-    ALLOWED_URI_REGEXP: /^(?:https?:|mailto:|tel:|\/|#)/i,
-    // ALLOWED_URI_REGEXPはURI以外の属性値にも適用されるため、
-    // target="_blank" や width="800" のような値が弾かれてしまう。
-    // URIを持たない属性はここで検証の対象外にする。
-    // （width/heightが落ちると、本文画像の読み込み時にレイアウトシフトが起きる）
-    ADD_URI_SAFE_ATTR: ["target", "rel", "width", "height"],
+  const clean = sanitizeHtml(html, {
+    allowedTags: ALLOWED_TAGS,
+    allowedAttributes: { "*": ALLOWED_ATTR },
+    allowedSchemes: ["https", "http", "mailto", "tel"],
+    // 相対パス（/contents/2）とページ内アンカー（#section）は本文で普通に使う
+    allowProtocolRelative: false,
   });
 
   // target="_blank" のリンクに rel を補う（タブナビング対策）
