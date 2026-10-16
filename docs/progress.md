@@ -88,3 +88,41 @@
 ## 7. 今後の対応候補（未完了）
 - `.env.local` に実際の Resend APIキー等を記入（フォーム動作に必須・要ユーザー対応）。
 - 本番でファイル添付を実保存する場合は R2/S3 の設定。
+
+---
+
+## 8. microCMS導入によるコンテンツ管理（2026-10-16）
+
+採用担当者（非エンジニア）が管理画面からコンテンツを更新できるようにした。
+設計書: [`superpowers/specs/2026-10-15-microcms-cms-design.md`](./superpowers/specs/2026-10-15-microcms-cms-design.md)
+実装計画: [`superpowers/plans/2026-10-16-microcms-cms.md`](./superpowers/plans/2026-10-16-microcms-cms.md)
+担当者向け手順書: [`cms-operation.md`](./cms-operation.md)
+
+### 構成
+- コンテンツは microCMS の3つのAPI（`news` / `contents` / `jobs`）が保持
+- `src/app/lib/cms/` が取得とマッピングを担当し、既存の型（`NewsItem` / `ContentItem` / `Job`）へ変換
+- データ取得はサーバーコンポーネント（各 `page.tsx`）で行い、`"use client"` のページコンポーネントへpropsで渡す
+- 反映は Webhook（`/api/revalidate`）で数秒。保険として全ページ `revalidate = 600`
+
+### 主な変更
+- `src/app/data/*.ts` のデータ配列を削除（型・カテゴリ定義・ヘルパーのみ残す）
+- `ContentItem.id` を `number` → `string`、`Job.id` → `Job.slug: string`（既存URLをcontentId/slugで維持）
+- `ContentsDetail.tsx` の自作Markdownパーサを削除し、`CmsBody`（サニタイズ付きHTML描画）に置き換え
+- トップページにハードコードされていたお知らせ1件をCMS参照に変更（`externalUrl` で外部リンクに対応）
+- `next.config.ts` を新規作成（microCMS画像ドメインの許可）
+- vitest を導入（`npm test`）
+
+### 必要な環境変数（`.env.example` 参照）
+`MICROCMS_SERVICE_DOMAIN` / `MICROCMS_API_KEY` / `MICROCMS_WEBHOOK_SECRET` / `DRAFT_PREVIEW_SECRET`
+（`MICROCMS_WRITE_API_KEY` は移行スクリプト用。Vercelには登録しない）
+
+### microCMS側の設定
+- Webhook: カスタム通知 → `https://<本番ドメイン>/api/revalidate`、シークレットは `MICROCMS_WEBHOOK_SECRET` と同じ値
+  通知タイミングは「公開」「公開（予約設定による操作）」「更新」「非公開」「削除」をON
+- 画面プレビュー: `https://<本番ドメイン>/api/draft?secret=<DRAFT_PREVIEW_SECRET>&api=contents&contentId={CONTENT_ID}&draftKey={DRAFT_KEY}`
+
+### 未完了（APIキー提供後に実施）
+- microCMSのアカウント・サービス作成、APIスキーマ3つの作成
+- `npm run migrate:cms`（記事12件・求人7件の投入。`--dry-run` で事前確認可）
+- 記事画像12枚の手動アップロードと公開
+- `npm run build` と本番での受け入れ確認
