@@ -181,3 +181,102 @@
 .font-verdana {
   font-family: 'Verdana', sans-serif;
 }
+
+/* ===== CMS本文（microCMSリッチエディタ由来のHTML）=====
+   旧 ContentsDetail.tsx の自作Markdownパーサが当てていた体裁を
+   そのまま再現している。数値を変えると既存記事の見た目が変わる。 */
+.cms-body {
+  font-family: var(--font-noto), sans-serif;
+  font-size: 18px;
+  line-height: 2;
+}
+
+.cms-body h2 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.6;
+  margin-top: 90px;
+  margin-bottom: 16px;
+  border-left: 4px solid #4346be;
+  padding-left: 14px;
+}
+
+.cms-body h2:first-child {
+  margin-top: 0;
+}
+
+.cms-body h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+.cms-body h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.cms-body p {
+  margin-bottom: 24px;
+}
+
+.cms-body strong {
+  font-weight: 700;
+}
+
+.cms-body ul,
+.cms-body ol {
+  margin-bottom: 24px;
+  padding-left: 24px;
+}
+
+.cms-body ul {
+  list-style: disc;
+}
+
+.cms-body ol {
+  list-style: decimal;
+}
+
+.cms-body li {
+  margin-bottom: 8px;
+}
+
+.cms-body a {
+  color: #0074b9;
+  text-decoration: underline;
+}
+
+.cms-body img {
+  max-width: 100%;
+  height: auto;
+  margin: 32px 0;
+}
+
+.cms-body blockquote {
+  margin: 24px 0;
+  padding: 16px 20px;
+  border-left: 4px solid #d0d0d0;
+  background: #f7f7f7;
+}
+
+.cms-body table {
+  width: 100%;
+  margin-bottom: 24px;
+  border-collapse: collapse;
+}
+
+.cms-body th,
+.cms-body td {
+  padding: 10px 12px;
+  border: 1px solid #d0d0d0;
+  text-align: left;
+}
+
+.cms-body th {
+  background: #f7f7f7;
+  font-weight: 700;
+}
