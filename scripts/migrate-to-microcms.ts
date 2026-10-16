@@ -10,11 +10,10 @@
  *       APIキーに一時的に POST / PUT 権限が付与されていること。
  *       投入が終わったら権限を GET のみに戻す。
  *
- * --overwrite の危険性:
- *   このスクリプトは画像を送らない（アイキャッチは管理画面から手動で設定する運用）。
- *   公開後に上書きすると、手動で設定した画像が消え、記事が下書きに戻る。
- *   そうなると画像なしの記事は一覧から除外され、記事URLは404になる。
- *   既定でスキップしているのはこのため。
+ * --overwrite について:
+ *   PATCHで更新するため、送っていないフィールド（手動設定したアイキャッチ画像など）は
+ *   保持される。ただし本文やタイトルは移行元のデータで上書きされるので、
+ *   投入後に管理画面で加えた編集は失われる。既定でスキップしているのはこのため。
  */
 import { writeFileSync } from "fs";
 import { createClient, isMicroCMSRequestError } from "microcms-js-sdk";
@@ -50,19 +49,19 @@ function createWriteClient(): CmsClient {
   });
 }
 
-/** 既にそのcontentIdのコンテンツが存在するか（下書きも含めて判定する） */
-async function exists(client: CmsClient, endpoint: string, contentId: string): Promise<boolean> {
-  try {
-    await client.getListDetail({
-      endpoint,
-      contentId,
-      customRequestInit: { cache: "no-store" },
-    });
-    return true;
-  } catch (error) {
-    if (isMicroCMSRequestError(error) && error.status === 404) return false;
-    throw error;
-  }
+/**
+ * 「既にそのcontentIdが存在する」エラーかどうか。
+ *
+ * 事前のGETで存在確認はできない。投入したコンテンツは下書きなので、
+ * draftKeyなしのGETでは404が返り「存在しない」と判定されてしまう。
+ * そこで作成を試し、microCMSが返す重複エラーで判断する。
+ */
+function isAlreadyExists(error: unknown): boolean {
+  return (
+    isMicroCMSRequestError(error) &&
+    error.status === 400 &&
+    /already exists/i.test(error.message)
+  );
 }
 
 interface UpsertResult {
@@ -81,9 +80,15 @@ async function upsertAll(
   for (const payload of payloads) {
     // 1件の失敗で全体が止まらないよう、レコードごとに握る
     try {
-      if (!OVERWRITE && (await exists(client, endpoint, payload.contentId))) {
-        console.log(`  skip   ${endpoint}/${payload.contentId}（既に存在します）`);
-        result.skipped += 1;
+      if (OVERWRITE) {
+        // PATCHなので、送っていないフィールド（画像など）は保持される
+        await client.update({
+          endpoint,
+          contentId: payload.contentId,
+          content: payload.content,
+        });
+        console.log(`  update ${endpoint}/${payload.contentId}`);
+        result.created += 1;
         continue;
       }
 
@@ -96,6 +101,11 @@ async function upsertAll(
       console.log(`  create ${endpoint}/${payload.contentId}`);
       result.created += 1;
     } catch (error) {
+      if (!OVERWRITE && isAlreadyExists(error)) {
+        console.log(`  skip   ${endpoint}/${payload.contentId}（既に存在します）`);
+        result.skipped += 1;
+        continue;
+      }
       console.error(`  FAILED ${endpoint}/${payload.contentId}:`, error);
       result.failed += 1;
     }
@@ -123,7 +133,7 @@ async function main() {
 
   if (OVERWRITE) {
     console.warn("[警告] --overwrite が指定されています。");
-    console.warn("[警告] 既存コンテンツを上書きし、手動設定したアイキャッチ画像が消え、記事は下書きに戻ります。");
+    console.warn("[警告] 既存コンテンツの本文・タイトル等を移行元のデータで上書きします（画像は保持されます）。");
   }
 
   const client = createWriteClient();
