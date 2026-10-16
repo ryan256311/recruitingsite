@@ -20,7 +20,8 @@ import environment4 from "../../assets/environment-4.webp";
 import environment5 from "../../assets/environment-5.webp";
 import environment6 from "../../assets/environment-6.webp";
 import environment7 from "../../assets/environment-7.webp";
-import { contentItems, contentCategories, getCategoryColor } from "../data/contents";
+import { contentCategories, getCategoryColor, type ContentItem } from "../data/contents";
+import type { NewsItem } from "../data/news";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -105,7 +106,12 @@ function CategoryIcon({ id, className }: { id: string; className?: string }) {
 const environmentImagesLeft = [environment1, environment2, environment3, environment4];
 const environmentImagesRight = [environment5, environment6, environment7];
 
-export default function Home() {
+interface HomeProps {
+  news: NewsItem[];
+  contents: ContentItem[];
+}
+
+export default function Home({ news, contents }: HomeProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
@@ -227,14 +233,39 @@ export default function Home() {
                 <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
               </div>
               <div className="space-y-4">
-                {[
-                  { date: '2026.07.03', text: '福井労働局主催「高校生サマー求人企業説明会」に参加いたします', href: 'https://jsite.mhlw.go.jp/fukui-roudoukyoku/hw/gakusei_tokusetsusite_00010.html' }
-                ].map((item, index) => (
-                  <a key={index} href={item.href} target="_blank" rel="noopener noreferrer" className="flex gap-8 max-[539px]:flex-col max-[539px]:gap-1 hover:opacity-70" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
-                    <span className="font-normal whitespace-nowrap">{item.date}</span>
-                    <span className="font-medium">{item.text}</span>
-                  </a>
-                ))}
+                {news.length === 0 && (
+                  <p className="text-[#707070]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
+                    現在お知らせはありません。
+                  </p>
+                )}
+                {news.slice(0, 5).map((item) => {
+                  const rowClassName = "flex gap-8 max-[539px]:flex-col max-[539px]:gap-1 hover:opacity-70";
+                  const rowStyle = { fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' };
+                  const row = (
+                    <>
+                      <span className="font-normal whitespace-nowrap">{item.date}</span>
+                      <span className="font-medium">{item.title}</span>
+                    </>
+                  );
+
+                  // 外部リンクURLが入っているお知らせは外部サイトへ送る
+                  return item.externalUrl ? (
+                    <a
+                      key={item.id}
+                      href={item.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={rowClassName}
+                      style={rowStyle}
+                    >
+                      {row}
+                    </a>
+                  ) : (
+                    <Link key={item.id} href={`/news/${item.id}`} className={rowClassName} style={rowStyle}>
+                      {row}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
             <div className="w-[34.33%] max-[1039px]:w-full">
@@ -342,7 +373,7 @@ export default function Home() {
         <div className="pl-[80px] pr-20 max-[539px]:pl-[40px] max-[539px]:pr-[40px]">
           <h3 className="font-bold mb-12 max-[539px]:!text-[26px] max-[539px]:mb-8" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>インタビュー &<br />クロストーク</h3>
           <div className="grid grid-cols-5 gap-6 max-[1039px]:grid-cols-3 max-[539px]:grid-cols-1">
-            {contentItems
+            {contents
               .filter(item => item.tags.includes('インタビュー'))
               .sort((a, b) => new Date(b.publishedAt.replace(/\./g, '-')).getTime() - new Date(a.publishedAt.replace(/\./g, '-')).getTime())
               .slice(0, 5)
@@ -526,7 +557,7 @@ export default function Home() {
             <div className="grow shrink basis-[843px] min-[1201px]:min-w-[700px] max-[1200px]:basis-auto max-[1200px]:w-full">
               <h2 className="font-bold mb-10 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>コンテンツ</h2>
               {(() => {
-                const filtered = contentItems
+                const filtered = contents
                   .filter(item => selectedCategory === 'all' || item.category === selectedCategory)
                   .sort((a, b) => new Date(b.publishedAt.replace(/\./g, '-')).getTime() - new Date(a.publishedAt.replace(/\./g, '-')).getTime());
 
