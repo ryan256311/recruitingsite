@@ -84,6 +84,15 @@ function optional(key: string, value: unknown): Record<string, unknown> {
   return value === undefined ? {} : { [key]: value };
 }
 
+/**
+ * 箇条書き項目をテキストエリア用の改行区切り文字列にする。
+ * CMS側は繰り返しフィールドではなくテキストエリア（1行に1項目）で定義している。
+ */
+function toTextArea(lines: string[] | undefined): string | undefined {
+  if (!lines || lines.length === 0) return undefined;
+  return lines.join("\n");
+}
+
 export function buildContentPayload(item: LegacyContent): ContentPayload {
   return {
     // contentIdに既存の数値IDを指定して /contents/25 等のURLを維持する
@@ -114,26 +123,28 @@ export function buildJobPayload(job: LegacyJob, category: EmploymentCategory): J
       employmentCategory: [category],
       title: job.title,
       department: job.department,
-      departmentDescription: job.departmentDescription,
+      // CMSのフィールドIDは20文字以内のため departmentDescription を短縮している
+      departmentDesc: job.departmentDescription,
       type: job.type,
       description: job.description,
       background: job.background,
-      requirements: job.requirements,
-      responsibilities: job.responsibilities,
+      requirements: toTextArea(job.requirements),
+      responsibilities: toTextArea(job.responsibilities),
       salary: job.salary,
       location: job.location,
       employmentType: job.employmentType,
-      ...optional("welcomeSkills", job.welcomeSkills),
-      ...optional("appealPoints", job.appealPoints),
+      ...optional("welcomeSkills", toTextArea(job.welcomeSkills)),
+      ...optional("appealPoints", toTextArea(job.appealPoints)),
       ...optional("workHours", job.workHours),
       ...optional("holidays", job.holidays),
       ...optional("trialPeriod", job.trialPeriod),
-      ...optional("benefits", job.benefits),
-      ...optional("selectionProcess", job.selectionProcess),
-      ...optional(
-        "devEnvironment",
-        job.devEnvironment ? { fieldId: "devEnvironment", ...job.devEnvironment } : undefined
-      ),
+      ...optional("benefits", toTextArea(job.benefits)),
+      ...optional("selectionProcess", toTextArea(job.selectionProcess)),
+      // 開発環境はカスタムフィールドではなく4つのテキストエリアに展開する
+      ...optional("devTech", toTextArea(job.devEnvironment?.tech)),
+      ...optional("devVersionControl", toTextArea(job.devEnvironment?.versionControl)),
+      ...optional("devDesignTools", toTextArea(job.devEnvironment?.designTools)),
+      ...optional("devWorkStyle", toTextArea(job.devEnvironment?.workStyle)),
     },
   };
 }

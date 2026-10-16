@@ -56,6 +56,30 @@ describe("sanitizeCmsHtml", () => {
     expect(result.match(/rel=/g)).toHaveLength(1);
   });
 
+  it("画像のwidth/heightを残す（読み込み時のレイアウトシフトを防ぐため）", () => {
+    const result = sanitizeCmsHtml('<img src="https://images.microcms-assets.io/a.webp" alt="図" width="800" height="600">');
+    expect(result).toContain('width="800"');
+    expect(result).toContain('height="600"');
+    expect(result).toContain('alt="図"');
+  });
+
+  it("microCMSの本文画像に配信サイズのクエリを付ける", () => {
+    const result = sanitizeCmsHtml('<img src="https://images.microcms-assets.io/a.png" alt="図">');
+    expect(result).toContain("?w=1000&fm=webp");
+  });
+
+  it("既にクエリが付いた画像URLはそのままにする", () => {
+    const result = sanitizeCmsHtml('<img src="https://images.microcms-assets.io/a.png?w=400" alt="図">');
+    expect(result).toContain("?w=400");
+    expect(result).not.toContain("?w=1000");
+  });
+
+  it("microCMS以外の画像URLには手を加えない", () => {
+    const result = sanitizeCmsHtml('<img src="https://example.com/a.png" alt="図">');
+    expect(result).toContain('src="https://example.com/a.png"');
+    expect(result).not.toContain("fm=webp");
+  });
+
   it("空文字は空文字を返す", () => {
     expect(sanitizeCmsHtml("")).toBe("");
   });

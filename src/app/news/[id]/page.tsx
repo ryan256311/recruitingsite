@@ -19,12 +19,13 @@ export async function generateStaticParams() {
 
 export default async function NewsDetailPage({ params, searchParams }: Props) {
   const { id } = await params;
-  const { draftKey } = await searchParams;
-  const { isEnabled } = await draftMode();
 
-  // Draft Modeが有効でないときはdraftKeyを無視する。
-  // クエリを付けただけで未公開の下書きが読めてしまう状態を防ぐため。
-  const news = await getNewsDetail(id, isEnabled ? draftKey : undefined);
+  // searchParams を無条件に読むと静的生成が打ち切られ、ページが毎回動的レンダリングになる。
+  // draftMode().isEnabled はプリレンダー時も安全に false を返すので、先にこちらで判定する。
+  const { isEnabled } = await draftMode();
+  const draftKey = isEnabled ? (await searchParams).draftKey : undefined;
+
+  const news = await getNewsDetail(id, draftKey);
 
   if (!news) {
     notFound();

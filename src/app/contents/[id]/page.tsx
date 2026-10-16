@@ -20,10 +20,13 @@ export async function generateStaticParams() {
 
 export default async function ContentsDetailPage({ params, searchParams }: Props) {
   const { id } = await params;
-  const { draftKey } = await searchParams;
-  const { isEnabled } = await draftMode();
 
-  const content = await getContentDetail(id, isEnabled ? draftKey : undefined);
+  // searchParams を無条件に読むと静的生成が打ち切られ、ページが毎回動的レンダリングになる。
+  // draftMode().isEnabled はプリレンダー時も安全に false を返すので、先にこちらで判定する。
+  const { isEnabled } = await draftMode();
+  const draftKey = isEnabled ? (await searchParams).draftKey : undefined;
+
+  const content = await getContentDetail(id, draftKey);
 
   if (!content) {
     notFound();

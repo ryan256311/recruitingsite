@@ -2,6 +2,7 @@ import { contentCategories, type ContentItem } from "../../data/contents";
 import { getCmsClient } from "./client";
 import { fetchAll, type CmsListResponse } from "./fetchAll";
 import { formatCmsDate } from "./format";
+import { isContentNotFound } from "./notFound";
 import { firstSelected, type CmsImage } from "./types";
 
 const ENDPOINT = "contents";
@@ -88,7 +89,11 @@ export async function getContentDetail(
         : { next: { tags: [ENDPOINT] } },
     });
     return toContentItem(cms);
-  } catch {
-    return null;
+  } catch (error) {
+    // 本当に存在しない場合だけnullを返す。
+    // 一時的な障害まで404にすると、公開中の記事が最大10分間「見つかりません」になる
+    if (isContentNotFound(error)) return null;
+    console.error(`[cms] 記事 ${id} の取得に失敗しました`, error);
+    throw error;
   }
 }

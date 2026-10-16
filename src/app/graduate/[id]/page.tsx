@@ -1,4 +1,3 @@
-import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import Layout from "../../components/layout/Layout";
 import JobDetail from "../../pages/JobDetail";
@@ -8,7 +7,6 @@ import { getJobBySlug, getJobs } from "../../lib/cms/jobs";
 
 interface Props {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ draftKey?: string }>;
 }
 
 export const revalidate = 600;
@@ -31,12 +29,12 @@ function getRelatedContentsForGraduate(items: ContentItem[]): ContentItem[] {
     .slice(0, 3);
 }
 
-export default async function GraduateJobDetailPage({ params, searchParams }: Props) {
+export default async function GraduateJobDetailPage({ params }: Props) {
   const { id } = await params;
-  const { draftKey } = await searchParams;
-  const { isEnabled } = await draftMode();
 
-  const job = await getJobBySlug("graduate", id, isEnabled ? draftKey : undefined);
+  // 求人は /api/draft が未対応のため下書きプレビューを扱わない。
+  // searchParams を読まないことで、このページは静的生成のままになる。
+  const job = await getJobBySlug("graduate", id);
 
   if (!job) {
     notFound();

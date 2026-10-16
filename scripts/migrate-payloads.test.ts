@@ -116,7 +116,7 @@ describe("buildContentPayload", () => {
   });
 });
 
-describe("buildJobPayload", () => {
+describe("buildJobPayload（配列はテキストエリアの改行区切りで送る）", () => {
   it("slugとemploymentCategoryを設定し、contentIdは衝突しない形にする", () => {
     const payload = buildJobPayload(legacyJob(), "career");
     expect(payload.contentId).toBe("career-1");
@@ -134,33 +134,45 @@ describe("buildJobPayload", () => {
     const payload = buildJobPayload(legacyJob(), "career");
     expect(payload.content.title).toBe("Webコーダー");
     expect(payload.content.salary).toBe("月給220,000円〜");
-    expect(payload.content.requirements).toEqual(["実務経験1年以上"]);
+  });
+
+  it("配列項目を改行区切りの文字列にする", () => {
+    const job: LegacyJob = {
+      ...legacyJob(),
+      requirements: ["実務経験1年以上", "普通自動車第一種免許"],
+    };
+    const payload = buildJobPayload(job, "career");
+    expect(payload.content.requirements).toBe("実務経験1年以上\n普通自動車第一種免許");
+  });
+
+  it("部署紹介は20文字制限に合わせたフィールドIDで送る", () => {
+    const payload = buildJobPayload(legacyJob(), "career");
+    expect(payload.content.departmentDesc).toBe("部署紹介");
+    expect(payload.content).not.toHaveProperty("departmentDescription");
   });
 
   it("未設定の任意フィールドはキーを含めない", () => {
     const payload = buildJobPayload(legacyJob(), "career");
     expect(payload.content).not.toHaveProperty("welcomeSkills");
-    expect(payload.content).not.toHaveProperty("devEnvironment");
+    expect(payload.content).not.toHaveProperty("devTech");
   });
 
-  it("開発環境はfieldIdを付けて送る", () => {
+  it("開発環境は4つのフィールドに展開して送る", () => {
     const job: LegacyJob = {
       ...legacyJob(),
       devEnvironment: {
-        tech: ["TypeScript"],
+        tech: ["TypeScript", "React"],
         versionControl: ["Git"],
         designTools: ["Figma"],
         workStyle: ["リモート可"],
       },
     };
     const payload = buildJobPayload(job, "career");
-    expect(payload.content.devEnvironment).toEqual({
-      fieldId: "devEnvironment",
-      tech: ["TypeScript"],
-      versionControl: ["Git"],
-      designTools: ["Figma"],
-      workStyle: ["リモート可"],
-    });
+    expect(payload.content.devTech).toBe("TypeScript\nReact");
+    expect(payload.content.devVersionControl).toBe("Git");
+    expect(payload.content.devDesignTools).toBe("Figma");
+    expect(payload.content.devWorkStyle).toBe("リモート可");
+    expect(payload.content).not.toHaveProperty("devEnvironment");
   });
 
   it("idは送らない（slugで管理するため）", () => {

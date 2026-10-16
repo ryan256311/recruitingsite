@@ -2,6 +2,7 @@ import { newsCategories, type NewsItem } from "../../data/news";
 import { getCmsClient } from "./client";
 import { fetchAll, type CmsListResponse } from "./fetchAll";
 import { formatCmsDate } from "./format";
+import { isContentNotFound } from "./notFound";
 import { firstSelected, type CmsImage } from "./types";
 
 const ENDPOINT = "news";
@@ -74,8 +75,11 @@ export async function getNewsDetail(id: string, draftKey?: string): Promise<News
         : { next: { tags: [ENDPOINT] } },
     });
     return toNewsItem(cms);
-  } catch {
-    // 存在しないIDや未公開コンテンツは404で返るため、呼び出し側でnotFound()にする
-    return null;
+  } catch (error) {
+    // 本当に存在しない場合だけnullを返す。
+    // 一時的な障害まで404にすると、公開中のお知らせが最大10分間「見つかりません」になる
+    if (isContentNotFound(error)) return null;
+    console.error(`[cms] お知らせ ${id} の取得に失敗しました`, error);
+    throw error;
   }
 }
