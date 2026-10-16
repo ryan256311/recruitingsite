@@ -42,7 +42,7 @@
 
 | プロパティ | 値 |
 |---|---|
-| `WEBHOOK_SECRET` | `6SmQBFNg0kRBMw1-F6G1tZGfow5nR4Q2` |
+| `WEBHOOK_SECRET` | 下の「合言葉の作り方」で生成した値 |
 | `ADMIN_EMAIL` | 応募通知を受け取るメールアドレス |
 | `SHEET_ID` | 記録先スプレッドシートのID（URLの `/d/` と `/edit` の間の文字列） |
 
@@ -50,7 +50,15 @@
 > Apps Script を単独で作った場合は必須です。
 
 > `WEBHOOK_SECRET` はサイト側と共有する合言葉です。これが一致しないリクエストは拒否されます。
-> 値はこの手順書のものをそのまま使って構いませんが、外部に公開しないでください。
+
+#### 合言葉の作り方
+
+**このリポジトリは公開されています。合言葉の実値をファイルに書かないでください。**
+手元で次を実行し、出てきた値をスクリプトプロパティと Vercel にだけ貼り付けます。
+
+```bash
+node -e "console.log(require('crypto').randomBytes(24).toString('base64url'))"
+```
 
 ### A-4.（任意）送信元アドレスを会社のものにする
 
@@ -130,8 +138,8 @@
 | 変数名 | 値 |
 |---|---|
 | `GAS_WEBHOOK_URL` | 作業A-6でコピーしたURL |
-| `GAS_WEBHOOK_SECRET` | `6SmQBFNg0kRBMw1-F6G1tZGfow5nR4Q2` |
-| `FILE_ACCESS_SECRET` | `Tur5m8pgyi3g1AhdtaYg6qzC104n0M0O` |
+| `GAS_WEBHOOK_SECRET` | Apps Script の `WEBHOOK_SECRET` と同じ値 |
+| `FILE_ACCESS_SECRET` | 下の「合言葉の作り方」で生成した値 |
 | `R2_ENDPOINT` | 作業B-2のエンドポイント |
 | `R2_ACCESS_KEY_ID` | 作業B-2のAccess Key ID |
 | `R2_SECRET_ACCESS_KEY` | 作業B-2のSecret Access Key |
