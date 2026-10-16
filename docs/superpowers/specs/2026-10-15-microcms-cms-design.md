@@ -131,7 +131,7 @@ microCMSのGET APIは **デフォルト10件・`limit`最大100件** を返す�
 | `title` | タイトル | テキストフィールド | ✓ | |
 | `description` | 概要 | テキストエリア | ✓ | 一覧・OGPで使用 |
 | `body` | 本文 | リッチエディタ | ✓ | |
-| `image` | アイキャッチ画像 | 画像 | ✓ | |
+| `image` | アイキャッチ画像 | 画像 | – | 未設定ならプレースホルダー画像を使う（下記） |
 | `category` | カテゴリ | セレクト | ✓ | `company` / `work` / `members` / `environment` / `dialogue` |
 | `tags` | タグ | 複数選択 | – | `Career` / `新卒採用` / `キャリア採用` / `カルチャー` / `インタビュー` / `制度` |
 | `displayDate` | 掲載日 | 日時 | ✓ | 記事に表示する日付。マッピング層で `ContentItem.publishedAt` に変換する |
@@ -178,7 +178,16 @@ microCMSの繰り返しフィールドはカスタムフィールドの定義を
 
 同じ理由で、`devTech` / `devVersionControl` / `devDesignTools` / `devWorkStyle` の4フィールドに展開した。マッピング層が `Job.devEnvironment` の形に組み立て直す。4つとも空なら `undefined` にして、詳細ページから欄ごと消える。
 
-**3. `departmentDescription` → `departmentDesc`**
+**3. `image` を必須から任意へ**
+
+当初は必須としていたが、2点の理由で任意に変更した。
+
+- microCMSは**下書き作成時も必須フィールドを検証する**ため、画像を後から手動で設定する移行手順が成立しない（実際に12件すべてが `'image' field required error.` で失敗した）
+- 既存12記事の画像を確認したところ、**10枚が同一のブランドプレースホルダー**で、実写はインタビュー2枚のみだった。専用写真を持たない記事の方が多く、画像を必須にすると同じダミーを繰り返しアップロードする作業になる
+
+未設定のときはマッピング層が `/images/contents/placeholder.webp`（ロゴ入りの青い画像）を入れる。記事を一覧から除外する扱いはやめた。
+
+**4. `departmentDescription` → `departmentDesc`**
 
 microCMSのフィールドIDは**20文字以内**という制限があり、`departmentDescription`（21文字）は登録できなかった。マッピング層で既存型の `departmentDescription` に詰め替える。
 

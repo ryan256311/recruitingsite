@@ -19,6 +19,15 @@ export interface CmsContent {
   displayDate: string;
 }
 
+/**
+ * アイキャッチ画像が未設定のときに使う画像。
+ *
+ * 記事の多くは専用の写真を持たず、ブランドのプレースホルダーで足りる。
+ * 画像なしを理由に記事を一覧から消すより、担当者が画像を用意できていない記事も
+ * 公開できる方が運用に合う（CMS側でも image は任意にしてある）。
+ */
+const PLACEHOLDER_IMAGE = "/images/contents/placeholder.webp";
+
 const VALID_CATEGORIES = new Set([
   "company",
   "work",
@@ -31,9 +40,6 @@ const VALID_CATEGORIES = new Set([
 export function toContentItem(cms: CmsContent): ContentItem | null {
   if (!cms.title) return null;
 
-  // imageは必須。空文字をnext/imageに渡すと実行時エラーになるため、ここで弾く
-  if (!cms.image?.url) return null;
-
   const category = firstSelected(cms.category);
   if (!category || !VALID_CATEGORIES.has(category)) return null;
 
@@ -45,7 +51,8 @@ export function toContentItem(cms: CmsContent): ContentItem | null {
     title: cms.title,
     description: cms.description ?? "",
     content: cms.body ?? "",
-    image: cms.image.url,
+    // 空文字をnext/imageに渡すと実行時エラーになるため、必ず何かを入れる
+    image: cms.image?.url || PLACEHOLDER_IMAGE,
     category: category as ContentItem["category"],
     categoryLabel,
     tags: cms.tags ?? [],

@@ -41,8 +41,18 @@ describe("toContentItem", () => {
     expect(toContentItem({ ...base(), description: undefined })?.description).toBe("");
   });
 
-  it("画像が未設定ならnullを返す（一覧から除外する）", () => {
-    expect(toContentItem({ ...base(), image: undefined })).toBeNull();
+  it("画像が未設定ならプレースホルダー画像を使う（記事は一覧に残す）", () => {
+    const item = toContentItem({ ...base(), image: undefined });
+    expect(item).not.toBeNull();
+    expect(item?.image).toBe("/images/contents/placeholder.webp");
+  });
+
+  it("画像のURLが空文字でもプレースホルダー画像を使う", () => {
+    const item = toContentItem({
+      ...base(),
+      image: { url: "", width: 0, height: 0 },
+    });
+    expect(item?.image).toBe("/images/contents/placeholder.webp");
   });
 
   it("タイトルが空ならnullを返す", () => {
