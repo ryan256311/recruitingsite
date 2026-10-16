@@ -127,7 +127,10 @@ function appendRow(data) {
   var sheet = getSheet();
 
   sheet.appendRow([
-    new Date(),
+    // Dateをそのまま渡すと、スクリプトとスプレッドシートのタイムゾーン設定次第で
+    // 実際より何時間もずれた時刻が記録される（実機で7時間ずれるのを確認した）。
+    // 応募の受信時刻がずれるのは致命的なので、日本時間の文字列として固定する。
+    Utilities.formatDate(new Date(), 'Asia/Tokyo', 'yyyy/MM/dd HH:mm:ss'),
     '未対応',
     data.inquiryType || '',
     data.recruitmentType || '',
