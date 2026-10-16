@@ -2,14 +2,18 @@
 
 import Link from "next/link";
 import svgPaths from "../../imports/svg-corg4qlf3y";
-import { careerJobs } from "../data/jobs";
+import type { Job } from "../data/jobs";
 
-// 現在募集中の求人（Webデザイナーとフロントエンドエンジニアのみ表示）
-const displayedJobs = careerJobs.filter(job =>
-  job.id === 1 || job.id === 2 // Webデザイナー(id:1), フロントエンドエンジニア(id:2)
-);
+// このページに出す求人のslug（Webデザイナー, フロントエンドエンジニア）
+const DISPLAYED_SLUGS = ['1', '2'];
 
-export default function Career() {
+interface CareerProps {
+  jobs: Job[];
+}
+
+export default function Career({ jobs }: CareerProps) {
+  const displayedJobs = jobs.filter(job => DISPLAYED_SLUGS.includes(job.slug));
+
   return (
     <>
       {/* ===== Hero Section (01) ===== */}
@@ -262,7 +266,7 @@ export default function Career() {
 
           <div className="grid grid-cols-2 gap-6 mb-12 max-[1039px]:grid-cols-1 max-[539px]:grid-cols-1">
             {displayedJobs.map((job) => (
-              <Link key={job.id} href={`/career/${job.id}`} className="block border border-[#707070] rounded-2xl p-8 hover:bg-gray-50 transition-colors">
+              <Link key={job.slug} href={`/career/${job.slug}`} className="block border border-[#707070] rounded-2xl p-8 hover:bg-gray-50 transition-colors">
                 <div className="flex items-start justify-between mb-4">
                   <h3 className="font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>{job.title}</h3>
                   <span className="bg-[#0064c8] text-white text-sm px-3 py-1 rounded-full" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>キャリア</span>

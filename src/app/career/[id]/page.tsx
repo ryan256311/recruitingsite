@@ -1,23 +1,27 @@
+import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import Layout from "../../components/layout/Layout";
 import JobDetail from "../../pages/JobDetail";
-import { getCareerJobById, careerJobs } from "../../data/jobs";
-import { contentItems } from "../../data/contents";
+import type { ContentItem } from "../../data/contents";
+import { getAllContents } from "../../lib/cms/contents";
+import { getJobBySlug, getJobs } from "../../lib/cms/jobs";
 
 interface Props {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ draftKey?: string }>;
 }
 
-// 静的生成用のパラメータを生成
+export const revalidate = 600;
+
+// 静的生成用のパラメータを生成（URLの末尾はslug）
 export async function generateStaticParams() {
-  return careerJobs.map((job) => ({
-    id: job.id.toString(),
-  }));
+  const jobs = await getJobs("career");
+  return jobs.map((job) => ({ id: job.slug }));
 }
 
 // キャリア採用に関連するコンテンツを取得
-function getRelatedContentsForCareer() {
-  return contentItems
+function getRelatedContentsForCareer(items: ContentItem[]): ContentItem[] {
+  return items
     .filter(item =>
       item.tags.includes('キャリア採用') ||
       item.tags.includes('Career') ||
@@ -28,15 +32,19 @@ function getRelatedContentsForCareer() {
     .slice(0, 3);
 }
 
-export default async function CareerJobDetailPage({ params }: Props) {
+export default async function CareerJobDetailPage({ params, searchParams }: Props) {
   const { id } = await params;
-  const job = getCareerJobById(parseInt(id, 10));
+  const { draftKey } = await searchParams;
+  const { isEnabled } = await draftMode();
+
+  const job = await getJobBySlug("career", id, isEnabled ? draftKey : undefined);
 
   if (!job) {
     notFound();
   }
 
-  const relatedContents = getRelatedContentsForCareer();
+  const allContents = await getAllContents();
+  const relatedContents = getRelatedContentsForCareer(allContents);
 
   return (
     <Layout>

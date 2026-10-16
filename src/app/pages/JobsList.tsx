@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import svgPaths from "../../imports/svg-corg4qlf3y";
-import { careerJobs, graduateJobs, Job } from "../data/jobs";
+import type { Job } from "../data/jobs";
 
 type JobType = 'all' | 'career' | 'graduate';
 
@@ -12,20 +12,12 @@ interface JobWithType extends Job {
   jobType: 'career' | 'graduate';
 }
 
-// すべての求人を統合
-const allJobs: JobWithType[] = [
-  ...careerJobs.map(job => ({ ...job, jobType: 'career' as const })),
-  ...graduateJobs.map(job => ({ ...job, jobType: 'graduate' as const })),
-];
-
 const jobTypeFilters = [
   { id: 'all' as JobType, label: 'すべて' },
   { id: 'career' as JobType, label: 'キャリア採用' },
   { id: 'graduate' as JobType, label: '新卒採用' },
 ];
 
-// 職種一覧を動的に抽出
-const occupations = ['all', ...Array.from(new Set(allJobs.map(job => job.type)))];
 const occupationLabels: Record<string, string> = {
   'all': 'すべて',
   'エンジニア': 'エンジニア',
@@ -42,8 +34,22 @@ const employmentTypes = [
   { id: 'アルバイト・パート', label: 'アルバイト・パート' },
 ];
 
-export default function JobsList() {
+interface JobsListProps {
+  careerJobs: Job[];
+  graduateJobs: Job[];
+}
+
+export default function JobsList({ careerJobs, graduateJobs }: JobsListProps) {
   const searchParams = useSearchParams();
+
+  // すべての求人を統合
+  const allJobs: JobWithType[] = [
+    ...careerJobs.map(job => ({ ...job, jobType: 'career' as const })),
+    ...graduateJobs.map(job => ({ ...job, jobType: 'graduate' as const })),
+  ];
+
+  // 職種一覧を動的に抽出
+  const occupations = ['all', ...Array.from(new Set(allJobs.map(job => job.type)))];
   const [selectedType, setSelectedType] = useState<JobType>('all');
   const [selectedOccupation, setSelectedOccupation] = useState<string>('all');
   const [selectedEmploymentType, setSelectedEmploymentType] = useState<string>('all');
@@ -254,8 +260,8 @@ export default function JobsList() {
               <div className="grid grid-cols-2 gap-6 mb-12 max-[1039px]:grid-cols-1">
                 {filteredJobs.map((job) => (
                   <Link
-                    key={`${job.jobType}-${job.id}`}
-                    href={`/${job.jobType}/${job.id}`}
+                    key={`${job.jobType}-${job.slug}`}
+                    href={`/${job.jobType}/${job.slug}`}
                     className="block border border-[#707070] rounded-2xl p-8 hover:bg-gray-50 transition-colors"
                   >
                     <div className="flex items-start justify-between mb-4">

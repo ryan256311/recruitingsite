@@ -1,23 +1,27 @@
+import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import Layout from "../../components/layout/Layout";
 import JobDetail from "../../pages/JobDetail";
-import { getGraduateJobById, graduateJobs } from "../../data/jobs";
-import { contentItems } from "../../data/contents";
+import type { ContentItem } from "../../data/contents";
+import { getAllContents } from "../../lib/cms/contents";
+import { getJobBySlug, getJobs } from "../../lib/cms/jobs";
 
 interface Props {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ draftKey?: string }>;
 }
 
-// 静的生成用のパラメータを生成
+export const revalidate = 600;
+
+// 静的生成用のパラメータを生成（URLの末尾はslug）
 export async function generateStaticParams() {
-  return graduateJobs.map((job) => ({
-    id: job.id.toString(),
-  }));
+  const jobs = await getJobs("graduate");
+  return jobs.map((job) => ({ id: job.slug }));
 }
 
 // 新卒採用に関連するコンテンツを取得
-function getRelatedContentsForGraduate() {
-  return contentItems
+function getRelatedContentsForGraduate(items: ContentItem[]): ContentItem[] {
+  return items
     .filter(item =>
       item.tags.includes('新卒採用') ||
       item.tags.includes('インタビュー') ||
@@ -27,15 +31,19 @@ function getRelatedContentsForGraduate() {
     .slice(0, 3);
 }
 
-export default async function GraduateJobDetailPage({ params }: Props) {
+export default async function GraduateJobDetailPage({ params, searchParams }: Props) {
   const { id } = await params;
-  const job = getGraduateJobById(parseInt(id, 10));
+  const { draftKey } = await searchParams;
+  const { isEnabled } = await draftMode();
+
+  const job = await getJobBySlug("graduate", id, isEnabled ? draftKey : undefined);
 
   if (!job) {
     notFound();
   }
 
-  const relatedContents = getRelatedContentsForGraduate();
+  const allContents = await getAllContents();
+  const relatedContents = getRelatedContentsForGraduate(allContents);
 
   return (
     <Layout>

@@ -2,9 +2,13 @@
 
 import Link from "next/link";
 import svgPaths from "../../imports/svg-corg4qlf3y";
-import { graduateJobs } from "../data/jobs";
+import type { Job } from "../data/jobs";
 
-export default function Graduate() {
+interface GraduateProps {
+  jobs: Job[];
+}
+
+export default function Graduate({ jobs }: GraduateProps) {
   return (
     <>
       {/* ===== Hero Section (01) ===== */}
@@ -263,11 +267,11 @@ export default function Graduate() {
             <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
 
-          {graduateJobs.length > 0 ? (
+          {jobs.length > 0 ? (
             <>
               <div className="grid grid-cols-3 gap-6 mb-12 max-[1039px]:grid-cols-2 max-[539px]:grid-cols-1">
-                {graduateJobs.map((job) => (
-                  <Link key={job.id} href={`/graduate/${job.id}`} className="block border border-[#707070] rounded-2xl p-8 hover:bg-gray-50 transition-colors">
+                {jobs.map((job) => (
+                  <Link key={job.slug} href={`/graduate/${job.slug}`} className="block border border-[#707070] rounded-2xl p-8 hover:bg-gray-50 transition-colors">
                     <div className="flex items-start justify-between mb-4">
                       <h3 className="font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>{job.title}</h3>
                     </div>
