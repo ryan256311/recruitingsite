@@ -2,18 +2,22 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { contentItems, contentCategories, contentTags, ContentCategoryId, getCategoryColor } from "../data/contents";
+import { contentCategories, contentTags, getCategoryColor, type ContentCategoryId, type ContentItem } from "../data/contents";
 import svgPaths from "../../imports/svg-corg4qlf3y";
 import ContentPhoto from "../components/ContentPhoto";
 
 const ITEMS_PER_PAGE = 12;
 
-export default function ContentsList() {
+interface ContentsListProps {
+  items: ContentItem[];
+}
+
+export default function ContentsList({ items }: ContentsListProps) {
   const [selectedCategory, setSelectedCategory] = useState<ContentCategoryId>('all');
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const filteredContents = contentItems.filter(item => {
+  const filteredContents = items.filter(item => {
     const categoryMatch = selectedCategory === 'all' || item.category === selectedCategory;
     const tagMatch = !selectedTag || item.tags.includes(selectedTag);
     return categoryMatch && tagMatch;

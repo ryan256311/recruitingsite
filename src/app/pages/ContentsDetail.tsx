@@ -1,90 +1,20 @@
-"use client";
-
+// クライアント側のフックを使わないため、サーバーコンポーネントとして描画する。
 import Link from "next/link";
-import { ContentItem, getRelatedContents, getCategoryColor } from "../data/contents";
+import { type ContentItem, getCategoryColor } from "../data/contents";
 import svgPaths from "../../imports/svg-corg4qlf3y";
 import ContentPhoto from "../components/ContentPhoto";
 import CompanyVisitArticle from "../components/CompanyVisitArticle";
+import CmsBody from "../components/CmsBody";
 
 interface ContentsDetailProps {
   content: ContentItem;
+  relatedContents: ContentItem[];
 }
 
-export default function ContentsDetail({ content }: ContentsDetailProps) {
-  const relatedContents = getRelatedContents(content.id, 3);
+export default function ContentsDetail({ content, relatedContents }: ContentsDetailProps) {
+  // 会社見学会の記事は専用のリッチレイアウトで表示する（contentId 31）
+  const isCompanyVisitArticle = content.id === '31';
 
-  // 会社見学会の記事は専用のリッチレイアウトで表示する（id 31）
-  const isCompanyVisitArticle = content.id === 31;
-
-  // Markdownのシンプルなパース（##見出しのみ対応）
-  const renderContent = (text: string) => {
-    const lines = text.split('\n');
-    const elements: React.ReactNode[] = [];
-    let currentParagraph: string[] = [];
-    let paragraphIndex = 0;
-
-    const flushParagraph = () => {
-      if (currentParagraph.length > 0) {
-        elements.push(
-          <p key={`p-${paragraphIndex++}`} className="mb-6">
-            {currentParagraph.join('\n')}
-          </p>
-        );
-        currentParagraph = [];
-      }
-    };
-
-    lines.forEach((line, index) => {
-      if (line.startsWith('## ')) {
-        flushParagraph();
-        elements.push(
-          // 見出し（インタビューの質問と同じ体裁）：20px・太字・左アクセント罫つき
-          <h2
-            key={`h2-${index}`}
-            className="font-bold mb-4"
-            style={{
-              fontFamily: 'var(--font-noto), sans-serif',
-              fontSize: '20px',
-              lineHeight: 1.6,
-              marginTop: '90px',
-              borderLeft: '4px solid #4346BE',
-              paddingLeft: '14px',
-            }}
-          >
-            {line.replace('## ', '')}
-          </h2>
-        );
-      } else if (line.startsWith('### ')) {
-        flushParagraph();
-        elements.push(
-          <h3 key={`h3-${index}`} className="font-bold mt-8 mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}>
-            {line.replace('### ', '')}
-          </h3>
-        );
-      } else if (line.startsWith('#### ')) {
-        flushParagraph();
-        elements.push(
-          <h4 key={`h4-${index}`} className="font-bold text-lg mt-6 mb-2" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
-            {line.replace('#### ', '')}
-          </h4>
-        );
-      } else if (line.startsWith('- ')) {
-        flushParagraph();
-        elements.push(
-          <li key={`li-${index}`} className="ml-6 mb-2 list-disc">
-            {line.replace('- ', '').replace(/\*\*(.*?)\*\*/g, '$1')}
-          </li>
-        );
-      } else if (line.trim() === '') {
-        flushParagraph();
-      } else {
-        currentParagraph.push(line.replace(/\*\*(.*?)\*\*/g, '$1'));
-      }
-    });
-    flushParagraph();
-
-    return elements;
-  };
 
   return (
     <>
@@ -175,9 +105,7 @@ export default function ContentsDetail({ content }: ContentsDetailProps) {
         </div>
 
         <div className="max-w-[1000px] mx-auto px-8">
-          <div style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '18px', lineHeight: '2' }}>
-            {renderContent(content.content)}
-          </div>
+          <CmsBody html={content.content} />
         </div>
       </section>
        </>

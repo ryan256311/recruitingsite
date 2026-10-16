@@ -1,10 +1,15 @@
 import Layout from "../components/layout/Layout";
 import ContentsList from "../pages/ContentsList";
+import { getAllContents } from "../lib/cms/contents";
 
-export default function ContentsPage() {
+export const revalidate = 600;
+
+export default async function ContentsPage() {
+  const items = await getAllContents();
+
   return (
     <Layout>
-      <ContentsList />
+      <ContentsList items={items} />
     </Layout>
   );
 }
