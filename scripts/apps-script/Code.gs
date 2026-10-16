@@ -11,6 +11,8 @@
  * ■ 設定値（スクリプトプロパティに登録する。コードに直接書かない）
  *   WEBHOOK_SECRET … サイト側と共有する合言葉。これが一致しないリクエストは拒否する
  *   ADMIN_EMAIL    … 採用担当への通知先
+ *   SHEET_ID       … 記録先スプレッドシートのID。スプレッドシートの
+ *                     「拡張機能 → Apps Script」から作った場合は省略できる
  *   FROM_ALIAS     … （任意）送信元に使うエイリアス。Gmailで確認済みのアドレスのみ有効
  */
 
@@ -83,8 +85,26 @@ function isAuthorized(given) {
   return typeof given === 'string' && given === expected;
 }
 
+/**
+ * 記録先のスプレッドシートを得る。
+ *
+ * スプレッドシートの「拡張機能 → Apps Script」から作ったスクリプトは
+ * getActiveSpreadsheet() で開けるが、単独で作ったスクリプトでは取れない。
+ * どちらの作り方でも動くよう、SHEET_ID があればそちらを優先する。
+ */
+function getBook() {
+  var id = PropertiesService.getScriptProperties().getProperty('SHEET_ID');
+  if (id) return SpreadsheetApp.openById(id);
+
+  var active = SpreadsheetApp.getActiveSpreadsheet();
+  if (!active) {
+    throw new Error('記録先が分かりません。スクリプトプロパティ SHEET_ID を設定してください');
+  }
+  return active;
+}
+
 function getSheet() {
-  var book = SpreadsheetApp.getActiveSpreadsheet();
+  var book = getBook();
   var sheet = book.getSheetByName(SHEET_NAME);
 
   if (!sheet) {
@@ -142,7 +162,7 @@ function notifyAdmin(data, rowNumber) {
     throw new Error('スクリプトプロパティ ADMIN_EMAIL が未設定です');
   }
 
-  var sheetUrl = SpreadsheetApp.getActiveSpreadsheet().getUrl();
+  var sheetUrl = getBook().getUrl();
   var lines = [
     '採用サイトのお問い合わせフォームから応募がありました。',
     '',

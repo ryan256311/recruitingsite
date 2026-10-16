@@ -43,7 +43,11 @@
 | プロパティ | 値 |
 |---|---|
 | `WEBHOOK_SECRET` | `6SmQBFNg0kRBMw1-F6G1tZGfow5nR4Q2` |
-| `ADMIN_EMAIL` | 応募通知を受け取るメールアドレス（例: `recruit@exceet.co.jp`） |
+| `ADMIN_EMAIL` | 応募通知を受け取るメールアドレス |
+| `SHEET_ID` | 記録先スプレッドシートのID（URLの `/d/` と `/edit` の間の文字列） |
+
+> `SHEET_ID` は、スプレッドシートの「拡張機能 → Apps Script」から作った場合は省略できます。
+> Apps Script を単独で作った場合は必須です。
 
 > `WEBHOOK_SECRET` はサイト側と共有する合言葉です。これが一致しないリクエストは拒否されます。
 > 値はこの手順書のものをそのまま使って構いませんが、外部に公開しないでください。
