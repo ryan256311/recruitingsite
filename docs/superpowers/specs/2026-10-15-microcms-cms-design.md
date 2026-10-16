@@ -166,6 +166,22 @@ microCMSのGET APIは **デフォルト10件・`limit`最大100件** を返す�
 
 新卒・キャリアを1つのAPIにまとめ `employmentCategory` で分ける。理由: フィールド構成が完全に同一で、API数（Hobbyプラン5個上限）を節約でき、職種の区分変更が1クリックで済む。
 
+### 実際に作成したスキーマとの差異（2026-10-16 更新）
+
+microCMSの管理画面でスキーマを作成した際に、上の表から3点変更した。
+
+**1. 繰り返しフィールド → テキストエリア（1行に1項目）**
+
+microCMSの繰り返しフィールドはカスタムフィールドの定義を必要とし、APIは `string[]` ではなく `[{ fieldId, value }]` を返す。既存の `Job` 型は `string[]` を前提にしており、そのまま渡すと `JobDetail` が「Objects are not valid as a React child」で落ちる。カスタムフィールドの間接層を挟むより、テキストエリアに1行1項目で書いてもらう方が担当者にも分かりやすいため、`requirements` / `responsibilities` / `welcomeSkills` / `appealPoints` / `benefits` / `selectionProcess` はすべて**テキストエリア**とした。マッピング層の `toLines` が改行で分割する。
+
+**2. `devEnvironment`（カスタムフィールド）→ 4つのテキストエリア**
+
+同じ理由で、`devTech` / `devVersionControl` / `devDesignTools` / `devWorkStyle` の4フィールドに展開した。マッピング層が `Job.devEnvironment` の形に組み立て直す。4つとも空なら `undefined` にして、詳細ページから欄ごと消える。
+
+**3. `departmentDescription` → `departmentDesc`**
+
+microCMSのフィールドIDは**20文字以内**という制限があり、`departmentDescription`（21文字）は登録できなかった。マッピング層で既存型の `departmentDescription` に詰め替える。
+
 ## 5. ID設計とURL維持
 
 ### 決定: microCMSの `contentId`（文字列）を正とする
@@ -274,14 +290,15 @@ microCMS管理画面「画面プレビュー」ボタン
 ## 13. 必要な環境変数
 
 ```
-MICROCMS_SERVICE_DOMAIN=xxxxx          # https://xxxxx.microcms.io の xxxxx
+MICROCMS_SERVICE_DOMAIN=exceet-recruit # https://xxxxx.microcms.io の xxxxx
 MICROCMS_API_KEY=xxxxxxxx              # GET権限（読み取り用）
-MICROCMS_WRITE_API_KEY=xxxxxxxx        # 移行スクリプト用（POST/PUT権限。ローカルのみ）
 MICROCMS_WEBHOOK_SECRET=xxxxxxxx       # Webhook署名検証用
 DRAFT_PREVIEW_SECRET=xxxxxxxx          # プレビューURL保護用（任意の長い文字列）
 ```
 
-`.env.example` に追記し、Vercelの環境変数にも登録する（`MICROCMS_WRITE_API_KEY` はVercelには登録しない）。
+`.env.example` に追記し、Vercelの環境変数にも登録する。
+
+**書き込み用キーを分けない理由**: HobbyプランはAPIキーを1個しか作れない。移行スクリプトの実行時だけ、このキーに管理画面から POST / PUT 権限を一時的に付与し、投入後に GET のみへ戻す運用とする。常用するキーに書き込み権限を残さないためで、権限が有効なのは移行作業中の数分間に限られる。
 
 ## 14. 事前に必要な作業（依頼者側）
 

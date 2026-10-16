@@ -4,7 +4,11 @@ import Link from "next/link";
 import svgPaths from "../../imports/svg-corg4qlf3y";
 import type { Job } from "../data/jobs";
 
-// このページに出す求人のslug（Webデザイナー, フロントエンドエンジニア）
+// このページに出す求人のslug（Webデザイナー, フロントエンドエンジニア）。
+// キャリア採用のランディングページは全件ではなく絞って見せる方針のため、
+// ここはコード側で管理している。CMSに求人を追加しても、このリストに
+// 入れない限り /career には出ない（/jobs と /career/<slug> には出る）。
+// 出す求人を変えるときはこの配列を編集する。
 const DISPLAYED_SLUGS = ['1', '2'];
 
 interface CareerProps {
@@ -263,6 +267,12 @@ export default function Career({ jobs }: CareerProps) {
             <h2 className="font-bold tracking-[1.08px] mb-2 max-[539px]:!text-[26px]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '36px' }}>現在募集中の求人</h2>
             <div className="w-12 h-[2px] bg-[#313131] max-[539px]:w-[34px]"></div>
           </div>
+
+          {displayedJobs.length === 0 && (
+            <p className="mb-12 text-[#707070]" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>
+              現在、募集中の求人はありません。
+            </p>
+          )}
 
           <div className="grid grid-cols-2 gap-6 mb-12 max-[1039px]:grid-cols-1 max-[539px]:grid-cols-1">
             {displayedJobs.map((job) => (
