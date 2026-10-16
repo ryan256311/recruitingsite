@@ -28,6 +28,9 @@
 | コンテンツ記事 | `src/app/data/contents.ts` | 12件（ID: 2, 3, 25〜34） |
 | 求人情報（キャリア） | `src/app/data/jobs.ts` | 7件（ID: 1〜7） |
 | 求人情報（新卒） | `src/app/data/jobs.ts` | 0件 |
+| トップページのお知らせ欄 | `src/app/pages/Home.tsx:230` 付近にハードコード | 1件 |
+
+トップページのお知らせ欄は現在コードに直接書かれた1件（外部リンク付き）なので、これもCMS管理に移す。お知らせはCMSの `news` を参照し、最新数件を表示する形に変える。
 
 ### 非対象（今回やらない）
 
@@ -63,7 +66,17 @@ Next.js on Vercel
 
 **この層を挟む理由**: CMS固有のフィールド名（`contentId`、`displayDate`、`revisedAt` 等）がページコンポーネントに漏れない。結果として、データを参照している13ファイルの大半を書き換えずに済み、将来CMSを乗り換えても影響が `src/app/lib/cms/` に閉じる。
 
-ただし「原則そのまま」には例外が1つある。第5節のID設計により `ContentItem.id` が `number` から `string` に、`Job.id` が `Job.slug` に変わるため、**IDを数値として扱っている箇所だけは修正が必要**になる（詳細は第5節）。マッピング層はフィールド名の差異を吸収するが、型そのものの変更は吸収できない。
+ただし「原則そのまま」には例外が2つある。
+
+**例外1: ID型の変更**。第5節のID設計により `ContentItem.id` が `number` から `string` に、`Job.id` が `Job.slug` に変わるため、**IDを数値として扱っている箇所は修正が必要**になる（詳細は第5節）。マッピング層はフィールド名の差異を吸収するが、型そのものの変更は吸収できない。
+
+**例外2: クライアントコンポーネントのprops化**。`src/app/pages/` の9ファイルはすべて `"use client"` であり、そのうち `Home` / `NewsList` / `ContentsList` / `JobsList` / `Career` / `Graduate` の6ファイルは**モジュールの先頭でデータ配列を直接importしている**。クライアントコンポーネントからCMSを叩くとAPIキーがブラウザに露出するため、以下の形に変える。
+
+- データ取得は**サーバーコンポーネント（各ルートの `page.tsx`）で行う**
+- 取得結果を**propsでクライアントコンポーネントに渡す**
+- クライアント側の絞り込み（カテゴリ・タグのフィルタUI）は現状どおり `useState` で動く
+
+`NewsDetail` / `JobDetail` / `ContentsDetail` の3ファイルは既にpropsでデータを受け取る形なので、この変更の影響を受けない。ただし `ContentsDetail` 内で呼んでいる `getRelatedContents()` はモジュールレベルの配列を参照しているため、**関連記事もpropsで受け取る形に変える**必要がある。
 
 ### 3.2 更新の反映方法：Webhook主・時間ISR従
 
@@ -101,10 +114,15 @@ microCMSのGET APIは **デフォルト10件・`limit`最大100件** を返す�
 | `date` | 日付 | 日時 | ✓ | 記事に表示する日付。公開日時とは別管理 |
 | `title` | タイトル | テキストフィールド | ✓ | |
 | `category` | カテゴリ | セレクト | ✓ | `graduate` / `news` / `other` |
-| `body` | 本文 | リッチエディタ | ✓ | |
+| `body` | 本文 | リッチエディタ | – | 外部リンクのみのお知らせでは空になる |
 | `image` | アイキャッチ画像 | 画像 | – | |
+| `externalUrl` | 外部リンクURL | テキストフィールド | – | 入力時は一覧から外部サイトへ直接リンクする |
 
 `categoryLabel` はサイト側で `category` から導出する。
+
+**`externalUrl` が必要な理由**: トップページのお知らせ欄（`Home.tsx:230` 付近）には現在1件がハードコードされており、その1件は外部サイト（福井労働局のページ）への直接リンクになっている。この運用を続けられるようにフィールドとして用意する。`externalUrl` があれば一覧のリンク先を外部URLにし、無ければ `/news/[id]` の詳細ページへ送る。
+
+**日付の形式**: 既存の `NewsItem.date` と `ContentItem.publishedAt` は `2026.07.03` という `YYYY.MM.DD` 形式の文字列である。CMSはISO 8601形式（`2026-07-03T00:00:00.000Z`）を返すため、マッピング層でこの形式に整形する。
 
 ### 4.2 contents（コンテンツ記事）— リスト形式
 
@@ -217,12 +235,14 @@ microCMS管理画面「画面プレビュー」ボタン
 ## 10. 移行計画
 
 1. microCMS側で3つのAPIスキーマを作成（手作業）
-2. 既存の画像をmicroCMSメディアへアップロード
-3. 移行スクリプト `scripts/migrate-to-microcms.ts` を作成し、`src/app/data/*.ts` の既存データを microCMS Management API で投入する
+2. 移行スクリプト `scripts/migrate-to-microcms.ts` を作成し、`src/app/data/*.ts` の既存データを**下書きとして**投入する（書き込み権限付きAPIキーを使う `microcms-js-sdk` の `create` / `update`）
    - 本文の既存Markdown（`## ` `### ` と段落）を `marked` でHTMLに変換して投入する
    - contents は contentId に既存の数値IDを指定する
    - jobs は slug に既存の数値IDを入れる
-4. 投入結果を管理画面で目視確認（12記事 + 7求人）
+3. 既存の記事画像12枚を**管理画面から手動でアップロード**し、各記事のアイキャッチに設定する
+4. 投入結果を管理画面で目視確認してから公開する（12記事 + 7求人）
+
+**画像をスクリプトで自動投入しない理由**: microCMSのメディアアップロードはManagement API側の機能で、プランによる制限の有無が確認できていない。12枚・1回限りの作業なので、手動アップロードの方が確実で早い。この判断のため、移行スクリプトは画像以外を投入し、記事は下書き状態で止める。
 5. サイト側のデータ取得をCMSに切り替える
 6. 本番反映後、既存URLの表示とOGPを確認する
 7. 担当者向けの操作手順書を `docs/cms-operation.md` として作成する
@@ -256,17 +276,17 @@ microCMS管理画面「画面プレビュー」ボタン
 ```
 MICROCMS_SERVICE_DOMAIN=xxxxx          # https://xxxxx.microcms.io の xxxxx
 MICROCMS_API_KEY=xxxxxxxx              # GET権限（読み取り用）
-MICROCMS_MANAGEMENT_API_KEY=xxxxxxxx   # 移行スクリプト用（書き込み権限。ローカルのみ）
+MICROCMS_WRITE_API_KEY=xxxxxxxx        # 移行スクリプト用（POST/PUT権限。ローカルのみ）
 MICROCMS_WEBHOOK_SECRET=xxxxxxxx       # Webhook署名検証用
 DRAFT_PREVIEW_SECRET=xxxxxxxx          # プレビューURL保護用（任意の長い文字列）
 ```
 
-`.env.example` に追記し、Vercelの環境変数にも登録する（`MICROCMS_MANAGEMENT_API_KEY` はVercelには登録しない）。
+`.env.example` に追記し、Vercelの環境変数にも登録する（`MICROCMS_WRITE_API_KEY` はVercelには登録しない）。
 
 ## 14. 事前に必要な作業（依頼者側）
 
 1. microCMS のアカウント作成とサービス作成
-2. APIキーの発行（読み取り用・Management API用）
+2. APIキーの発行（読み取り用・書き込み用）
 3. 上記キーの共有
 
 ## 15. 想定コストとリスク
