@@ -20,7 +20,7 @@ interface ContactFormData {
 
 interface UploadedFile {
   name: string;
-  url: string;
+  key: string;
   size: number;
 }
 
@@ -43,7 +43,8 @@ const ALLOWED_FILE_TYPES = [
   'image/png',
 ];
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+// Vercelがリクエストボディを4.5MBに制限しているため、これ以上は送っても届かない
+const MAX_FILE_SIZE = 4 * 1024 * 1024; // 4MB
 
 export default function Contact() {
   const searchParams = useSearchParams();
@@ -107,7 +108,7 @@ export default function Contact() {
       return 'PDF、Word、JPG、PNG形式のみアップロード可能です';
     }
     if (file.size > MAX_FILE_SIZE) {
-      return 'ファイルサイズは5MB以下にしてください';
+      return 'ファイルサイズは4MB以下にしてください';
     }
     return null;
   };
@@ -142,7 +143,7 @@ export default function Contact() {
       const data = await response.json();
       const uploadedFile: UploadedFile = {
         name: file.name,
-        url: data.url,
+        key: data.key,
         size: file.size,
       };
 
@@ -184,11 +185,11 @@ export default function Contact() {
         },
         body: JSON.stringify({
           ...data,
-          resumeUrl: resume?.url,
+          resumeKey: resume?.key,
           resumeName: resume?.name,
-          careerHistoryUrl: careerHistory?.url,
+          careerHistoryKey: careerHistory?.key,
           careerHistoryName: careerHistory?.name,
-          portfolioFileUrl: portfolio?.url,
+          portfolioFileKey: portfolio?.key,
           portfolioFileName: portfolio?.name,
         }),
       });
@@ -488,7 +489,7 @@ export default function Contact() {
                   履歴書の添付 <span className="text-red-600">*</span>
                 </label>
                 <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
-                  PDF、Word、JPG、PNG形式（5MB以下）
+                  PDF、Word、JPG、PNG形式（4MB以下）
                 </p>
                 {resume ? (
                   <div className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-lg">
@@ -552,7 +553,7 @@ export default function Contact() {
                     職務経歴書の添付
                   </label>
                   <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
-                    PDF、Word、JPG、PNG形式（5MB以下）
+                    PDF、Word、JPG、PNG形式（4MB以下）
                   </p>
                   {careerHistory ? (
                     <div className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-lg">
@@ -616,7 +617,7 @@ export default function Contact() {
                   ポートフォリオ（ファイル）
                 </label>
                 <p className="text-sm text-[#707070] mb-3" style={{ fontFamily: 'var(--font-noto), sans-serif' }}>
-                  PDF、Word、JPG、PNG形式（5MB以下）
+                  PDF、Word、JPG、PNG形式（4MB以下）
                 </p>
                 {portfolio ? (
                   <div className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-lg">
