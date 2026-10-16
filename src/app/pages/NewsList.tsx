@@ -2,15 +2,19 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { newsItems, newsCategories, NewsCategoryId } from "../data/news";
+import { newsCategories, type NewsCategoryId, type NewsItem } from "../data/news";
 import svgPaths from "../../imports/svg-corg4qlf3y";
 
-export default function NewsList() {
+interface NewsListProps {
+  items: NewsItem[];
+}
+
+export default function NewsList({ items }: NewsListProps) {
   const [selectedCategory, setSelectedCategory] = useState<NewsCategoryId>('all');
 
   const filteredNews = selectedCategory === 'all'
-    ? newsItems
-    : newsItems.filter(item => item.category === selectedCategory);
+    ? items
+    : items.filter(item => item.category === selectedCategory);
 
   return (
     <>
@@ -83,37 +87,54 @@ export default function NewsList() {
             {/* News List */}
             <div className="flex-1">
               <div className="space-y-0">
-                {filteredNews.map((item, index) => (
-                  <Link
-                    key={item.id}
-                    href={`/news/${item.id}`}
-                    className={`flex items-start gap-6 py-6 hover:bg-gray-50 transition-colors ${
-                      index !== filteredNews.length - 1 ? 'border-b border-[#e0e0e0]' : ''
-                    }`}
-                  >
-                    <span
-                      className="text-[#707070] shrink-0"
-                      style={{ fontFamily: 'var(--font-roboto), sans-serif', fontSize: '14px' }}
+                {filteredNews.map((item, index) => {
+                  const rowClassName = `flex items-start gap-6 py-6 hover:bg-gray-50 transition-colors ${
+                    index !== filteredNews.length - 1 ? 'border-b border-[#e0e0e0]' : ''
+                  }`;
+
+                  const row = (
+                    <>
+                      <span
+                        className="text-[#707070] shrink-0"
+                        style={{ fontFamily: 'var(--font-roboto), sans-serif', fontSize: '14px' }}
+                      >
+                        {item.date}
+                      </span>
+                      <span
+                        className={`shrink-0 text-white text-xs px-3 py-1 rounded-full ${
+                          item.category === 'graduate' ? 'bg-[#4346BE]' :
+                          item.category === 'news' ? 'bg-[#0064c8]' : 'bg-[#707070]'
+                        }`}
+                        style={{ fontFamily: 'var(--font-noto), sans-serif' }}
+                      >
+                        {item.categoryLabel}
+                      </span>
+                      <span
+                        className="flex-1 hover:underline"
+                        style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
+                      >
+                        {item.title}
+                      </span>
+                    </>
+                  );
+
+                  // 外部リンクURLが入っているお知らせは、詳細ページを経由せず外部サイトへ送る
+                  return item.externalUrl ? (
+                    <a
+                      key={item.id}
+                      href={item.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={rowClassName}
                     >
-                      {item.date}
-                    </span>
-                    <span
-                      className={`shrink-0 text-white text-xs px-3 py-1 rounded-full ${
-                        item.category === 'graduate' ? 'bg-[#4346BE]' :
-                        item.category === 'news' ? 'bg-[#0064c8]' : 'bg-[#707070]'
-                      }`}
-                      style={{ fontFamily: 'var(--font-noto), sans-serif' }}
-                    >
-                      {item.categoryLabel}
-                    </span>
-                    <span
-                      className="flex-1 hover:underline"
-                      style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
-                    >
-                      {item.title}
-                    </span>
-                  </Link>
-                ))}
+                      {row}
+                    </a>
+                  ) : (
+                    <Link key={item.id} href={`/news/${item.id}`} className={rowClassName}>
+                      {row}
+                    </Link>
+                  );
+                })}
               </div>
 
               {filteredNews.length === 0 && (

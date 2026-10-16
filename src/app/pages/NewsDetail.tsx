@@ -1,7 +1,8 @@
-"use client";
-
+// クライアント側のフックを使わないため、サーバーコンポーネントとして描画する。
+// 本文のサニタイズをブラウザで走らせず、安全なHTMLだけを渡せる。
 import Link from "next/link";
-import { NewsItem } from "../data/news";
+import type { NewsItem } from "../data/news";
+import CmsBody from "../components/CmsBody";
 import svgPaths from "../../imports/svg-corg4qlf3y";
 
 interface NewsDetailProps {
@@ -66,18 +67,7 @@ export default function NewsDetail({ news }: NewsDetailProps) {
         </div>
 
         <div className="max-w-[800px] mx-auto px-8">
-          <div
-            className="prose prose-lg max-w-none"
-            style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px', lineHeight: '2' }}
-          >
-            {news.content.split('\n').map((paragraph, index) => (
-              paragraph.trim() ? (
-                <p key={index} className="mb-6">{paragraph}</p>
-              ) : (
-                <br key={index} />
-              )
-            ))}
-          </div>
+          <CmsBody html={news.content} className="cms-body-news" />
         </div>
       </section>
 
