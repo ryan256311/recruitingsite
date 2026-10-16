@@ -14,9 +14,13 @@
  *   SHEET_ID       … 記録先スプレッドシートのID。スプレッドシートの
  *                     「拡張機能 → Apps Script」から作った場合は省略できる
  *   FROM_ALIAS     … （任意）送信元に使うエイリアス。Gmailで確認済みのアドレスのみ有効
+ *   UPLOAD_FOLDER_ID … 応募書類の保存先フォルダID。未設定なら自動で作成して記録する
  */
 
 var SHEET_NAME = 'お問い合わせ';
+
+/** 応募書類の保存先フォルダ名（初回に自動作成する） */
+var UPLOAD_FOLDER_NAME = '採用サイト 応募書類';
 
 var HEADERS = [
   '受信日時',
@@ -46,6 +50,11 @@ function doPost(e) {
     if (!isAuthorized(payload.secret)) {
       // 合言葉が合わない＝サイト以外からの呼び出し。詳細は返さない
       return jsonResponse({ ok: false, error: 'unauthorized' });
+    }
+
+    // 応募書類のアップロードは記録とは別の用途で呼ばれる
+    if (payload.action === 'upload') {
+      return jsonResponse(saveUpload(payload.file || {}));
     }
 
     var data = payload.data || {};
@@ -83,6 +92,43 @@ function isAuthorized(given) {
     throw new Error('スクリプトプロパティ WEBHOOK_SECRET が未設定です');
   }
   return typeof given === 'string' && given === expected;
+}
+
+/**
+ * 応募書類をドライブに保存する。
+ *
+ * 保存先はこのスクリプトを所有するアカウントのマイドライブ内のフォルダで、
+ * 既定では本人しか開けない。採用担当に見せるときはフォルダごと共有する。
+ * （公開リンクにはしない。履歴書がURLを知る全員に見えてしまうため）
+ */
+function saveUpload(file) {
+  if (!file.data || !file.name || !file.mimeType) {
+    return { ok: false, error: 'ファイルの情報が不足しています' };
+  }
+
+  var folder = getUploadFolder();
+  var blob = Utilities.newBlob(Utilities.base64Decode(file.data), file.mimeType, file.name);
+  var created = folder.createFile(blob);
+
+  return { ok: true, fileId: created.getId() };
+}
+
+function getUploadFolder() {
+  var props = PropertiesService.getScriptProperties();
+  var id = props.getProperty('UPLOAD_FOLDER_ID');
+
+  if (id) {
+    try {
+      return DriveApp.getFolderById(id);
+    } catch (err) {
+      // フォルダが消された場合は作り直す。応募を受け付けられなくなる方が困る
+      console.warn('保存先フォルダが見つからないため作り直します: ' + err);
+    }
+  }
+
+  var folder = DriveApp.createFolder(UPLOAD_FOLDER_NAME);
+  props.setProperty('UPLOAD_FOLDER_ID', folder.getId());
+  return folder;
 }
 
 /**

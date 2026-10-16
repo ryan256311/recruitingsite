@@ -1,15 +1,16 @@
 import { createHmac, timingSafeEqual } from "crypto";
 
 /**
- * 応募書類へのアクセスを、ファイル単位の署名付きリンクで制御する。
+ * 応募書類のファイルIDを、自分が発行したものだと確認できるようにする。
  *
- * 保管先のバケットは非公開にしてあるので、URLを知っているだけでは取得できない。
- * 署名はファイルのキーごとに作るため、ある応募者の履歴書のリンクを持っていても
- * 別の応募者の書類は開けない。
+ * 実体はGoogleドライブの非公開フォルダにあり、閲覧できるのはフォルダを
+ * 共有された人だけ。ここで署名を確かめるのは、応募フォームに他人の
+ * ファイルIDを送り込まれて、スプレッドシートに無関係なリンクが
+ * 並ぶのを防ぐため。
  */
 
-// アップロード側が作るキーの形: 2026-10-16/resume/<uuid>.pdf
-const OBJECT_KEY = /^\d{4}-\d{2}-\d{2}\/[a-zA-Z]+\/[0-9a-f-]+\.[a-z0-9]+$/;
+// ドライブのファイルIDは英数字とハイフン・アンダースコアのみ
+const FILE_ID = /^[A-Za-z0-9_-]{10,200}$/;
 
 function requireSecret(): string {
   const secret = process.env.FILE_ACCESS_SECRET;
@@ -17,20 +18,19 @@ function requireSecret(): string {
   return secret;
 }
 
-export function isValidObjectKey(key: string): boolean {
-  if (!key || key.length > 512) return false;
-  if (key.includes("..")) return false;
-  return OBJECT_KEY.test(key);
+export function isValidFileId(fileId: string): boolean {
+  if (!fileId || fileId.length > 200) return false;
+  return FILE_ID.test(fileId);
 }
 
-export function signObjectKey(key: string): string {
-  return createHmac("sha256", requireSecret()).update(key).digest("hex");
+export function signFileId(fileId: string): string {
+  return createHmac("sha256", requireSecret()).update(fileId).digest("hex");
 }
 
-export function verifyObjectKey(key: string, token: string | null): boolean {
+export function verifyFileId(fileId: string, token: string | undefined | null): boolean {
   if (!token) return false;
 
-  const expected = signObjectKey(key);
+  const expected = signFileId(fileId);
   const givenBuf = Buffer.from(token, "utf8");
   const expectedBuf = Buffer.from(expected, "utf8");
 
@@ -40,12 +40,8 @@ export function verifyObjectKey(key: string, token: string | null): boolean {
   return timingSafeEqual(givenBuf, expectedBuf);
 }
 
-/** スプレッドシートと通知メールに載せる取得用URLを作る */
-export function buildFileUrl(origin: string, key: string): string {
-  if (!key) return "";
-
-  const url = new URL("/api/files", origin);
-  url.searchParams.set("key", key);
-  url.searchParams.set("token", signObjectKey(key));
-  return url.toString();
+/** スプレッドシートと通知メールに載せる、ドライブで開くURL */
+export function buildDriveUrl(fileId: string): string {
+  if (!fileId) return "";
+  return `https://drive.google.com/file/d/${fileId}/view`;
 }

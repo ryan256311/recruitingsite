@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-import { buildFileUrl, isValidObjectKey } from "../../lib/applications/fileLink";
+import { buildDriveUrl, isValidFileId, verifyFileId } from "../../lib/applications/fileLink";
 import { submitApplication } from "../../lib/applications/submit";
 
 /**
@@ -11,10 +11,13 @@ import { submitApplication } from "../../lib/applications/submit";
  * 通知メールはApps Script側から送る。メールが送れなくても応募は成立させる。
  */
 
-const optionalKey = z
-  .string()
-  .optional()
-  .refine((v) => !v || isValidObjectKey(v), "添付ファイルの指定が不正です");
+const attachment = z
+  .object({
+    fileId: z.string(),
+    fileName: z.string().optional(),
+    token: z.string(),
+  })
+  .optional();
 
 const contactSchema = z.object({
   inquiryType: z.string().min(1, "お問い合わせ種別を選択してください"),
@@ -27,14 +30,29 @@ const contactSchema = z.object({
   portfolioUrl: z.string().optional(),
   message: z.string().optional(),
   privacyAgreed: z.boolean().refine((v) => v === true, "プライバシーポリシーへの同意が必要です"),
-  // 保管先のキーだけを受け取る。取得用URLはこちらで組み立てる
-  resumeKey: optionalKey,
-  resumeName: z.string().optional(),
-  careerHistoryKey: optionalKey,
-  careerHistoryName: z.string().optional(),
-  portfolioFileKey: optionalKey,
-  portfolioFileName: z.string().optional(),
+  resume: attachment,
+  careerHistory: attachment,
+  portfolioFile: attachment,
 });
+
+type Attachment = z.infer<typeof attachment>;
+
+/**
+ * 添付のファイルIDを、アップロード時に発行した署名で確かめる。
+ *
+ * 署名が合わないものは添付なしとして扱う。無関係なIDを送り込まれて、
+ * スプレッドシートに他人のファイルへのリンクが並ぶのを防ぐ。
+ */
+function resolveAttachment(value: Attachment): { url: string; name: string } {
+  if (!value?.fileId) return { url: "", name: "" };
+
+  if (!isValidFileId(value.fileId) || !verifyFileId(value.fileId, value.token)) {
+    console.warn("[contact] 署名が一致しない添付ファイルを無視しました");
+    return { url: "", name: "" };
+  }
+
+  return { url: buildDriveUrl(value.fileId), name: value.fileName ?? "" };
+}
 
 export async function POST(request: NextRequest) {
   let body: unknown;
@@ -54,7 +72,9 @@ export async function POST(request: NextRequest) {
   }
 
   const data = result.data;
-  const origin = new URL(request.url).origin;
+  const resume = resolveAttachment(data.resume);
+  const careerHistory = resolveAttachment(data.careerHistory);
+  const portfolioFile = resolveAttachment(data.portfolioFile);
 
   try {
     const { row, mailError } = await submitApplication({
@@ -67,12 +87,12 @@ export async function POST(request: NextRequest) {
       phone: data.phone ?? "",
       portfolioUrl: data.portfolioUrl ?? "",
       message: data.message ?? "",
-      resumeUrl: buildFileUrl(origin, data.resumeKey ?? ""),
-      resumeName: data.resumeName ?? "",
-      careerHistoryUrl: buildFileUrl(origin, data.careerHistoryKey ?? ""),
-      careerHistoryName: data.careerHistoryName ?? "",
-      portfolioFileUrl: buildFileUrl(origin, data.portfolioFileKey ?? ""),
-      portfolioFileName: data.portfolioFileName ?? "",
+      resumeUrl: resume.url,
+      resumeName: resume.name,
+      careerHistoryUrl: careerHistory.url,
+      careerHistoryName: careerHistory.name,
+      portfolioFileUrl: portfolioFile.url,
+      portfolioFileName: portfolioFile.name,
     });
 
     if (mailError) {

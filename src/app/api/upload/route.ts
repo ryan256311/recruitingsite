@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { randomUUID } from "crypto";
+
+import { signFileId } from "../../lib/applications/fileLink";
+import { uploadApplicationFile } from "../../lib/applications/upload";
 
 const ALLOWED_TYPES = [
   "application/pdf",
@@ -10,25 +11,14 @@ const ALLOWED_TYPES = [
   "image/png",
 ];
 
-// Vercelはリクエストボディを4.5MBに制限している（設定では変えられない）。
-// 5MBを許すと、応募者はファイル選択後に原因のわからない失敗に遭う。
-const MAX_SIZE = 4 * 1024 * 1024;
-
-const EXTENSION_MAP: Record<string, string> = {
-  "application/pdf": ".pdf",
-  "application/msword": ".doc",
-  "application/vnd.openxmlformats-officedocument.wordprocessingml.document": ".docx",
-  "image/jpeg": ".jpg",
-  "image/png": ".png",
-};
+/**
+ * Vercelはリクエストボディを4.5MBに制限している（設定では変えられない）。
+ * ファイルはbase64にしてApps Scriptへ渡すため約1.34倍に膨らむ。
+ * 3MBなら base64 で約4.0MB となり、余裕を持って収まる。
+ */
+const MAX_SIZE = 3 * 1024 * 1024;
 
 const UPLOAD_TYPES = new Set(["resume", "careerHistory", "portfolio"]);
-
-function requireEnv(name: string): string {
-  const value = process.env[name];
-  if (!value) throw new Error(`環境変数 ${name} が設定されていません`);
-  return value;
-}
 
 export async function POST(request: NextRequest) {
   try {
@@ -53,47 +43,22 @@ export async function POST(request: NextRequest) {
 
     if (file.size > MAX_SIZE) {
       return NextResponse.json(
-        { message: "ファイルサイズは4MB以下にしてください" },
+        { message: "ファイルサイズは3MB以下にしてください" },
         { status: 400 }
       );
     }
 
-    // 保管先が未設定のときにダミーのURLを返してはいけない。
-    // 応募者の画面では成功に見えるのに履歴書が消えるため、ここで止める。
-    const bucket = requireEnv("R2_BUCKET_NAME");
-    const endpoint = requireEnv("R2_ENDPOINT");
-
-    const client = new S3Client({
-      region: "auto",
-      endpoint,
-      credentials: {
-        accessKeyId: requireEnv("R2_ACCESS_KEY_ID"),
-        secretAccessKey: requireEnv("R2_SECRET_ACCESS_KEY"),
-      },
-    });
-
-    const extension = EXTENSION_MAP[file.type] ?? "";
-    const day = new Date().toISOString().split("T")[0];
-    const key = `${day}/${fileType}/${randomUUID()}${extension}`;
-
     const buffer = Buffer.from(await file.arrayBuffer());
 
-    await client.send(
-      new PutObjectCommand({
-        Bucket: bucket,
-        Key: key,
-        Body: buffer,
-        ContentType: file.type,
-        Metadata: {
-          originalName: encodeURIComponent(file.name),
-          uploadType: fileType,
-        },
-      })
-    );
+    const { fileId } = await uploadApplicationFile({
+      // 応募者が付けたファイル名をそのまま保存先に使う。閲覧時に誰の書類か分かるため
+      name: `${fileType}_${file.name}`,
+      mimeType: file.type,
+      data: buffer.toString("base64"),
+    });
 
-    // 取得用のURLはここでは返さない。
-    // 返すと応募者のブラウザに署名が渡り、他の応募書類を開く手がかりになる。
-    return NextResponse.json({ key, fileName: file.name });
+    // 署名を添えて返し、送信時に「このIDは自分が発行したもの」と確認できるようにする
+    return NextResponse.json({ fileId, fileName: file.name, token: signFileId(fileId) });
   } catch (error) {
     console.error("[upload] アップロードに失敗しました", error);
     return NextResponse.json(
