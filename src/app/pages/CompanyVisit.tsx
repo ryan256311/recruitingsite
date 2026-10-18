@@ -7,6 +7,7 @@ import companyImage1 from "../../assets/company-1.webp";
 import cardImage1 from "../../assets/environment-1.webp";
 import cardImage2 from "../../assets/footer-slide-3.webp";
 import cardImage3 from "../../assets/environment-2.webp";
+import { CONTACT_FORM_URLS, EXTERNAL_LINK_PROPS } from "../data/forms";
 
 export default function CompanyVisit() {
   return (
@@ -49,7 +50,7 @@ export default function CompanyVisit() {
               {/* CTA */}
               <div>
                 <Link
-                  href="/contact?type=company-visit"
+                  href={CONTACT_FORM_URLS.companyVisit} {...EXTERNAL_LINK_PROPS}
                   className="bg-[#0064c8] text-white rounded-full px-12 py-4 font-bold inline-flex items-center gap-3 hover:opacity-90 transition-opacity"
                   style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '18px' }}
                 >
@@ -237,7 +238,7 @@ export default function CompanyVisit() {
           {/* CTA */}
           <div className="text-center mt-12">
             <Link
-              href="/contact?type=company-visit"
+              href={CONTACT_FORM_URLS.companyVisit} {...EXTERNAL_LINK_PROPS}
               className="border-2 border-[#0064c8] bg-white text-[#0064c8] rounded-full px-10 py-3 font-bold inline-flex items-center gap-3 hover:bg-[#0064c8] hover:text-white transition-colors"
               style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
             >
@@ -372,7 +373,7 @@ export default function CompanyVisit() {
           {/* CTA */}
           <div className="text-center mt-12">
             <Link
-              href="/contact?type=company-visit"
+              href={CONTACT_FORM_URLS.companyVisit} {...EXTERNAL_LINK_PROPS}
               className="bg-[#0064c8] text-white rounded-full px-12 py-4 font-bold inline-flex items-center gap-3 hover:opacity-90 transition-opacity"
               style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}
             >
@@ -529,7 +530,7 @@ export default function CompanyVisit() {
               オフィス見学やカジュアルトークからでも大歓迎です。
             </p>
             <Link
-              href="/contact?type=company-visit"
+              href={CONTACT_FORM_URLS.companyVisit} {...EXTERNAL_LINK_PROPS}
               className="bg-white text-[#0064c8] rounded-full px-16 py-5 font-bold inline-flex items-center gap-3 hover:bg-gray-100 transition-colors"
               style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '20px' }}
             >

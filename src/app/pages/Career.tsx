@@ -3,6 +3,7 @@
 import Link from "next/link";
 import svgPaths from "../../imports/svg-corg4qlf3y";
 import type { Job } from "../data/jobs";
+import { CONTACT_FORM_URLS, EXTERNAL_LINK_PROPS } from "../data/forms";
 
 // このページに出す求人のslug（Webデザイナー, フロントエンドエンジニア）。
 // キャリア採用のランディングページは全件ではなく絞って見せる方針のため、
@@ -291,7 +292,7 @@ export default function Career({ jobs }: CareerProps) {
           </div>
 
           <div className="flex justify-center">
-            <a href="/contact?type=career" className="inline-flex items-center gap-4 bg-[#0064c8] text-white rounded-full px-10 py-4 hover:bg-[#0054a8] transition-colors">
+            <a href={CONTACT_FORM_URLS.career} {...EXTERNAL_LINK_PROPS} className="inline-flex items-center gap-4 bg-[#0064c8] text-white rounded-full px-10 py-4 hover:bg-[#0054a8] transition-colors">
               <span className="font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>キャリア採用にエントリーする</span>
               <svg className="w-2 h-3" fill="none" viewBox="0 0 7 11.8462">
                 <path d={svgPaths.p190b2b48} fill="white" />

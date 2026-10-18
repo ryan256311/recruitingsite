@@ -11,6 +11,7 @@ import footerSlide2 from "../../../assets/footer-slide-2.webp";
 import footerSlide3 from "../../../assets/footer-slide-3.webp";
 import footerSlide4 from "../../../assets/footer-slide-4.webp";
 import footerSlide5 from "../../../assets/footer-slide-5.webp";
+import { CONTACT_FORM_URLS, EXTERNAL_LINK_PROPS } from "../../data/forms";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -222,10 +223,10 @@ export default function Layout({ children }: LayoutProps) {
                 <Link href="/company-visit" className="block border border-[#0064c8] bg-[#0064c8] text-white rounded-md p-5 hover:bg-[#0057b0] transition-colors">
                   <span className="font-semibold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>会社見学</span>
                 </Link>
-                <Link href="/contact?type=career" className="block border border-[#313131] bg-[#313131] text-white rounded-md p-5 hover:bg-[#4a4a4a] transition-colors">
+                <Link href={CONTACT_FORM_URLS.career} {...EXTERNAL_LINK_PROPS} className="block border border-[#313131] bg-[#313131] text-white rounded-md p-5 hover:bg-[#4a4a4a] transition-colors">
                   <span className="font-semibold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>キャリア採用エントリー</span>
                 </Link>
-                <Link href="/contact?type=graduate" className="block border border-[#707070] bg-white rounded-md p-5 hover:bg-gray-50 transition-colors">
+                <Link href={CONTACT_FORM_URLS.graduate} {...EXTERNAL_LINK_PROPS} className="block border border-[#707070] bg-white rounded-md p-5 hover:bg-gray-50 transition-colors">
                   <span className="font-semibold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>27卒エントリー</span>
                 </Link>
               </div>

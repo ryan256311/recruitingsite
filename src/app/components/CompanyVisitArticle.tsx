@@ -7,6 +7,7 @@ import companyImage1 from "../../assets/company-1.webp";
 import cardImage1 from "../../assets/environment-1.webp";
 import cardImage2 from "../../assets/footer-slide-3.webp";
 import cardImage3 from "../../assets/environment-2.webp";
+import { CONTACT_FORM_URLS, EXTERNAL_LINK_PROPS } from "../data/forms";
 
 /**
  * 会社見学会記事（id 31）専用のリッチレイアウト。
@@ -371,7 +372,7 @@ export default function CompanyVisitArticle() {
               オフィス見学やカジュアルトークからでも大歓迎です。
             </p>
             <Link
-              href="/contact?type=company-visit"
+              href={CONTACT_FORM_URLS.companyVisit} {...EXTERNAL_LINK_PROPS}
               className="bg-white rounded-full px-16 py-5 font-bold inline-flex items-center gap-3 hover:bg-gray-100 transition-colors"
               style={{ fontFamily: "var(--font-noto), sans-serif", fontSize: "20px", color: ACCENT }}
             >

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import svgPaths from "../../imports/svg-corg4qlf3y";
 import type { Job } from "../data/jobs";
+import { CONTACT_FORM_URLS, EXTERNAL_LINK_PROPS } from "../data/forms";
 
 interface GraduateProps {
   jobs: Job[];
@@ -312,7 +313,7 @@ export default function Graduate({ jobs }: GraduateProps) {
                   新卒採用にご興味をお持ちの方は、お気軽にお問い合わせください。<br />
                   会社見学やカジュアル面談のご希望も承っております。
                 </p>
-                <Link href="/contact?type=graduate" className="inline-flex items-center gap-4 bg-[#4346BE] text-white rounded-full px-10 py-4 hover:bg-[#3335a0] transition-colors">
+                <Link href={CONTACT_FORM_URLS.graduate} {...EXTERNAL_LINK_PROPS} className="inline-flex items-center gap-4 bg-[#4346BE] text-white rounded-full px-10 py-4 hover:bg-[#3335a0] transition-colors">
                   <span className="font-bold" style={{ fontFamily: 'var(--font-noto), sans-serif', fontSize: '16px' }}>お問い合わせはこちら</span>
                   <svg className="w-2 h-3" fill="none" viewBox="0 0 7 11.8462">
                     <path d={svgPaths.p190b2b48} fill="white" />
