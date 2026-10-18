@@ -18,27 +18,41 @@ Google フォーム「株式会社エクシート 採用お問い合わせ」
 
 ## 各リンク
 
-| 用途 | URL |
+オーナーは **`exceet.analytics@gmail.com`** です。
+
+| | URL |
 |---|---|
-| フォーム（回答用） | https://docs.google.com/forms/d/e/1FAIpQLSeaN6kgjBVGNF3VvJ2T_tQcv1eTdXLFI2yj78WCn6bLuhsgfg/viewform |
-| フォーム（編集用） | https://docs.google.com/forms/d/1zESHNwXqQ5lS1QjiveCsqBB3Weqqk_tzKKrQ223axB4/edit |
-| 回答のスプレッドシート | https://docs.google.com/spreadsheets/d/1VpEdkbBI4SOugwcpBjBSy6W2hQ3PO28okELNsuMxs3o/edit |
+| 応募フォーム（回答用） | https://docs.google.com/forms/d/e/1FAIpQLSe5hVP2LMD06MjY2Vo4hZTs_tmVVMB8bO_J_VADo-mnrkWdEg/viewform |
+| 応募フォーム（編集用） | https://docs.google.com/forms/d/1QmdLHpBepvAQOu0oVdcqeAfiPa7aoQZJ6R1631C2Wc0/edit |
+| 会社見学フォーム（回答用） | https://docs.google.com/forms/d/e/1FAIpQLSePpHJscnb_yEq2D2V44-Ol7EO3iZQtebzp7IiHXf2BLRqEvA/viewform |
+| 会社見学フォーム（編集用） | https://docs.google.com/forms/d/1OKiNIv23_2oBSDX827ONVhmvt5hNzpzZHAIDJa3NPp4/edit |
+| 回答のスプレッドシート | https://docs.google.com/spreadsheets/d/1Sq6ZnZac9YDa1DSUI-crt1F_L8O0HnCUGR5aE1sCusg/edit |
 
-オーナーは `exceet.shinke.r@gmail.com` です。
+2つのフォームは**同じスプレッドシート**に書き込みます。フォームごとにシート（タブ）が
+分かれるので、開くファイルは1つで済みます。
 
-## CTAごとの事前選択
+## フォームの使い分け
 
-サイトのボタンによって、フォームの項目が最初から選ばれた状態で開きます。
+| | 応募フォーム | 会社見学フォーム |
+|---|---|---|
+| お問い合わせ種別 | 選考への応募 / カジュアル面談 | （設問なし） |
+| 採用区分 | 必須 | 必須 |
+| 職種 | 応募職種（任意） | 興味のある職種（任意） |
+| お名前・フリガナ・**電話番号** | **必須** | **必須** |
+| メールアドレス | 必須 | 必須 |
+| ポートフォリオURL | 任意 | （設問なし） |
+| 自由記述 | ご質問・ご要望など | **ご希望の日程**・ご質問など |
+| プライバシーポリシー同意 | 必須 | 必須 |
 
-| ボタン | 事前に選ばれる内容 |
-|---|---|
-| キャリア採用エントリー | お問い合わせ種別=選考への応募 / 採用区分=キャリア採用 |
-| 27卒エントリー | お問い合わせ種別=選考への応募 / 採用区分=新卒採用 |
-| 会社見学の各ボタン | お問い合わせ種別=会社見学 |
+## CTAごとの遷移先
+
+| ボタン | 開くフォーム | 事前に選ばれる内容 |
+|---|---|---|
+| キャリア採用エントリー | 応募フォーム | 選考への応募 / キャリア採用 |
+| 27卒エントリー | 応募フォーム | 選考への応募 / 新卒採用 |
+| 会社見学の各ボタン（5箇所） | 会社見学フォーム | — |
 
 URLは `src/app/data/forms.ts` で管理しています。
-
----
 
 ## 添付ファイルを扱わない理由
 

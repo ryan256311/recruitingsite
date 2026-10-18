@@ -1,38 +1,45 @@
 /**
- * お問い合わせはGoogleフォームで受け付ける。
+ * お問い合わせはGoogleフォームで受け付ける。用途ごとに2つある。
  *
- * CTAごとに「お問い合わせ種別」「採用区分」を事前選択した状態で開くので、
- * 「キャリア採用エントリー」を押した人がフォームで選び直す必要がない。
+ *   応募フォーム   … 新卒・キャリアの応募／カジュアル面談
+ *   会社見学フォーム … 会社見学の申し込み
  *
- * URLを作り直すときは scripts/apps-script/create-form.gs の
- * getPrefilledUrls() を実行して、その出力をここに貼る。
+ * 応募フォームは、CTAに応じて「お問い合わせ種別」「採用区分」を
+ * 事前選択した状態で開く。「キャリア採用エントリー」を押した人が
+ * フォームで選び直す必要がない。
+ *
+ * フォームを作り直すとURLと設問IDが変わる。その場合は
+ * scripts/apps-script/create-form.gs を参照して、ここを更新する。
  */
 
-const FORM_BASE =
-  "https://docs.google.com/forms/d/e/1FAIpQLSeaN6kgjBVGNF3VvJ2T_tQcv1eTdXLFI2yj78WCn6bLuhsgfg/viewform";
+const APPLICATION_FORM =
+  "https://docs.google.com/forms/d/e/1FAIpQLSe5hVP2LMD06MjY2Vo4hZTs_tmVVMB8bO_J_VADo-mnrkWdEg/viewform";
 
-/** フォームの設問に対応するID（フォームを作り直すと変わる） */
-const ENTRY = {
-  inquiryType: "entry.1034807452",
-  recruitmentType: "entry.1939094284",
+const COMPANY_VISIT_FORM =
+  "https://docs.google.com/forms/d/e/1FAIpQLSePpHJscnb_yEq2D2V44-Ol7EO3iZQtebzp7IiHXf2BLRqEvA/viewform";
+
+/** 応募フォームの設問に対応するID */
+const APPLICATION_ENTRY = {
+  inquiryType: "entry.27753636",
+  recruitmentType: "entry.1673321987",
 } as const;
 
-function prefilled(inquiryType?: string, recruitmentType?: string): string {
-  const params = new URLSearchParams({ usp: "pp_url" });
-  if (inquiryType) params.set(ENTRY.inquiryType, inquiryType);
-  if (recruitmentType) params.set(ENTRY.recruitmentType, recruitmentType);
-  return `${FORM_BASE}?${params.toString()}`;
+function prefilledApplication(inquiryType: string, recruitmentType: string): string {
+  const params = new URLSearchParams({
+    "usp": "pp_url",
+    [APPLICATION_ENTRY.inquiryType]: inquiryType,
+    [APPLICATION_ENTRY.recruitmentType]: recruitmentType,
+  });
+  return `${APPLICATION_FORM}?${params.toString()}`;
 }
 
 export const CONTACT_FORM_URLS = {
   /** キャリア採用のエントリー */
-  career: prefilled("選考への応募", "キャリア採用"),
+  career: prefilledApplication("選考への応募", "キャリア採用"),
   /** 新卒採用のエントリー */
-  graduate: prefilled("選考への応募", "新卒採用"),
-  /** 会社見学の申し込み */
-  companyVisit: prefilled("会社見学"),
-  /** 種別を決めずに開く場合 */
-  default: FORM_BASE,
+  graduate: prefilledApplication("選考への応募", "新卒採用"),
+  /** 会社見学の申し込み（別フォーム） */
+  companyVisit: COMPANY_VISIT_FORM,
 } as const;
 
 /** 外部サイトを新しいタブで開くリンクに付ける属性 */
