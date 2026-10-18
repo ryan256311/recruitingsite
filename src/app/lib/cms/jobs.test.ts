@@ -148,3 +148,21 @@ describe("toJob", () => {
     expect(toJob({ ...base(), title: "" })).toBeNull();
   });
 });
+
+describe("showOnCareer（キャリア採用ページへの掲載）", () => {
+  it("CMSでオンにした求人はフラグが立つ", () => {
+    expect(toJob({ ...base(), showOnCareer: true })?.showOnCareer).toBe(true);
+  });
+
+  it("CMSでオフの求人はフラグが立たない", () => {
+    expect(toJob({ ...base(), showOnCareer: false })?.showOnCareer).toBe(false);
+  });
+
+  it("フィールド未設定の求人は掲載しない扱いにする", () => {
+    // 新しく追加したフィールドなので、値が入る前の求人はAPIから返ってこない。
+    // 未設定を「掲載する」と解釈すると、意図せず全件が出てしまう。
+    const { showOnCareer, ...withoutFlag } = { ...base(), showOnCareer: true };
+    void showOnCareer;
+    expect(toJob(withoutFlag)?.showOnCareer).toBe(false);
+  });
+});

@@ -35,6 +35,8 @@ function toOptionalLines(value: CmsLines): string[] | undefined {
 export interface CmsJob {
   id: string;
   slug: string;
+  /** キャリア採用ページに載せるか。未設定の求人はAPIから返らないため載せない */
+  showOnCareer?: boolean;
   /** セレクトフィールドは単一選択でも配列で返る */
   employmentCategory: string[];
   title: string;
@@ -87,6 +89,7 @@ export function toJob(cms: CmsJob): Job | null {
   return {
     slug: cms.slug,
     title: cms.title,
+    showOnCareer: cms.showOnCareer === true,
     department: cms.department ?? "",
     departmentDescription: cms.departmentDesc ?? "",
     type: cms.type ?? "",

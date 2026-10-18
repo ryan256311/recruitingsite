@@ -5,19 +5,14 @@ import svgPaths from "../../imports/svg-corg4qlf3y";
 import type { Job } from "../data/jobs";
 import { CONTACT_FORM_URLS, EXTERNAL_LINK_PROPS } from "../data/forms";
 
-// このページに出す求人のslug（Webデザイナー, フロントエンドエンジニア）。
-// キャリア採用のランディングページは全件ではなく絞って見せる方針のため、
-// ここはコード側で管理している。CMSに求人を追加しても、このリストに
-// 入れない限り /career には出ない（/jobs と /career/<slug> には出る）。
-// 出す求人を変えるときはこの配列を編集する。
-const DISPLAYED_SLUGS = ['1', '2'];
-
+// このページに出す求人は microCMS の「キャリア採用ページに表示する」で切り替える。
+// オフの求人も /jobs と /career/<slug> には出る。
 interface CareerProps {
   jobs: Job[];
 }
 
 export default function Career({ jobs }: CareerProps) {
-  const displayedJobs = jobs.filter(job => DISPLAYED_SLUGS.includes(job.slug));
+  const displayedJobs = jobs.filter(job => job.showOnCareer);
 
   return (
     <>
