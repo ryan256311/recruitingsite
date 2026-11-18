@@ -166,3 +166,71 @@ describe("showOnCareer（キャリア採用ページへの掲載）", () => {
     expect(toJob(withoutFlag)?.showOnCareer).toBe(false);
   });
 });
+
+describe("拡張フィールド basicInfo / recruitInfo への移行", () => {
+  function migrated(): CmsJob {
+    // 旧項目を削除した後の形（拡張フィールドだけに値がある）
+    const { title, department, type, description, salary, location, employmentType, ...rest } =
+      base();
+    void [title, department, type, description, salary, location, employmentType];
+    return {
+      ...rest,
+      basicInfo: {
+        title: "営業事務",
+        department: "企画営業部",
+        type: "事務",
+        description: "新しい概要",
+      },
+      recruitInfo: {
+        employmentType: "契約社員",
+        location: "福井県",
+        salary: "※詳細は面談時にご説明します",
+        workHours: "8:30〜17:30\n残業：月10時間程度",
+        holidays: "",
+        trialPeriod: "  ",
+      },
+    };
+  }
+
+  it("拡張フィールドの値を使う", () => {
+    const job = toJob(migrated());
+    expect(job?.title).toBe("営業事務");
+    expect(job?.department).toBe("企画営業部");
+    expect(job?.type).toBe("事務");
+    expect(job?.description).toBe("新しい概要");
+    expect(job?.employmentType).toBe("契約社員");
+    expect(job?.location).toBe("福井県");
+    expect(job?.salary).toBe("※詳細は面談時にご説明します");
+    expect(job?.workHours).toBe("8:30〜17:30\n残業：月10時間程度");
+  });
+
+  it("任意項目が空文字・空白だけならundefinedにする（行ごと出さない）", () => {
+    const job = toJob(migrated());
+    expect(job?.holidays).toBeUndefined();
+    expect(job?.trialPeriod).toBeUndefined();
+  });
+
+  it("移行期間中、拡張フィールドに値があれば旧項目より優先する", () => {
+    const job = toJob({ ...base(), basicInfo: { title: "新しい職種名" } });
+    expect(job?.title).toBe("新しい職種名");
+  });
+
+  it("拡張フィールドを使うときは旧項目と混ぜない（消した任意項目が復活しない）", () => {
+    const job = toJob({
+      ...base(),
+      workHours: "旧データの勤務時間",
+      recruitInfo: { employmentType: "正社員", location: "福井県", salary: "月給", workHours: "" },
+    });
+    expect(job?.workHours).toBeUndefined();
+  });
+
+  it("拡張フィールドが未入力（null・空オブジェクト・空文字だけ）なら旧項目を使う", () => {
+    expect(toJob({ ...base(), basicInfo: null })?.title).toBe("Webコーダー・HTMLコーダー");
+    expect(toJob({ ...base(), basicInfo: {} })?.title).toBe("Webコーダー・HTMLコーダー");
+    expect(toJob({ ...base(), recruitInfo: { salary: "" } })?.salary).toBe("月給220,000円〜");
+  });
+
+  it("拡張フィールドの職種名が空ならnullを返す", () => {
+    expect(toJob({ ...migrated(), basicInfo: { department: "企画営業部" } })).toBeNull();
+  });
+});
