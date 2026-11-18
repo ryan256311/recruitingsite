@@ -32,6 +32,30 @@ function toOptionalLines(value: CmsLines): string[] | undefined {
   return lines.length > 0 ? lines : undefined;
 }
 
+/**
+ * 拡張フィールド「【冒頭】基本情報」(basicInfo) の中身。
+ * 編集画面で短い項目を横並びにするため、旧 title / department / type / description をまとめた。
+ */
+export interface CmsBasicInfo {
+  title?: string;
+  department?: string;
+  type?: string;
+  description?: string;
+}
+
+/**
+ * 拡張フィールド「【募集要項】」(recruitInfo) の中身。
+ * 旧 employmentType / location / salary / workHours / holidays / trialPeriod をまとめた。
+ */
+export interface CmsRecruitInfo {
+  employmentType?: string;
+  location?: string;
+  salary?: string;
+  workHours?: string;
+  holidays?: string;
+  trialPeriod?: string;
+}
+
 export interface CmsJob {
   id: string;
   slug: string;
@@ -39,7 +63,10 @@ export interface CmsJob {
   showOnCareer?: boolean;
   /** セレクトフィールドは単一選択でも配列で返る */
   employmentCategory: string[];
-  title: string;
+  basicInfo?: CmsBasicInfo | null;
+  recruitInfo?: CmsRecruitInfo | null;
+  // ---- 以下の10項目は basicInfo / recruitInfo へ移行中。移行完了後にスキーマから削除する ----
+  title?: string;
   department?: string;
   /** microCMSのフィールドIDは20文字以内のため短縮している */
   departmentDesc?: string;
@@ -81,30 +108,72 @@ function toDevEnvironment(cms: CmsJob): Job["devEnvironment"] {
   return hasAny ? { tech, versionControl, designTools, workStyle } : undefined;
 }
 
-/** CMSレスポンスを既存のJobへ変換する。必須が欠けていればnull */
-export function toJob(cms: CmsJob): Job | null {
-  if (!cms.slug) return null;
-  if (!cms.title) return null;
+/** 拡張フィールドに1つでも値が入っているか。未入力の求人はAPIで null や {} になりうる */
+function hasValue(group: object | null | undefined): group is object {
+  if (!group || typeof group !== "object") return false;
+  return Object.values(group).some((v) => typeof v === "string" && v.length > 0);
+}
 
+/**
+ * 基本情報を取り出す。
+ * 移行期間中は、拡張フィールドに値があればそちらだけを使い（旧項目と混ぜない）、
+ * なければ旧項目を使う。混ぜると、拡張フィールドで消した任意項目が旧項目から復活してしまう。
+ */
+function pickBasicInfo(cms: CmsJob): CmsBasicInfo {
+  if (hasValue(cms.basicInfo)) return cms.basicInfo as CmsBasicInfo;
   return {
-    slug: cms.slug,
     title: cms.title,
-    showOnCareer: cms.showOnCareer === true,
-    department: cms.department ?? "",
-    departmentDescription: cms.departmentDesc ?? "",
-    type: cms.type ?? "",
-    description: cms.description ?? "",
-    background: cms.background ?? "",
-    requirements: toLines(cms.requirements),
-    responsibilities: toLines(cms.responsibilities),
-    salary: cms.salary ?? "",
-    location: cms.location ?? "",
-    employmentType: cms.employmentType ?? "",
-    welcomeSkills: toOptionalLines(cms.welcomeSkills),
-    appealPoints: toOptionalLines(cms.appealPoints),
+    department: cms.department,
+    type: cms.type,
+    description: cms.description,
+  };
+}
+
+/** 募集要項を取り出す。方針は pickBasicInfo と同じ */
+function pickRecruitInfo(cms: CmsJob): CmsRecruitInfo {
+  if (hasValue(cms.recruitInfo)) return cms.recruitInfo as CmsRecruitInfo;
+  return {
+    employmentType: cms.employmentType,
+    location: cms.location,
+    salary: cms.salary,
     workHours: cms.workHours,
     holidays: cms.holidays,
     trialPeriod: cms.trialPeriod,
+  };
+}
+
+/** 任意の1行項目用。空白だけなら undefined にして、サイト側でその行ごと非表示にする */
+function toOptionalText(value: string | undefined): string | undefined {
+  return value && value.trim().length > 0 ? value : undefined;
+}
+
+/** CMSレスポンスを既存のJobへ変換する。必須が欠けていればnull */
+export function toJob(cms: CmsJob): Job | null {
+  if (!cms.slug) return null;
+
+  const basic = pickBasicInfo(cms);
+  const recruit = pickRecruitInfo(cms);
+  if (!basic.title) return null;
+
+  return {
+    slug: cms.slug,
+    title: basic.title,
+    showOnCareer: cms.showOnCareer === true,
+    department: basic.department ?? "",
+    departmentDescription: cms.departmentDesc ?? "",
+    type: basic.type ?? "",
+    description: basic.description ?? "",
+    background: cms.background ?? "",
+    requirements: toLines(cms.requirements),
+    responsibilities: toLines(cms.responsibilities),
+    salary: recruit.salary ?? "",
+    location: recruit.location ?? "",
+    employmentType: recruit.employmentType ?? "",
+    welcomeSkills: toOptionalLines(cms.welcomeSkills),
+    appealPoints: toOptionalLines(cms.appealPoints),
+    workHours: toOptionalText(recruit.workHours),
+    holidays: toOptionalText(recruit.holidays),
+    trialPeriod: toOptionalText(recruit.trialPeriod),
     benefits: toOptionalLines(cms.benefits),
     selectionProcess: toOptionalLines(cms.selectionProcess),
     devEnvironment: toDevEnvironment(cms),
