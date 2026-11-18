@@ -223,3 +223,75 @@ describe("拡張フィールド basicInfo / recruitInfo", () => {
     expect(job?.workHours).toBeUndefined();
   });
 });
+
+describe("拡張フィールド detailInfo / skillInfo / benefitInfo への移行", () => {
+  function migrated(): CmsJob {
+    const {
+      background, departmentDesc, requirements, responsibilities,
+      ...rest
+    } = base();
+    void [background, departmentDesc, requirements, responsibilities];
+    return {
+      ...rest,
+      detailInfo: {
+        background: "新しい募集背景",
+        departmentDesc: "新しい部署紹介",
+        responsibilities: "コーディング\nWordPress構築",
+        requirements: "実務経験1年以上",
+      },
+      skillInfo: {
+        welcomeSkills: "React経験",
+        devTech: "HTML5/CSS3\nTypeScript",
+        devVersionControl: "",
+        devDesignTools: "Figma",
+        devWorkStyle: "",
+        appealPoints: "",
+      },
+      benefitInfo: { benefits: "社保完備\n交通費支給", selectionProcess: "" },
+    };
+  }
+
+  it("拡張フィールドの値を使う", () => {
+    const job = toJob(migrated());
+    expect(job?.background).toBe("新しい募集背景");
+    expect(job?.departmentDescription).toBe("新しい部署紹介");
+    expect(job?.responsibilities).toEqual(["コーディング", "WordPress構築"]);
+    expect(job?.requirements).toEqual(["実務経験1年以上"]);
+    expect(job?.welcomeSkills).toEqual(["React経験"]);
+    expect(job?.devEnvironment).toEqual({
+      tech: ["HTML5/CSS3", "TypeScript"],
+      versionControl: [],
+      designTools: ["Figma"],
+      workStyle: [],
+    });
+    expect(job?.benefits).toEqual(["社保完備", "交通費支給"]);
+  });
+
+  it("任意項目が空文字ならundefinedにする（セクションごと出さない）", () => {
+    const job = toJob(migrated());
+    expect(job?.appealPoints).toBeUndefined();
+    expect(job?.selectionProcess).toBeUndefined();
+  });
+
+  it("開発環境が4つとも空ならundefinedにする", () => {
+    const job = toJob({ ...migrated(), skillInfo: { welcomeSkills: "React経験", devTech: "", devVersionControl: "" } });
+    expect(job?.devEnvironment).toBeUndefined();
+  });
+
+  it("拡張フィールドが未入力（null・空オブジェクト・空文字だけ）なら旧項目を使う", () => {
+    const job = toJob({ ...base(), detailInfo: null, skillInfo: {}, benefitInfo: { benefits: "" } });
+    expect(job?.background).toBe("募集背景");
+    expect(job?.departmentDescription).toBe("部署紹介テキスト");
+    expect(job?.requirements).toEqual(["実務経験1年以上", "普通自動車第一種免許"]);
+    expect(job?.welcomeSkills).toBeUndefined();
+  });
+
+  it("拡張フィールドを使うときは旧項目と混ぜない（消した任意項目が復活しない）", () => {
+    const job = toJob({
+      ...base(),
+      appealPoints: "旧データのアピールポイント",
+      skillInfo: { welcomeSkills: "React経験", appealPoints: "" },
+    });
+    expect(job?.appealPoints).toBeUndefined();
+  });
+});
