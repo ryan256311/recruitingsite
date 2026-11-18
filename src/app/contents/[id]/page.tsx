@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import Layout from "../../components/layout/Layout";
@@ -16,6 +17,17 @@ export const revalidate = 600;
 export async function generateStaticParams() {
   const items = await getAllContents();
   return items.map((item) => ({ id: item.id }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  const content = await getContentDetail(id);
+  if (!content) return {};
+  return {
+    title: content.title,
+    description: content.description || undefined,
+    alternates: { canonical: `/contents/${content.id}` },
+  };
 }
 
 export default async function ContentsDetailPage({ params, searchParams }: Props) {
