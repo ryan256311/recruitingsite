@@ -56,6 +56,30 @@ export interface CmsRecruitInfo {
   trialPeriod?: string;
 }
 
+/** 拡張フィールド「募集背景・部署について・仕事内容・応募資格」(detailInfo) の中身 */
+export interface CmsDetailInfo {
+  background?: string;
+  departmentDesc?: string;
+  responsibilities?: string;
+  requirements?: string;
+}
+
+/** 拡張フィールド「歓迎するスキル・開発環境・アピールポイント」(skillInfo) の中身 */
+export interface CmsSkillInfo {
+  welcomeSkills?: string;
+  devTech?: string;
+  devVersionControl?: string;
+  devDesignTools?: string;
+  devWorkStyle?: string;
+  appealPoints?: string;
+}
+
+/** 拡張フィールド「待遇・福利厚生・選考フロー」(benefitInfo) の中身 */
+export interface CmsBenefitInfo {
+  benefits?: string;
+  selectionProcess?: string;
+}
+
 export interface CmsJob {
   id: string;
   slug: string;
@@ -67,6 +91,10 @@ export interface CmsJob {
   basicInfo?: CmsBasicInfo | null;
   /** 【募集要項】（拡張フィールド） */
   recruitInfo?: CmsRecruitInfo | null;
+  detailInfo?: CmsDetailInfo | null;
+  skillInfo?: CmsSkillInfo | null;
+  benefitInfo?: CmsBenefitInfo | null;
+  // ---- 以下の12項目は detailInfo / skillInfo / benefitInfo へ移行中。移行完了後にスキーマから削除する ----
   /** microCMSのフィールドIDは20文字以内のため短縮している */
   departmentDesc?: string;
   background?: string;
@@ -82,8 +110,48 @@ export interface CmsJob {
   devWorkStyle?: CmsLines;
 }
 
+/** 拡張フィールドに1つでも値が入っているか。未入力の求人はAPIで null や {} になりうる */
+function hasValue(group: object | null | undefined): group is object {
+  if (!group || typeof group !== "object") return false;
+  return Object.values(group).some((v) => typeof v === "string" && v.length > 0);
+}
+
+/**
+ * 移行期間中は、拡張フィールドに値があればそちらだけを使い（旧項目と混ぜない）、
+ * なければ旧項目を使う。混ぜると、拡張フィールドで消した任意項目が旧項目から復活してしまう。
+ */
+function pickDetailInfo(cms: CmsJob): CmsDetailInfo {
+  if (hasValue(cms.detailInfo)) return cms.detailInfo as CmsDetailInfo;
+  return {
+    background: cms.background,
+    departmentDesc: cms.departmentDesc,
+    responsibilities: typeof cms.responsibilities === "string" ? cms.responsibilities : toLines(cms.responsibilities).join("\n"),
+    requirements: typeof cms.requirements === "string" ? cms.requirements : toLines(cms.requirements).join("\n"),
+  };
+}
+
+function pickSkillInfo(cms: CmsJob): CmsSkillInfo {
+  if (hasValue(cms.skillInfo)) return cms.skillInfo as CmsSkillInfo;
+  return {
+    welcomeSkills: toLines(cms.welcomeSkills).join("\n"),
+    devTech: toLines(cms.devTech).join("\n"),
+    devVersionControl: toLines(cms.devVersionControl).join("\n"),
+    devDesignTools: toLines(cms.devDesignTools).join("\n"),
+    devWorkStyle: toLines(cms.devWorkStyle).join("\n"),
+    appealPoints: toLines(cms.appealPoints).join("\n"),
+  };
+}
+
+function pickBenefitInfo(cms: CmsJob): CmsBenefitInfo {
+  if (hasValue(cms.benefitInfo)) return cms.benefitInfo as CmsBenefitInfo;
+  return {
+    benefits: toLines(cms.benefits).join("\n"),
+    selectionProcess: toLines(cms.selectionProcess).join("\n"),
+  };
+}
+
 /** 開発環境は4つのフィールドから組み立てる。すべて空なら欄ごと出さない */
-function toDevEnvironment(cms: CmsJob): Job["devEnvironment"] {
+function toDevEnvironment(cms: CmsSkillInfo): Job["devEnvironment"] {
   const tech = toLines(cms.devTech);
   const versionControl = toLines(cms.devVersionControl);
   const designTools = toLines(cms.devDesignTools);
@@ -111,6 +179,9 @@ export function toJob(cms: CmsJob): Job | null {
   // 旧フィールド（title など）は削除済み。APIに残骸が返っても読まない
   const basic: CmsBasicInfo = cms.basicInfo ?? {};
   const recruit: CmsRecruitInfo = cms.recruitInfo ?? {};
+  const detail = pickDetailInfo(cms);
+  const skill = pickSkillInfo(cms);
+  const benefit = pickBenefitInfo(cms);
   if (!basic.title) return null;
 
   return {
@@ -118,23 +189,23 @@ export function toJob(cms: CmsJob): Job | null {
     title: basic.title,
     showOnCareer: cms.showOnCareer === true,
     department: basic.department ?? "",
-    departmentDescription: cms.departmentDesc ?? "",
+    departmentDescription: detail.departmentDesc ?? "",
     type: basic.type ?? "",
     description: basic.description ?? "",
-    background: cms.background ?? "",
-    requirements: toLines(cms.requirements),
-    responsibilities: toLines(cms.responsibilities),
+    background: detail.background ?? "",
+    requirements: toLines(detail.requirements),
+    responsibilities: toLines(detail.responsibilities),
     salary: recruit.salary ?? "",
     location: recruit.location ?? "",
     employmentType: recruit.employmentType ?? "",
-    welcomeSkills: toOptionalLines(cms.welcomeSkills),
-    appealPoints: toOptionalLines(cms.appealPoints),
+    welcomeSkills: toOptionalLines(skill.welcomeSkills),
+    appealPoints: toOptionalLines(skill.appealPoints),
     workHours: toOptionalText(recruit.workHours),
     holidays: toOptionalText(recruit.holidays),
     trialPeriod: toOptionalText(recruit.trialPeriod),
-    benefits: toOptionalLines(cms.benefits),
-    selectionProcess: toOptionalLines(cms.selectionProcess),
-    devEnvironment: toDevEnvironment(cms),
+    benefits: toOptionalLines(benefit.benefits),
+    selectionProcess: toOptionalLines(benefit.selectionProcess),
+    devEnvironment: toDevEnvironment(skill),
   };
 }
 
