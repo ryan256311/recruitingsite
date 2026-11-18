@@ -68,3 +68,15 @@ describe("toNewsItem", () => {
     expect(toNewsItem({ ...base(), category: ["all"] })).toBeNull();
   });
 });
+
+describe("toNewsItem: 日本語の選択肢", () => {
+  it("管理画面の日本語の選択肢を内部IDに変換する", () => {
+    expect(toNewsItem({ ...base(), category: ["新卒"] })).toMatchObject({ category: "graduate", categoryLabel: "新卒" });
+    expect(toNewsItem({ ...base(), category: ["ニュース"] })).toMatchObject({ category: "news", categoryLabel: "ニュース" });
+    expect(toNewsItem({ ...base(), category: ["その他"] })).toMatchObject({ category: "other", categoryLabel: "その他" });
+  });
+
+  it("「すべて」は選択肢として扱わない", () => {
+    expect(toNewsItem({ ...base(), category: ["すべて"] })).toBeNull();
+  });
+});

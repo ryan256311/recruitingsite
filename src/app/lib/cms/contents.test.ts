@@ -78,3 +78,17 @@ describe("toContentItem", () => {
     expect(toContentItem({ ...base(), category: ["dialogue"] })?.categoryLabel).toBe("対話を知る");
   });
 });
+
+describe("toContentItem: 日本語の選択肢", () => {
+  it("管理画面の日本語の選択肢を内部IDに変換する", () => {
+    expect(toContentItem({ ...base(), category: ["会社を知る"] })).toMatchObject({ category: "company", categoryLabel: "会社を知る" });
+    expect(toContentItem({ ...base(), category: ["仕事を知る"] })).toMatchObject({ category: "work", categoryLabel: "仕事を知る" });
+    expect(toContentItem({ ...base(), category: ["仲間を知る"] })).toMatchObject({ category: "members", categoryLabel: "仲間を知る" });
+    expect(toContentItem({ ...base(), category: ["働く環境"] })).toMatchObject({ category: "environment", categoryLabel: "働く環境" });
+    expect(toContentItem({ ...base(), category: ["対話を知る"] })).toMatchObject({ category: "dialogue", categoryLabel: "対話を知る" });
+  });
+
+  it("「すべて」は選択肢として扱わない", () => {
+    expect(toContentItem({ ...base(), category: ["すべて"] })).toBeNull();
+  });
+});

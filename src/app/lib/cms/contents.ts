@@ -28,23 +28,24 @@ export interface CmsContent {
  */
 const PLACEHOLDER_IMAGE = "/images/contents/placeholder.webp";
 
-const VALID_CATEGORIES = new Set([
-  "company",
-  "work",
-  "members",
-  "environment",
-  "dialogue",
-]);
+/**
+ * microCMS「カテゴリ」の選択肢 → 内部ID。
+ * 管理画面ではサイトと同じ日本語（「会社を知る」など）を選ばせる。
+ * 英語のIDは置き換え前の値で、巻き戻したときにも表示が崩れないよう受け付ける。
+ */
+function toCategory(value: string | undefined) {
+  if (!value) return undefined;
+  return contentCategories.find((c) => c.id !== "all" && (c.label === value || c.id === value));
+}
 
 /** CMSレスポンスを既存のContentItemへ変換する。必須が欠けていればnull */
 export function toContentItem(cms: CmsContent): ContentItem | null {
   if (!cms.title) return null;
 
-  const category = firstSelected(cms.category);
-  if (!category || !VALID_CATEGORIES.has(category)) return null;
-
-  const categoryLabel = contentCategories.find((c) => c.id === category)?.label;
-  if (!categoryLabel) return null;
+  const found = toCategory(firstSelected(cms.category));
+  if (!found) return null;
+  const category = found.id;
+  const categoryLabel = found.label;
 
   return {
     id: cms.id,

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { toJob, toLines, type CmsJob } from "./jobs";
+import { toJob, toEmploymentCategories, toLines, type CmsJob } from "./jobs";
 
 function base(): CmsJob {
   return {
@@ -260,5 +260,23 @@ describe("拡張フィールド detailInfo / skillInfo / benefitInfo", () => {
     expect(job?.background).toBe("募集背景");
     expect(job?.appealPoints).toBeUndefined();
     expect(job?.benefits).toBeUndefined();
+  });
+});
+
+describe("toEmploymentCategories（採用の種類の選択肢）", () => {
+  it("日本語の選択肢を内部IDにする", () => {
+    expect(toEmploymentCategories(["キャリア採用"])).toEqual(["career"]);
+    expect(toEmploymentCategories(["新卒採用"])).toEqual(["graduate"]);
+  });
+
+  it("置き換え前の英語も受け付ける", () => {
+    expect(toEmploymentCategories(["career"])).toEqual(["career"]);
+    expect(toEmploymentCategories(["graduate"])).toEqual(["graduate"]);
+  });
+
+  it("知らない値や空は捨てる", () => {
+    expect(toEmploymentCategories(["中途"])).toEqual([]);
+    expect(toEmploymentCategories([])).toEqual([]);
+    expect(toEmploymentCategories(undefined)).toEqual([]);
   });
 });

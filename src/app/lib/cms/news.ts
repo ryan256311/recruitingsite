@@ -18,17 +18,23 @@ export interface CmsNews {
   externalUrl?: string;
 }
 
-const VALID_CATEGORIES = new Set(["graduate", "news", "other"]);
+/**
+ * microCMS「カテゴリ」の選択肢 → 内部ID。
+ * 管理画面ではサイトと同じ日本語（「新卒」など）を選ばせる。英語のIDも受け付ける。
+ */
+function toCategory(value: string | undefined) {
+  if (!value) return undefined;
+  return newsCategories.find((c) => c.id !== "all" && (c.label === value || c.id === value));
+}
 
 /** CMSレスポンスを既存のNewsItemへ変換する。必須が欠けていればnull */
 export function toNewsItem(cms: CmsNews): NewsItem | null {
   if (!cms.title) return null;
 
-  const category = firstSelected(cms.category);
-  if (!category || !VALID_CATEGORIES.has(category)) return null;
-
-  const categoryLabel = newsCategories.find((c) => c.id === category)?.label;
-  if (!categoryLabel) return null;
+  const found = toCategory(firstSelected(cms.category));
+  if (!found) return null;
+  const category = found.id;
+  const categoryLabel = found.label;
 
   return {
     id: cms.id,
