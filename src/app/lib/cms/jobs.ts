@@ -94,60 +94,6 @@ export interface CmsJob {
   detailInfo?: CmsDetailInfo | null;
   skillInfo?: CmsSkillInfo | null;
   benefitInfo?: CmsBenefitInfo | null;
-  // ---- 以下の12項目は detailInfo / skillInfo / benefitInfo へ移行中。移行完了後にスキーマから削除する ----
-  /** microCMSのフィールドIDは20文字以内のため短縮している */
-  departmentDesc?: string;
-  background?: string;
-  requirements?: CmsLines;
-  responsibilities?: CmsLines;
-  welcomeSkills?: CmsLines;
-  appealPoints?: CmsLines;
-  benefits?: CmsLines;
-  selectionProcess?: CmsLines;
-  devTech?: CmsLines;
-  devVersionControl?: CmsLines;
-  devDesignTools?: CmsLines;
-  devWorkStyle?: CmsLines;
-}
-
-/** 拡張フィールドに1つでも値が入っているか。未入力の求人はAPIで null や {} になりうる */
-function hasValue(group: object | null | undefined): group is object {
-  if (!group || typeof group !== "object") return false;
-  return Object.values(group).some((v) => typeof v === "string" && v.length > 0);
-}
-
-/**
- * 移行期間中は、拡張フィールドに値があればそちらだけを使い（旧項目と混ぜない）、
- * なければ旧項目を使う。混ぜると、拡張フィールドで消した任意項目が旧項目から復活してしまう。
- */
-function pickDetailInfo(cms: CmsJob): CmsDetailInfo {
-  if (hasValue(cms.detailInfo)) return cms.detailInfo as CmsDetailInfo;
-  return {
-    background: cms.background,
-    departmentDesc: cms.departmentDesc,
-    responsibilities: typeof cms.responsibilities === "string" ? cms.responsibilities : toLines(cms.responsibilities).join("\n"),
-    requirements: typeof cms.requirements === "string" ? cms.requirements : toLines(cms.requirements).join("\n"),
-  };
-}
-
-function pickSkillInfo(cms: CmsJob): CmsSkillInfo {
-  if (hasValue(cms.skillInfo)) return cms.skillInfo as CmsSkillInfo;
-  return {
-    welcomeSkills: toLines(cms.welcomeSkills).join("\n"),
-    devTech: toLines(cms.devTech).join("\n"),
-    devVersionControl: toLines(cms.devVersionControl).join("\n"),
-    devDesignTools: toLines(cms.devDesignTools).join("\n"),
-    devWorkStyle: toLines(cms.devWorkStyle).join("\n"),
-    appealPoints: toLines(cms.appealPoints).join("\n"),
-  };
-}
-
-function pickBenefitInfo(cms: CmsJob): CmsBenefitInfo {
-  if (hasValue(cms.benefitInfo)) return cms.benefitInfo as CmsBenefitInfo;
-  return {
-    benefits: toLines(cms.benefits).join("\n"),
-    selectionProcess: toLines(cms.selectionProcess).join("\n"),
-  };
 }
 
 /** 開発環境は4つのフィールドから組み立てる。すべて空なら欄ごと出さない */
@@ -176,12 +122,12 @@ function toOptionalText(value: string | undefined): string | undefined {
 export function toJob(cms: CmsJob): Job | null {
   if (!cms.slug) return null;
 
-  // 旧フィールド（title など）は削除済み。APIに残骸が返っても読まない
   const basic: CmsBasicInfo = cms.basicInfo ?? {};
   const recruit: CmsRecruitInfo = cms.recruitInfo ?? {};
-  const detail = pickDetailInfo(cms);
-  const skill = pickSkillInfo(cms);
-  const benefit = pickBenefitInfo(cms);
+  // 旧フィールドは削除済み。APIに残骸が返っても読まない
+  const detail: CmsDetailInfo = cms.detailInfo ?? {};
+  const skill: CmsSkillInfo = cms.skillInfo ?? {};
+  const benefit: CmsBenefitInfo = cms.benefitInfo ?? {};
   if (!basic.title) return null;
 
   return {

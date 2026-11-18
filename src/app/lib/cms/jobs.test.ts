@@ -12,10 +12,12 @@ function base(): CmsJob {
       type: "エンジニア",
       description: "概要",
     },
-    departmentDesc: "部署紹介テキスト",
-    background: "募集背景",
-    requirements: "実務経験1年以上\n普通自動車第一種免許",
-    responsibilities: "Web制作・コーディング",
+    detailInfo: {
+      background: "募集背景",
+      departmentDesc: "部署紹介テキスト",
+      responsibilities: "Web制作・コーディング",
+      requirements: "実務経験1年以上\n普通自動車第一種免許",
+    },
     recruitInfo: {
       salary: "月給220,000円〜",
       location: "福井県坂井市",
@@ -86,7 +88,7 @@ describe("toJob", () => {
   });
 
   it("必須の配列が未設定なら空配列で埋める", () => {
-    const job = toJob({ ...base(), requirements: undefined, responsibilities: undefined });
+    const job = toJob({ ...base(), detailInfo: { background: "募集背景" } });
     expect(job?.requirements).toEqual([]);
     expect(job?.responsibilities).toEqual([]);
   });
@@ -100,14 +102,14 @@ describe("toJob", () => {
   });
 
   it("任意の配列フィールドが空文字でもundefinedにする", () => {
-    expect(toJob({ ...base(), welcomeSkills: "   \n " })?.welcomeSkills).toBeUndefined();
+    expect(toJob({ ...base(), skillInfo: { welcomeSkills: "   \n " } })?.welcomeSkills).toBeUndefined();
   });
 
   it("任意の配列フィールドを改行区切りで引き継ぐ", () => {
     const job = toJob({
       ...base(),
-      welcomeSkills: "EC-CUBE経験\nReact経験",
-      benefits: "社保完備",
+      skillInfo: { welcomeSkills: "EC-CUBE経験\nReact経験" },
+      benefitInfo: { benefits: "社保完備" },
     });
     expect(job?.welcomeSkills).toEqual(["EC-CUBE経験", "React経験"]);
     expect(job?.benefits).toEqual(["社保完備"]);
@@ -116,10 +118,12 @@ describe("toJob", () => {
   it("開発環境は4つのフィールドから組み立てる", () => {
     const job = toJob({
       ...base(),
-      devTech: "HTML5/CSS3\nTypeScript",
-      devVersionControl: "SourceTree",
-      devDesignTools: "Figma",
-      devWorkStyle: "営業と連携",
+      skillInfo: {
+        devTech: "HTML5/CSS3\nTypeScript",
+        devVersionControl: "SourceTree",
+        devDesignTools: "Figma",
+        devWorkStyle: "営業と連携",
+      },
     });
     expect(job?.devEnvironment).toEqual({
       tech: ["HTML5/CSS3", "TypeScript"],
@@ -130,7 +134,7 @@ describe("toJob", () => {
   });
 
   it("開発環境は一部だけ入力されていても残りを空配列で埋める", () => {
-    const job = toJob({ ...base(), devTech: "TypeScript" });
+    const job = toJob({ ...base(), skillInfo: { devTech: "TypeScript" } });
     expect(job?.devEnvironment).toEqual({
       tech: ["TypeScript"],
       versionControl: [],
@@ -141,7 +145,7 @@ describe("toJob", () => {
 
   it("開発環境が4つとも空ならundefinedにする（欄ごと出さない）", () => {
     expect(toJob(base())?.devEnvironment).toBeUndefined();
-    expect(toJob({ ...base(), devTech: "  " })?.devEnvironment).toBeUndefined();
+    expect(toJob({ ...base(), skillInfo: { devTech: "  " } })?.devEnvironment).toBeUndefined();
   });
 
   it("slugが空ならnullを返す", () => {
@@ -224,74 +228,37 @@ describe("拡張フィールド basicInfo / recruitInfo", () => {
   });
 });
 
-describe("拡張フィールド detailInfo / skillInfo / benefitInfo への移行", () => {
-  function migrated(): CmsJob {
-    const {
-      background, departmentDesc, requirements, responsibilities,
-      ...rest
-    } = base();
-    void [background, departmentDesc, requirements, responsibilities];
-    return {
-      ...rest,
-      detailInfo: {
-        background: "新しい募集背景",
-        departmentDesc: "新しい部署紹介",
-        responsibilities: "コーディング\nWordPress構築",
-        requirements: "実務経験1年以上",
-      },
-      skillInfo: {
-        welcomeSkills: "React経験",
-        devTech: "HTML5/CSS3\nTypeScript",
-        devVersionControl: "",
-        devDesignTools: "Figma",
-        devWorkStyle: "",
-        appealPoints: "",
-      },
+describe("拡張フィールド detailInfo / skillInfo / benefitInfo", () => {
+  it("本文系の項目を拡張フィールドから読む", () => {
+    const job = toJob({
+      ...base(),
+      skillInfo: { welcomeSkills: "React経験", devTech: "HTML5/CSS3\nTypeScript", appealPoints: "" },
       benefitInfo: { benefits: "社保完備\n交通費支給", selectionProcess: "" },
-    };
-  }
-
-  it("拡張フィールドの値を使う", () => {
-    const job = toJob(migrated());
-    expect(job?.background).toBe("新しい募集背景");
-    expect(job?.departmentDescription).toBe("新しい部署紹介");
-    expect(job?.responsibilities).toEqual(["コーディング", "WordPress構築"]);
-    expect(job?.requirements).toEqual(["実務経験1年以上"]);
-    expect(job?.welcomeSkills).toEqual(["React経験"]);
-    expect(job?.devEnvironment).toEqual({
-      tech: ["HTML5/CSS3", "TypeScript"],
-      versionControl: [],
-      designTools: ["Figma"],
-      workStyle: [],
     });
-    expect(job?.benefits).toEqual(["社保完備", "交通費支給"]);
-  });
-
-  it("任意項目が空文字ならundefinedにする（セクションごと出さない）", () => {
-    const job = toJob(migrated());
+    expect(job?.background).toBe("募集背景");
+    expect(job?.departmentDescription).toBe("部署紹介テキスト");
+    expect(job?.welcomeSkills).toEqual(["React経験"]);
+    expect(job?.devEnvironment?.tech).toEqual(["HTML5/CSS3", "TypeScript"]);
     expect(job?.appealPoints).toBeUndefined();
+    expect(job?.benefits).toEqual(["社保完備", "交通費支給"]);
     expect(job?.selectionProcess).toBeUndefined();
   });
 
-  it("開発環境が4つとも空ならundefinedにする", () => {
-    const job = toJob({ ...migrated(), skillInfo: { welcomeSkills: "React経験", devTech: "", devVersionControl: "" } });
-    expect(job?.devEnvironment).toBeUndefined();
-  });
-
-  it("拡張フィールドが未入力（null・空オブジェクト・空文字だけ）なら旧項目を使う", () => {
-    const job = toJob({ ...base(), detailInfo: null, skillInfo: {}, benefitInfo: { benefits: "" } });
-    expect(job?.background).toBe("募集背景");
-    expect(job?.departmentDescription).toBe("部署紹介テキスト");
-    expect(job?.requirements).toEqual(["実務経験1年以上", "普通自動車第一種免許"]);
+  it("拡張フィールドが未入力（null）なら空として扱う", () => {
+    const job = toJob({ ...base(), detailInfo: null, skillInfo: null, benefitInfo: null });
+    expect(job?.background).toBe("");
+    expect(job?.requirements).toEqual([]);
     expect(job?.welcomeSkills).toBeUndefined();
+    expect(job?.devEnvironment).toBeUndefined();
+    expect(job?.benefits).toBeUndefined();
   });
 
-  it("拡張フィールドを使うときは旧項目と混ぜない（消した任意項目が復活しない）", () => {
-    const job = toJob({
-      ...base(),
-      appealPoints: "旧データのアピールポイント",
-      skillInfo: { welcomeSkills: "React経験", appealPoints: "" },
-    });
+  it("削除済みの旧フィールドがAPIに残っていても読まない", () => {
+    // microCMSはフィールド削除後もしばらく既存コンテンツの旧値を返すことがある
+    const stale = { background: "旧募集背景", appealPoints: "旧アピール", benefits: "旧福利厚生" };
+    const job = toJob({ ...base(), ...stale } as CmsJob);
+    expect(job?.background).toBe("募集背景");
     expect(job?.appealPoints).toBeUndefined();
+    expect(job?.benefits).toBeUndefined();
   });
 });
