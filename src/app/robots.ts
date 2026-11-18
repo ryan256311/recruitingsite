@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next";
+import { ALLOW_INDEXING, SITE_URL } from "./lib/site";
 
 export default function robots(): MetadataRoute.Robots {
+  if (!ALLOW_INDEXING) {
+    // 公開前：すべての巡回を断る
+    return { rules: [{ userAgent: "*", disallow: "/" }] };
+  }
   return {
-    rules: [
-      {
-        userAgent: "*",
-        disallow: "/",
-      },
-    ],
+    rules: [{ userAgent: "*", allow: "/", disallow: ["/api/"] }],
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { ALLOW_INDEXING, SITE_NAME, SITE_URL } from "./lib/site";
 import type { ReactNode } from "react";
 import { Noto_Sans_JP, Roboto } from "next/font/google";
 
@@ -21,19 +23,20 @@ const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-export const metadata = {
-  title: "Recruitment Site",
-  description: "採用サイト",
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
-    },
-  },
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: { default: SITE_NAME, template: `%s | ${SITE_NAME}` },
+  description:
+    "福井県の株式会社エクシートの採用サイトです。募集中の求人や、社員インタビュー・働く環境をご紹介します。",
+  // 公開前は検索結果に出さない。公開日に ALLOW_INDEXING を設定して切り替える（src/app/lib/site.ts）
+  robots: ALLOW_INDEXING
+    ? { index: true, follow: true }
+    : {
+        index: false,
+        follow: false,
+        nocache: true,
+        googleBot: { index: false, follow: false, noimageindex: true },
+      },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

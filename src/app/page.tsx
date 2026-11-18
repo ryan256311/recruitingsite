@@ -4,6 +4,10 @@ import { getAllNews } from "./lib/cms/news";
 
 export const revalidate = 600;
 
+export const metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default async function Page() {
   const [news, contents] = await Promise.all([getAllNews(), getAllContents()]);
 

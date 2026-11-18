@@ -7,8 +7,9 @@ import { getJobs } from "../lib/cms/jobs";
 export const revalidate = 600;
 
 export const metadata = {
-  title: "募集中の求人 | エクシート採用サイト",
+  title: "募集中の求人",
   description: "エクシートで現在募集中の求人一覧です。キャリア採用・新卒採用の求人情報をご覧いただけます。",
+  alternates: { canonical: "/jobs" },
 };
 
 export default async function JobsPage() {

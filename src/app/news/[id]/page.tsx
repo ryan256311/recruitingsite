@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import Layout from "../../components/layout/Layout";
@@ -15,6 +16,19 @@ export const revalidate = 600;
 export async function generateStaticParams() {
   const items = await getAllNews();
   return items.map((item) => ({ id: item.id }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  const news = await getNewsDetail(id);
+  if (!news) return {};
+  // 本文はHTML。タグを除いた先頭120文字を説明文にする
+  const text = news.content.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+  return {
+    title: news.title,
+    description: text ? Array.from(text).slice(0, 120).join("") : undefined,
+    alternates: { canonical: `/news/${news.id}` },
+  };
 }
 
 export default async function NewsDetailPage({ params, searchParams }: Props) {

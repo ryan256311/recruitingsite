@@ -6,8 +6,9 @@ import { getAllNews } from "../lib/cms/news";
 export const revalidate = 600;
 
 export const metadata = {
-  title: "お知らせ | エクシート採用サイト",
+  title: "お知らせ",
   description: "エクシートの採用に関するお知らせやイベント情報をお届けします。",
+  alternates: { canonical: "/news" },
 };
 
 export default async function NewsPage() {

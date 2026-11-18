@@ -108,6 +108,8 @@ export interface CmsJob {
   slug: string;
   /** キャリア採用ページに載せるか。未設定の求人はAPIから返らないため載せない */
   showOnCareer?: boolean;
+  /** microCMSが付ける、最初に公開した日時 */
+  publishedAt?: string;
   /** セレクトフィールドは単一選択でも配列で返る */
   employmentCategory: string[];
   /** 【冒頭】基本情報（拡張フィールド） */
@@ -155,6 +157,7 @@ export function toJob(cms: CmsJob): Job | null {
 
   return {
     slug: cms.slug,
+    postedAt: cms.publishedAt,
     title: basic.title,
     showOnCareer: cms.showOnCareer === true,
     department: basic.department ?? "",
@@ -194,7 +197,8 @@ export async function getJobs(category: EmploymentCategory): Promise<Job[]> {
   const contents = await fetchAll<CmsJob>(({ limit, offset }) =>
     getCmsClient().getList<CmsJob>({
       endpoint: ENDPOINT,
-      queries: { limit, offset, orders: "slug" },
+      // 並び順は作成した順（古い順）。URL名（slug）の文字順にすると、名前の付け方で順番が変わってしまうため
+      queries: { limit, offset, orders: "createdAt" },
       customRequestInit: { next: { tags: [ENDPOINT] } },
     }) as Promise<CmsListResponse<CmsJob>>
   );

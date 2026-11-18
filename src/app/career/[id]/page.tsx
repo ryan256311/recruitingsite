@@ -1,9 +1,11 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Layout from "../../components/layout/Layout";
 import JobDetail from "../../pages/JobDetail";
 import type { ContentItem } from "../../data/contents";
 import { getAllContents } from "../../lib/cms/contents";
 import { getJobBySlug, getJobs } from "../../lib/cms/jobs";
+import { serializeJsonLd, toJobPostingJsonLd } from "../../lib/seo/jobPosting";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -30,6 +32,17 @@ function getRelatedContentsForCareer(items: ContentItem[]): ContentItem[] {
     .slice(0, 3);
 }
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  const job = await getJobBySlug("career", id);
+  if (!job) return {};
+  return {
+    title: `${job.title}（キャリア採用）`,
+    description: job.description || undefined,
+    alternates: { canonical: `/career/${job.slug}` },
+  };
+}
+
 export default async function CareerJobDetailPage({ params }: Props) {
   const { id } = await params;
 
@@ -44,9 +57,20 @@ export default async function CareerJobDetailPage({ params }: Props) {
   const allContents = await getAllContents();
   const relatedContents = getRelatedContentsForCareer(allContents);
 
+  // 検索エンジン向けの求人情報（Googleしごと検索）。必須項目が欠ける求人は出さない
+  const jobPosting = toJobPostingJsonLd(job);
+
   return (
-    <Layout>
-      <JobDetail job={job} type="career" relatedContents={relatedContents} />
-    </Layout>
+    <>
+      {jobPosting && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jobPosting) }}
+        />
+      )}
+      <Layout>
+        <JobDetail job={job} type="career" relatedContents={relatedContents} />
+      </Layout>
+    </>
   );
 }
