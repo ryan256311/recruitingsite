@@ -7,6 +7,29 @@ const ENDPOINT = "jobs";
 export type EmploymentCategory = "career" | "graduate";
 
 /**
+ * microCMS「採用の種類」の選択肢 → 内部ID。
+ * 管理画面では日本語を選ばせる。英語は置き換え前の値で、巻き戻したときにも表示が崩れないよう残す。
+ */
+const EMPLOYMENT_CATEGORY_BY_VALUE: Record<string, EmploymentCategory> = {
+  キャリア採用: "career",
+  新卒採用: "graduate",
+  career: "career",
+  graduate: "graduate",
+};
+
+/** 選択肢の値を内部IDに変換する。知らない値は捨てる */
+export function toEmploymentCategories(values: string[] | undefined): EmploymentCategory[] {
+  return (values ?? []).flatMap((v) => {
+    const id = EMPLOYMENT_CATEGORY_BY_VALUE[v];
+    return id ? [id] : [];
+  });
+}
+
+function isInCategory(cms: CmsJob, category: EmploymentCategory): boolean {
+  return toEmploymentCategories(cms.employmentCategory).includes(category);
+}
+
+/**
  * 箇条書き項目が取りうる形。
  *
  * 現在のスキーマはテキストエリア（1行に1項目）なので文字列で返るが、
@@ -167,35 +190,28 @@ function mapValid(list: CmsJob[]): Job[] {
 }
 
 export async function getJobs(category: EmploymentCategory): Promise<Job[]> {
+  // 選択肢の表記（日本語／英語）に左右されないよう、APIでは絞り込まずに全件取って判定する（求人は数件のみ）
   const contents = await fetchAll<CmsJob>(({ limit, offset }) =>
     getCmsClient().getList<CmsJob>({
       endpoint: ENDPOINT,
-      queries: {
-        limit,
-        offset,
-        // セレクトフィールドは配列で格納されるため equals ではなく contains を使う
-        filters: `employmentCategory[contains]${category}`,
-        orders: "slug",
-      },
+      queries: { limit, offset, orders: "slug" },
       customRequestInit: { next: { tags: [ENDPOINT] } },
     }) as Promise<CmsListResponse<CmsJob>>
   );
-  return mapValid(contents);
+  return mapValid(contents.filter((cms) => isInCategory(cms, category)));
 }
 
 export async function getJobBySlug(
   category: EmploymentCategory,
   slug: string
 ): Promise<Job | null> {
+  // キャリア採用と新卒採用で同じ番号を使える。番号で取ってから採用の種類で絞る
   const response = await getCmsClient().getList<CmsJob>({
     endpoint: ENDPOINT,
-    queries: {
-      limit: 1,
-      filters: `employmentCategory[contains]${category}[and]slug[equals]${slug}`,
-    },
+    queries: { limit: 100, filters: `slug[equals]${slug}` },
     customRequestInit: { next: { tags: [ENDPOINT] } },
   });
 
-  const first = response.contents[0];
+  const first = response.contents.find((cms) => isInCategory(cms, category));
   return first ? toJob(first) : null;
 }
