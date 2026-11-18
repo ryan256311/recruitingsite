@@ -63,26 +63,17 @@ export interface CmsJob {
   showOnCareer?: boolean;
   /** セレクトフィールドは単一選択でも配列で返る */
   employmentCategory: string[];
+  /** 【冒頭】基本情報（拡張フィールド） */
   basicInfo?: CmsBasicInfo | null;
+  /** 【募集要項】（拡張フィールド） */
   recruitInfo?: CmsRecruitInfo | null;
-  // ---- 以下の10項目は basicInfo / recruitInfo へ移行中。移行完了後にスキーマから削除する ----
-  title?: string;
-  department?: string;
   /** microCMSのフィールドIDは20文字以内のため短縮している */
   departmentDesc?: string;
-  type?: string;
-  description?: string;
   background?: string;
   requirements?: CmsLines;
   responsibilities?: CmsLines;
-  salary?: string;
-  location?: string;
-  employmentType?: string;
   welcomeSkills?: CmsLines;
   appealPoints?: CmsLines;
-  workHours?: string;
-  holidays?: string;
-  trialPeriod?: string;
   benefits?: CmsLines;
   selectionProcess?: CmsLines;
   devTech?: CmsLines;
@@ -108,40 +99,6 @@ function toDevEnvironment(cms: CmsJob): Job["devEnvironment"] {
   return hasAny ? { tech, versionControl, designTools, workStyle } : undefined;
 }
 
-/** 拡張フィールドに1つでも値が入っているか。未入力の求人はAPIで null や {} になりうる */
-function hasValue(group: object | null | undefined): group is object {
-  if (!group || typeof group !== "object") return false;
-  return Object.values(group).some((v) => typeof v === "string" && v.length > 0);
-}
-
-/**
- * 基本情報を取り出す。
- * 移行期間中は、拡張フィールドに値があればそちらだけを使い（旧項目と混ぜない）、
- * なければ旧項目を使う。混ぜると、拡張フィールドで消した任意項目が旧項目から復活してしまう。
- */
-function pickBasicInfo(cms: CmsJob): CmsBasicInfo {
-  if (hasValue(cms.basicInfo)) return cms.basicInfo as CmsBasicInfo;
-  return {
-    title: cms.title,
-    department: cms.department,
-    type: cms.type,
-    description: cms.description,
-  };
-}
-
-/** 募集要項を取り出す。方針は pickBasicInfo と同じ */
-function pickRecruitInfo(cms: CmsJob): CmsRecruitInfo {
-  if (hasValue(cms.recruitInfo)) return cms.recruitInfo as CmsRecruitInfo;
-  return {
-    employmentType: cms.employmentType,
-    location: cms.location,
-    salary: cms.salary,
-    workHours: cms.workHours,
-    holidays: cms.holidays,
-    trialPeriod: cms.trialPeriod,
-  };
-}
-
 /** 任意の1行項目用。空白だけなら undefined にして、サイト側でその行ごと非表示にする */
 function toOptionalText(value: string | undefined): string | undefined {
   return value && value.trim().length > 0 ? value : undefined;
@@ -151,8 +108,9 @@ function toOptionalText(value: string | undefined): string | undefined {
 export function toJob(cms: CmsJob): Job | null {
   if (!cms.slug) return null;
 
-  const basic = pickBasicInfo(cms);
-  const recruit = pickRecruitInfo(cms);
+  // 旧フィールド（title など）は削除済み。APIに残骸が返っても読まない
+  const basic: CmsBasicInfo = cms.basicInfo ?? {};
+  const recruit: CmsRecruitInfo = cms.recruitInfo ?? {};
   if (!basic.title) return null;
 
   return {
